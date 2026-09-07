@@ -1,7 +1,7 @@
 {
-  "name": "Copenhagen",
-  "author": "Zendesk",
-  "version": "4.47.2",
+  "name": "ControlPlane External",
+  "author": "Control Plane",
+  "version": "4.48.0",
   "api_version": 4,
   "default_locale": "en-us",
   "settings": [
@@ -56,6 +56,13 @@
           "description": "background_color_description",
           "label": "background_color_label",
           "value": "#FFFFFF"
+        },
+        {
+          "identifier": "card_background_color",
+          "type": "color",
+          "description": "card_background_color_description",
+          "label": "card_background_color_label",
+          "value": "#FFFFFF"
         }
       ]
     },
@@ -67,8 +74,12 @@
           "type": "list",
           "description": "heading_font_description",
           "label": "heading_font_label",
-          "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
+          "value": "Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
           "options": [
+            {
+              "label": "Montserrat",
+              "value": "Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+            },
             {
               "label": "System",
               "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
@@ -140,8 +151,12 @@
           "type": "list",
           "description": "text_font_description",
           "label": "text_font_label",
-          "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
+          "value": "Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif",
           "options": [
+            {
+              "label": "Montserrat",
+              "value": "Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+            },
             {
               "label": "System",
               "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
@@ -224,7 +239,7 @@
           "type": "checkbox",
           "description": "show_brand_name_description",
           "label": "show_brand_name_label",
-          "value": true
+          "value": false
         },
         {
           "identifier": "favicon",
@@ -407,6 +422,314 @@
           "description": "show_suggested_articles_in_new_request_form_description",
           "label": "show_suggested_articles_label",
           "value": true
+        }
+      ]
+    },
+    {
+      "label": "announcement_group_label",
+      "variables": [
+        {
+          "identifier": "show_announcement",
+          "type": "checkbox",
+          "description": "show_announcement_description",
+          "label": "show_announcement_label",
+          "value": false
+        },
+        {
+          "identifier": "announcement_heading",
+          "type": "text",
+          "description": "announcement_heading_description",
+          "label": "announcement_heading_label",
+          "value": ""
+        },
+        {
+          "identifier": "announcement_body",
+          "type": "text",
+          "description": "announcement_body_description",
+          "label": "announcement_body_label",
+          "value": ""
+        },
+        {
+          "identifier": "announcement_link_text",
+          "type": "text",
+          "description": "announcement_link_text_description",
+          "label": "announcement_link_text_label",
+          "value": ""
+        },
+        {
+          "identifier": "announcement_link_url",
+          "type": "text",
+          "description": "announcement_link_url_description",
+          "label": "announcement_link_url_label",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "label": "support_contact_group_label",
+      "variables": [
+        {
+          "identifier": "show_severity_one_notice",
+          "type": "checkbox",
+          "description": "show_severity_one_notice_description",
+          "label": "show_severity_one_notice_label",
+          "value": true
+        },
+        {
+          "identifier": "severity_notice_heading",
+          "type": "text",
+          "description": "severity_notice_heading_description",
+          "label": "severity_notice_heading_label",
+          "value": "Critical issue?"
+        },
+        {
+          "identifier": "severity_notice_body",
+          "type": "text",
+          "description": "severity_notice_body_description",
+          "label": "severity_notice_body_label",
+          "value": "Our quickest response times apply to issues reported by phone."
+        },
+        {
+          "identifier": "support_phone",
+          "type": "text",
+          "description": "support_phone_description",
+          "label": "support_phone_label",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "label": "tickets_group_label",
+      "variables": [
+        {
+          "identifier": "product_field_id",
+          "type": "text",
+          "description": "product_field_id_description",
+          "label": "product_field_id_label",
+          "value": "6074456505503"
+        }
+      ]
+    },
+    {
+      "label": "resources_group_label",
+      "variables": [
+        {
+          "identifier": "show_resources",
+          "type": "checkbox",
+          "description": "show_resources_description",
+          "label": "show_resources_label",
+          "value": true
+        },
+        {
+          "identifier": "resources_heading",
+          "type": "text",
+          "description": "resources_heading_description",
+          "label": "resources_heading_label",
+          "value": "Useful links"
+        }
+      ]
+    },
+    {
+      "label": "resources_col1_group_label",
+      "variables": [
+        {
+          "identifier": "resources_col1_title",
+          "type": "text",
+          "description": "resources_column_title_description",
+          "label": "resources_column_title_label",
+          "value": "ControlPlane"
+        },
+        {
+          "identifier": "resources_col1_link1_text",
+          "type": "text",
+          "description": "resources_link1_text_description",
+          "label": "resources_link1_text_label",
+          "value": "Blogs and news"
+        },
+        {
+          "identifier": "resources_col1_link1_url",
+          "type": "text",
+          "description": "resources_link1_url_description",
+          "label": "resources_link1_url_label",
+          "value": "https://control-plane.io/posts/"
+        },
+        {
+          "identifier": "resources_col1_link2_text",
+          "type": "text",
+          "description": "resources_link2_text_description",
+          "label": "resources_link2_text_label",
+          "value": ""
+        },
+        {
+          "identifier": "resources_col1_link2_url",
+          "type": "text",
+          "description": "resources_link2_url_description",
+          "label": "resources_link2_url_label",
+          "value": ""
+        },
+        {
+          "identifier": "resources_col1_link3_text",
+          "type": "text",
+          "description": "resources_link3_text_description",
+          "label": "resources_link3_text_label",
+          "value": ""
+        },
+        {
+          "identifier": "resources_col1_link3_url",
+          "type": "text",
+          "description": "resources_link3_url_description",
+          "label": "resources_link3_url_label",
+          "value": ""
+        },
+        {
+          "identifier": "resources_col1_link4_text",
+          "type": "text",
+          "description": "resources_link4_text_description",
+          "label": "resources_link4_text_label",
+          "value": ""
+        },
+        {
+          "identifier": "resources_col1_link4_url",
+          "type": "text",
+          "description": "resources_link4_url_description",
+          "label": "resources_link4_url_label",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "label": "resources_col2_group_label",
+      "variables": [
+        {
+          "identifier": "resources_col2_title",
+          "type": "text",
+          "description": "resources_column_title_description",
+          "label": "resources_column_title_label",
+          "value": "Flux CD"
+        },
+        {
+          "identifier": "resources_col2_link1_text",
+          "type": "text",
+          "description": "resources_link1_text_description",
+          "label": "resources_link1_text_label",
+          "value": "Project homepage"
+        },
+        {
+          "identifier": "resources_col2_link1_url",
+          "type": "text",
+          "description": "resources_link1_url_description",
+          "label": "resources_link1_url_label",
+          "value": "https://fluxcd.io/"
+        },
+        {
+          "identifier": "resources_col2_link2_text",
+          "type": "text",
+          "description": "resources_link2_text_description",
+          "label": "resources_link2_text_label",
+          "value": "Documentation"
+        },
+        {
+          "identifier": "resources_col2_link2_url",
+          "type": "text",
+          "description": "resources_link2_url_description",
+          "label": "resources_link2_url_label",
+          "value": "https://fluxcd.io/flux/"
+        },
+        {
+          "identifier": "resources_col2_link3_text",
+          "type": "text",
+          "description": "resources_link3_text_description",
+          "label": "resources_link3_text_label",
+          "value": "ControlPlane Enterprise for Flux"
+        },
+        {
+          "identifier": "resources_col2_link3_url",
+          "type": "text",
+          "description": "resources_link3_url_description",
+          "label": "resources_link3_url_label",
+          "value": "https://fluxcd.control-plane.io/"
+        },
+        {
+          "identifier": "resources_col2_link4_text",
+          "type": "text",
+          "description": "resources_link4_text_description",
+          "label": "resources_link4_text_label",
+          "value": ""
+        },
+        {
+          "identifier": "resources_col2_link4_url",
+          "type": "text",
+          "description": "resources_link4_url_description",
+          "label": "resources_link4_url_label",
+          "value": ""
+        }
+      ]
+    },
+    {
+      "label": "resources_col3_group_label",
+      "variables": [
+        {
+          "identifier": "resources_col3_title",
+          "type": "text",
+          "description": "resources_column_title_description",
+          "label": "resources_column_title_label",
+          "value": "OpenBao"
+        },
+        {
+          "identifier": "resources_col3_link1_text",
+          "type": "text",
+          "description": "resources_link1_text_description",
+          "label": "resources_link1_text_label",
+          "value": "Project homepage"
+        },
+        {
+          "identifier": "resources_col3_link1_url",
+          "type": "text",
+          "description": "resources_link1_url_description",
+          "label": "resources_link1_url_label",
+          "value": "https://openbao.org/"
+        },
+        {
+          "identifier": "resources_col3_link2_text",
+          "type": "text",
+          "description": "resources_link2_text_description",
+          "label": "resources_link2_text_label",
+          "value": "Blog"
+        },
+        {
+          "identifier": "resources_col3_link2_url",
+          "type": "text",
+          "description": "resources_link2_url_description",
+          "label": "resources_link2_url_label",
+          "value": "https://openbao.org/blog/"
+        },
+        {
+          "identifier": "resources_col3_link3_text",
+          "type": "text",
+          "description": "resources_link3_text_description",
+          "label": "resources_link3_text_label",
+          "value": ""
+        },
+        {
+          "identifier": "resources_col3_link3_url",
+          "type": "text",
+          "description": "resources_link3_url_description",
+          "label": "resources_link3_url_label",
+          "value": ""
+        },
+        {
+          "identifier": "resources_col3_link4_text",
+          "type": "text",
+          "description": "resources_link4_text_description",
+          "label": "resources_link4_text_label",
+          "value": ""
+        },
+        {
+          "identifier": "resources_col3_link4_url",
+          "type": "text",
+          "description": "resources_link4_url_description",
+          "label": "resources_link4_url_label",
+          "value": ""
         }
       ]
     }
