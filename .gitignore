@@ -1,2 +1,8 @@
 /external/build/
 /internal/build/
+
+# macOS
+.DS_Store
+
+# Local tooling
+.claude/
