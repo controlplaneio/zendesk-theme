@@ -1,0 +1,24 @@
+This repository contains a modified version of Zendesk's Copenhagen theme
+for Zendesk Guide (https://github.com/zendesk/copenhagen_theme),
+Copyright Zendesk, Inc., licensed under the Apache License, Version 2.0.
+See LICENSE for the full license text.
+
+Modified or added by Control Plane Ltd:
+- external/manifest.json, internal/manifest.json — custom settings, branding
+  colors, and fonts
+- external/overrides.css, internal/overrides.css — per-centre style overrides
+- external/templates/document_head.hbs, internal/templates/document_head.hbs
+  — added a Google Fonts <link>
+- external/settings/logo.png, external/settings/favicon.png,
+  internal/settings/logo.png, internal/settings/favicon.png — replaced with
+  Control Plane's own brand assets
+- scripts/build.sh — new build tooling, not part of upstream Copenhagen
+
+Unmodified from upstream Copenhagen (Copyright Zendesk, Inc.,
+Apache License 2.0):
+- shared/base.css (copy of upstream style.css)
+- external/templates/*.hbs, internal/templates/*.hbs (except document_head.hbs)
+- external/script.js, internal/script.js
+- external/assets/*, internal/assets/*
+- external/translations/*.json, internal/translations/*.json
+- external/settings/*, internal/settings/* other than logo.png/favicon.png
