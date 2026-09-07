@@ -1,0 +1,3 @@
+[submodule "copenhagen_theme"]
+	path = copenhagen_theme
+	url = git@github.com:zendesk/copenhagen_theme.git

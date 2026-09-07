@@ -1,0 +1,61 @@
+/* Internal help centre overrides */
+@import url("../../copenhagen_theme/style.css");
+
+/* Internal HC is just the request form + a handful of internal guides -
+   drop the stock Copenhagen marketing imagery rather than reskin it */
+.community-image {
+  background-image: none;
+}
+
+.service-catalog-hero {
+  background-image: none;
+}
+
+/* Hero: soft diagonal mesh gradient instead of the stock photo or flat blank.
+   Flat hex stops (from the Flux site's own light-blue tints), not lighten()
+   nested inside linear-gradient() - Zendesk's compiler silently drops that
+   nesting and falls back to the original stock rule, which is why this
+   didn't apply the first time. */
+.hero {
+  background-image: linear-gradient(135deg, #dbe7fa 0%, #f3f8fe 50%, #ffffff 100%);
+}
+
+/* Category/section cards: bento-style tile - soft shadow, colored top edge,
+   lift on hover instead of Copenhagen's default invert-to-solid-block hover */
+.blocks-item {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid lighten($brand_color, 35%);
+  border-radius: 16px;
+  box-shadow: 0 1px 3px rgba(20, 114, 235, 0.08);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+.blocks-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: $brand_color;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+}
+.blocks-item:hover,
+.blocks-item:focus,
+.blocks-item:active {
+  background-color: $background_color;
+  border-color: $brand_color;
+  box-shadow: 0 8px 20px rgba(20, 114, 235, 0.16);
+  transform: translateY(-2px);
+}
+.blocks-item:hover::before,
+.blocks-item:focus::before,
+.blocks-item:active::before {
+  opacity: 1;
+}
+.blocks-item:hover *,
+.blocks-item:focus *,
+.blocks-item:active * {
+  color: $brand_color;
+}

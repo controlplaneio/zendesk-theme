@@ -1,0 +1,12 @@
+diff --git a/templates/document_head.hbs b/templates/document_head.hbs
+index d4d1bfb..e261763 100644
+--- a/templates/document_head.hbs
++++ b/templates/document_head.hbs
+@@ -1,4 +1,7 @@
+ <meta content="width=device-width, initial-scale=1.0" name="viewport" />
++<link rel="preconnect" href="https://fonts.googleapis.com">
++<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
++<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+ <!-- Make the translated search clear button label available for use in JS -->
+ <!-- See buildClearSearchButton() in script.js -->
+ <script type="text/javascript">window.searchClearButtonLabelLocalized = "{{t 'search_clear'}}";</script>

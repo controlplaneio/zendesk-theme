@@ -1,0 +1,17 @@
+{
+  "name": "zendesk-theme-scripts",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "fast-json-patch": "^3.1.1",
+    "ignore": "^7.0.8",
+    "lodash-es": "^4.18.1"
+  }
+}

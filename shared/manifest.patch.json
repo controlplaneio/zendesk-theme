@@ -1,0 +1,53 @@
+[
+  {
+    "op": "replace",
+    "path": "/author",
+    "value": "ControlPlane"
+  },
+  {
+    "op": "replace",
+    "path": "/settings/0/variables/0/value",
+    "value": "#1472eb"
+  },
+  {
+    "op": "replace",
+    "path": "/settings/0/variables/2/value",
+    "value": "#101c30"
+  },
+  {
+    "op": "replace",
+    "path": "/settings/0/variables/3/value",
+    "value": "#1472eb"
+  },
+  {
+    "op": "replace",
+    "path": "/settings/0/variables/4/value",
+    "value": "#0f5ec5"
+  },
+  {
+    "op": "add",
+    "path": "/settings/1/variables/0/options/16",
+    "value": {
+      "label": "Schibsted Grotesk",
+      "value": "'Schibsted Grotesk', 'Helvetica Neue', Arial, sans-serif"
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/settings/1/variables/0/value",
+    "value": "'Schibsted Grotesk', 'Helvetica Neue', Arial, sans-serif"
+  },
+  {
+    "op": "add",
+    "path": "/settings/1/variables/1/options/16",
+    "value": {
+      "label": "Hanken Grotesk",
+      "value": "'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif"
+    }
+  },
+  {
+    "op": "replace",
+    "path": "/settings/1/variables/1/value",
+    "value": "'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif"
+  }
+]
