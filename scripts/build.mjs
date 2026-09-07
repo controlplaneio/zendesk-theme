@@ -93,12 +93,43 @@ async function buildSharedForCentre(centre, centrePath, themePath, sharedPath) {
           if (!exists) {
             const destDir = path.dirname(targetPath);
             await fs.mkdir(destDir, { recursive: true });
-            await fs.writeFile(targetPath, additionContent);
-            console.log(`${coloured(centre)} added ${entry.name}/${file}`);
+            if (entry.name === "translations" && file.endsWith(".json")) {
+              const parsed = JSON.parse(additionContent);
+              const merged = {};
+              const existingFile = path.join(themePath, entry.name, file);
+              const original = JSON.parse(await fs.readFile(existingFile, "utf8"));
+              Object.assign(merged, original);
+              for (const [k, v] of Object.entries(parsed)) {
+                if (k in merged) {
+                  console.log(`${coloured(centre)} shared skip ${entry.name}/${file}: ${k} (already exists)`);
+                } else {
+                  merged[k] = v;
+                }
+              }
+              await fs.writeFile(targetPath, JSON.stringify(merged, null, 2) + "\n");
+            } else {
+              await fs.writeFile(targetPath, additionContent);
+              console.log(`${coloured(centre)} added ${entry.name}/${file}`);
+            }
             continue;
           }
-          const existingContent = await fs.readFile(targetPath, "utf8");
-          await fs.writeFile(targetPath, existingContent + "\n" + additionContent);
+          if (entry.name === "translations" && file.endsWith(".json")) {
+            const parsed = JSON.parse(additionContent);
+            const existingContent = await fs.readFile(targetPath, "utf8");
+            const original = JSON.parse(existingContent);
+            const merged = { ...original };
+            for (const [k, v] of Object.entries(parsed)) {
+              if (k in original) {
+                console.log(`${coloured(centre)} shared skip ${entry.name}/${file}: ${k} (already exists)`);
+              } else {
+                merged[k] = v;
+              }
+            }
+            await fs.writeFile(targetPath, JSON.stringify(merged, null, 2) + "\n");
+          } else {
+            const existingContent = await fs.readFile(targetPath, "utf8");
+            await fs.writeFile(targetPath, existingContent + "\n" + additionContent);
+          }
         }
       });
     }
@@ -207,12 +238,43 @@ async function buildCentre(centre, centrePath) {
           if (!exists) {
             const destDir = path.dirname(targetPath);
             await fs.mkdir(destDir, { recursive: true });
-            await fs.writeFile(targetPath, additionContent);
-            console.log(`${coloured(centre)} added ${entry.name}/${file}`);
+            if (entry.name === "translations" && file.endsWith(".json")) {
+              const parsed = JSON.parse(additionContent);
+              const merged = {};
+              const existingFile = path.join(themePath, entry.name, file);
+              const original = JSON.parse(await fs.readFile(existingFile, "utf8"));
+              Object.assign(merged, original);
+              for (const [k, v] of Object.entries(parsed)) {
+                if (k in merged) {
+                  console.log(`${coloured(centre)} skip ${entry.name}/${file}: ${k} (already exists)`);
+                } else {
+                  merged[k] = v;
+                }
+              }
+              await fs.writeFile(targetPath, JSON.stringify(merged, null, 2) + "\n");
+            } else {
+              await fs.writeFile(targetPath, additionContent);
+              console.log(`${coloured(centre)} added ${entry.name}/${file}`);
+            }
             continue;
           }
-          const existingContent = await fs.readFile(targetPath, "utf8");
-          await fs.writeFile(targetPath, existingContent + "\n" + additionContent);
+          if (entry.name === "translations" && file.endsWith(".json")) {
+            const parsed = JSON.parse(additionContent);
+            const existingContent = await fs.readFile(targetPath, "utf8");
+            const original = JSON.parse(existingContent);
+            const merged = { ...original };
+            for (const [k, v] of Object.entries(parsed)) {
+              if (k in original) {
+                console.log(`${coloured(centre)} skip ${entry.name}/${file}: ${k} (already exists)`);
+              } else {
+                merged[k] = v;
+              }
+            }
+            await fs.writeFile(targetPath, JSON.stringify(merged, null, 2) + "\n");
+          } else {
+            const existingContent = await fs.readFile(targetPath, "utf8");
+            await fs.writeFile(targetPath, existingContent + "\n" + additionContent);
+          }
         }
       });
     }

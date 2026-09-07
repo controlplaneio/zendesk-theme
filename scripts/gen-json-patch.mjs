@@ -61,11 +61,35 @@ function smartCompare(a, b, path = "") {
         });
       }
 
-      // If nothing matched at the front (prepend), replace the whole array.
-      // JSON Patch can't insert at arbitrary indices cleanly, and element-by-element
-      // removes+adds are error-prone when indices shift.
+      // If nothing matched at the front (prepend), try to find where a's items
+      // appear as a contiguous block inside b. If found, the gap is an insertion.
+      let insertIdx = -1;
       if (prefixLen === 0) {
-        ops.push({ op: "replace", path, value: b });
+        for (let s = 0; s <= b.length - a.length; s++) {
+          let match = true;
+          for (let k = 0; k < a.length; k++) {
+            if (!_.isEqual(a[k], b[s + k])) { match = false; break; }
+          }
+          if (match) { insertIdx = s; break; }
+        }
+        if (insertIdx >= 0) {
+          // Old items found contiguously at insertIdx in b — add new items before them
+          for (let k = 0; k < insertIdx; k++) {
+            ops.push({ op: "add", path: path + "/" + k, value: b[k] });
+          }
+        } else if (removedCount > 0 && addedCount === 0) {
+          // Items were removed from the front — replace whole array
+          ops.push({ op: "replace", path, value: b });
+        } else {
+          // Fallback: items were inserted at the front or mixed — recurse into each old item
+          // against corresponding new items to find nested changes, plus add truly new items
+          for (let k = 0; k < a.length && k < b.length; k++) {
+            ops.push(...smartCompare(a[k], b[k], path + "/" + k));
+          }
+          for (let k = a.length; k < b.length; k++) {
+            ops.push({ op: "add", path: path + "/" + k, value: b[k] });
+          }
+        }
       } else {
         // Remove extra old items (from the middle)
         for (let i = 0; i < removedCount; i++) {

@@ -15,6 +15,7 @@ Zendesk theme source for the External and Internal help centres. These are two s
 
 - `build.include` — specifies the files to copy or ignore from the base theme
 - `additions/` — matches the same paths as the base theme, any content will be attached to the end of the matching file
+  - `additions/translations/*.json` are handled in a special way for convenience, any items will be attached to the original theme translation JSON file. `original` -> `shared` -> `<folder>`. You can not currently replace existing keys in the original, only add new ones. You can overwrite keys added in `shared` inside `<folder>` but there will be a warning
 - `replacements/` — matches the same paths as the base theme, any content will fully replace the matching file
 - `*.patch.json` — a simple method to adjust JSON in place based on [RFC 6902 JSON Patches](https://jsonpatch.com/)
   - mostly focused on adjusting `manifest.json`
@@ -22,7 +23,7 @@ Zendesk theme source for the External and Internal help centres. These are two s
     - copy the `.json` file you're targeting
       - you may need to template out `copenhagen_theme/<target>.json` with `<folder>/<target>.patch.json` for making your adjustments
         - `./scripts/apply-json-patch.json copenhagen_theme/<target>.json <folder>/<target>.patch.json > <modified_target>.json`
-        - or copy out of the `<folder>/build` dir
+        - or copy out of the `<folder>/build` dir but if the `<folder>` is a centre, it could also be affected by `shared`, the modifications should be centre specific.
     - make your adjustments
     - run `./scripts/gen-json-patch.json copenhagen_theme/<target>.json <modified_target>.json > <folder>/<target>.patch.json`
     - make sure you clean up `<modified_target>.json` and don't commit it

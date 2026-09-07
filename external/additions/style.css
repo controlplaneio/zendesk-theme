@@ -1,2 +1,263 @@
 /* External help centre overrides */
 @import url("../../copenhagen_theme/style.css");
+
+/***** Header logo *****/
+/* The brand SVG carries a viewBox but no intrinsic width/height, so a
+   max-height alone can leave it with no computed size. Give it an explicit
+   height and let the width follow the aspect ratio. */
+.logo img {
+  height: 40px;
+  max-height: 40px;
+  width: auto;
+  display: block;
+}
+
+/***** Homepage: announcement banner *****/
+.cp-announcement {
+  background-color: #edf7f6;
+  border-top: 1px solid #c9e3e0;
+  border-bottom: 1px solid #c9e3e0;
+  color: $text_color;
+}
+
+.cp-announcement-inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  flex-wrap: wrap;
+}
+
+.cp-announcement-icon {
+  color: $brand_color;
+  flex: none;
+}
+
+.cp-announcement-heading {
+  font-weight: 600;
+}
+
+.cp-announcement-body {
+  color: #68737d;
+}
+
+.cp-announcement-link {
+  margin-left: auto;
+  font-weight: 600;
+}
+
+/***** Homepage: hero *****/
+.cp-hero {
+  text-align: center;
+  padding: 44px 20px 40px;
+  margin-bottom: 40px;
+}
+
+.cp-hero-inner {
+  max-width: 610px;
+  margin: 0 auto;
+}
+
+.cp-hero-heading {
+  margin-bottom: 8px;
+}
+
+.cp-hero-sub {
+  margin: 0 0 24px;
+  color: #68737d;
+}
+
+/***** Homepage: ticket lists *****/
+.cp-ticket-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 30px;
+}
+
+@media (min-width: 768px) {
+  .cp-ticket-columns {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Panels carry their own fill so they stay lighter than a tinted page
+   background instead of inheriting it. */
+.cp-ticket-panel {
+  background-color: $card_background_color;
+  border: 1px solid #e4e6e7;
+  border-radius: 6px;
+  padding: 24px 24px 8px;
+  box-shadow: 0 1px 2px rgba(47, 57, 65, 0.04);
+}
+
+.cp-panel-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 4px;
+}
+
+.cp-panel-head h2 {
+  margin: 0;
+}
+
+.cp-panel-head a {
+  font-size: 14px;
+  flex: none;
+}
+
+.cp-ticket-items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.cp-ticket-item {
+  border-bottom: 1px solid #ddd;
+  padding: 16px 0;
+}
+
+.cp-ticket-meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 4px;
+}
+
+.cp-status {
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 3px;
+  padding: 2px 8px;
+  background-color: #f3f5f7;
+  color: #68737d;
+}
+
+/* Anything awaiting the client is the one state worth pulling forward. */
+.cp-status-pending {
+  background-color: #edf7f6;
+  color: $brand_color;
+}
+
+.cp-product {
+  font-size: 12px;
+  font-weight: 600;
+  color: #68737d;
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 1px 7px;
+}
+
+.cp-ticket-id,
+.cp-ticket-updated {
+  font-size: 13px;
+  color: #68737d;
+}
+
+.cp-ticket-updated {
+  margin-top: 4px;
+}
+
+.cp-ticket-subject {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.cp-muted {
+  color: #68737d;
+  margin: 12px 0 16px;
+}
+
+.cp-signed-out {
+  background-color: $card_background_color;
+  border: 1px solid #e4e6e7;
+  border-radius: 6px;
+  padding: 24px 30px;
+  text-align: center;
+}
+
+/***** Homepage: severity 1 notice *****/
+/* Sized to its content rather than the full container: the notice can be as
+   short as a phone number, and a full-width band leaves a large empty field. */
+.cp-sev1 {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid #d8a25c;
+  border-radius: 6px;
+  background-color: #fdf6ec;
+  padding: 16px 22px;
+  color: #ad5f00;
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cp-sev1-title {
+  font-weight: 600;
+  color: $text_color;
+}
+
+.cp-sev1-body {
+  color: #68737d;
+}
+
+/***** Homepage: products, promoted articles, resources *****/
+.cp-section-heading {
+  margin-bottom: 20px;
+}
+
+.cp-product-list {
+  margin-bottom: 0;
+}
+
+.cp-article-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 10px 30px;
+}
+
+@media (min-width: 768px) {
+  .cp-article-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.cp-resources {
+  border-top: 1px solid #ddd;
+  padding-top: 20px;
+}
+
+.cp-resource-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 30px;
+}
+
+@media (min-width: 768px) {
+  .cp-resource-columns {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.cp-resource-title {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.cp-resource-columns ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
