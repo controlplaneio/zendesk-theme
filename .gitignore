@@ -1,2 +1,8 @@
 /external/style.css
 /internal/style.css
+
+# macOS
+.DS_Store
+
+# Local tooling
+.claude/
