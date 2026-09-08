@@ -135,38 +135,11 @@ async function buildSharedForCentre(centre, centrePath, themePath, sharedPath) {
     }
   }
 
-  // Collect shared .patch.json files (applied immediately)
+  // Collect all shared patch files for deferred application
   const entries = (await fs.readdir(sharedPath)).sort();
   const sharedPatchJsonFiles = entries.filter((f) => f.endsWith(".patch.json"));
-
-  // Apply shared JSON patches
-  for (const patchFile of sharedPatchJsonFiles) {
-    const baseName = patchFile.replace(/\.patch\.json$/, ".json");
-    const sourcePath = path.join(themePath, baseName);
-    const patchPath = path.join(sharedPath, patchFile);
-
-    try {
-      await fs.access(sourcePath);
-    } catch {
-      console.error(`${coloured(centre)} skip (no source): ${sourcePath}`);
-      continue;
-    }
-
-    await log(`shared applying ${patchFile} -> ${baseName}`, centre, async () => {
-      const doc = JSON.parse(await fs.readFile(sourcePath, "utf8"));
-      const patches = JSON.parse(await fs.readFile(patchPath, "utf8"));
-      const result = applyPatch(doc, patches);
-      if (result.error) {
-        console.error(`${coloured(centre)} patch error on ${baseName}:`, result.error);
-        process.exit(1);
-      }
-      await fs.writeFile(path.join(buildPath, baseName), JSON.stringify(result.newDocument, null, 2) + "\n");
-    });
-  }
-
-  // Collect unified diff patches (shared + centre) for sorted application
   const sharedUnifiedPatches = entries.filter((f) => f.endsWith(".patch") && !f.endsWith(".patch.json"));
-  return { sharedUnifiedPatches };
+  return { sharedPatchJsonFiles, sharedUnifiedPatches };
 }
 
 // ─── Centre processing ──────────────────────────────────────────────
@@ -180,20 +153,23 @@ async function buildCentre(centre, centrePath) {
     await fs.mkdir(buildPath, { recursive: true });
   });
 
+  // Write base style.css from theme (additions will append to this later)
+  await fs.writeFile(path.join(buildPath, "style.css"), await fs.readFile(path.join(themePath, "style.css"), "utf8"));
+
   // Load compound patterns: shared + centre-specific
   const sharedPath = path.resolve("shared");
 
   // Apply shared patches and replacements first (before centre processing)
+  let sharedPatchJsonFiles = [];
   let sharedUnifiedPatches = [];
   if (await fs.stat(sharedPath).catch(() => null)) {
     const result = await buildSharedForCentre(centre, centrePath, themePath, sharedPath);
+    sharedPatchJsonFiles = result.sharedPatchJsonFiles || [];
     sharedUnifiedPatches = result.sharedUnifiedPatches || [];
   }
 
-  // Compound patterns: shared + centre-specific
+  // Copy theme files filtered by compiled patterns (base layer)
   const include = await loadIncludePatterns(centrePath, sharedPath);
-
-  // Copy theme files filtered by compiled patterns
   const themeFiles = await fs.readdir(themePath, { withFileTypes: true });
   for (const entry of themeFiles) {
     if (!entry.isDirectory()) continue;
@@ -226,6 +202,24 @@ async function buildCentre(centre, centrePath) {
   if (await fs.stat(additionsDir).catch(() => null)) {
     const addEntries = await fs.readdir(additionsDir, { withFileTypes: true });
     for (const entry of addEntries) {
+      // Handle files directly in additions/ (e.g. style.css) — append to theme root file
+      if (!entry.isFile()) continue;
+      const additionFile = path.join(additionsDir, entry.name);
+      const targetPath = path.join(buildPath, entry.name);
+      const additionContent = await fs.readFile(additionFile, "utf8");
+      const exists = await fs.stat(targetPath).then(() => true).catch(() => false);
+      if (exists) {
+        const existingContent = await fs.readFile(targetPath, "utf8");
+        const filteredAddition = additionContent.split("\n").filter((l) => !l.startsWith("@import")).join("\n");
+        await fs.writeFile(targetPath, existingContent + "\n" + filteredAddition);
+        console.log(`${coloured(centre)} appended ${entry.name}`);
+      } else {
+        const filteredAddition = additionContent.split("\n").filter((l) => !l.startsWith("@import")).join("\n");
+        await fs.writeFile(targetPath, filteredAddition);
+        console.log(`${coloured(centre)} added ${entry.name}`);
+      }
+
+      // Handle directories in additions/ (e.g. translations/)
       if (!entry.isDirectory()) continue;
       const addSubDir = path.join(additionsDir, entry.name);
 
@@ -280,21 +274,27 @@ async function buildCentre(centre, centrePath) {
     }
   }
 
-  // Build style.css from theme (centre-specific additions appended separately)
-  await log("building style.css", centre, async () => {
-    const styleCss = await fs.readFile(path.join(themePath, "style.css"), "utf8");
-    await fs.writeFile(path.join(buildPath, "style.css"), styleCss);
-  });
+  // style.css already written above; additions appended it if present
 
-  // Apply centre-specific JSON patches
+  // Apply all JSON patches (shared first, then centre-specific), sorted by target filename
   const entries = (await fs.readdir(centrePath)).sort();
-  for (const entry of entries) {
-    if (!entry.endsWith(".patch.json")) continue;
+  const centrePatchJsonFiles = entries.filter((f) => f.endsWith(".patch.json"));
 
-    const baseName = entry.replace(/\.patch\.json$/, ".json");
+  // Collect all patch.json files: shared first, then centre, grouped by target baseName
+  const allPatchTargets = new Map();
+  for (const patchFile of sharedPatchJsonFiles) {
+    const baseName = patchFile.replace(/\.patch\.json$/, ".json");
+    if (!allPatchTargets.has(baseName)) allPatchTargets.set(baseName, []);
+    allPatchTargets.get(baseName).push({ file: patchFile, dir: sharedPath });
+  }
+  for (const patchFile of centrePatchJsonFiles) {
+    const baseName = patchFile.replace(/\.patch\.json$/, ".json");
+    if (!allPatchTargets.has(baseName)) allPatchTargets.set(baseName, []);
+    allPatchTargets.get(baseName).push({ file: patchFile, dir: centrePath });
+  }
+
+  for (const [baseName, patches] of allPatchTargets) {
     const sourcePath = path.join(themePath, baseName);
-    const patchPath = path.join(centrePath, entry);
-
     try {
       await fs.access(sourcePath);
     } catch {
@@ -302,15 +302,18 @@ async function buildCentre(centre, centrePath) {
       continue;
     }
 
-    await log(`applying ${entry} -> ${baseName}`, centre, async () => {
-      const doc = JSON.parse(await fs.readFile(sourcePath, "utf8"));
-      const patches = JSON.parse(await fs.readFile(patchPath, "utf8"));
-      const result = applyPatch(doc, patches);
-      if (result.error) {
-        console.error(`${coloured(centre)} patch error on ${baseName}:`, result.error);
-        process.exit(1);
+    await log(`applying ${baseName}`, centre, async () => {
+      let doc = JSON.parse(await fs.readFile(sourcePath, "utf8"));
+      for (const { file, dir } of patches) {
+        const patchDoc = JSON.parse(await fs.readFile(path.join(dir, file), "utf8"));
+        const result = applyPatch(doc, patchDoc);
+        if (result.error) {
+          console.error(`${coloured(centre)} patch error on ${baseName}:`, result.error);
+          process.exit(1);
+        }
+        doc = result.newDocument;
       }
-      await fs.writeFile(path.join(buildPath, baseName), JSON.stringify(result.newDocument, null, 2) + "\n");
+      await fs.writeFile(path.join(buildPath, baseName), JSON.stringify(doc, null, 2) + "\n");
     });
   }
 

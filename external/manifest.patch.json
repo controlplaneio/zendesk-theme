@@ -1,5 +1,10 @@
 [
   {
+    "op": "replace",
+    "path": "/name",
+    "value": "ControlPlane External Help Centre theme"
+  },
+  {
     "op": "add",
     "path": "/settings/0/variables/7",
     "value": {
