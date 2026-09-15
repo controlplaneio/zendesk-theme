@@ -1,0 +1,13 @@
+# Patterns are positive (gitignore syntax, last match wins) and anchored to the
+# theme root: an unanchored "translations/" would also match
+# src/modules/*/translations/, which is build input rather than theme output.
+/assets/**
+/settings/
+/templates/
+/translations/
+/script.js
+/thumbnail.png
+
+# Upstream placeholder, not theme output. Re-excluding a file needs the
+# parent to be a glob rather than a bare directory pattern.
+!/assets/.gitkeep
