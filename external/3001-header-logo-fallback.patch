@@ -1,0 +1,17 @@
+--- a/templates/header.hbs
++++ b/templates/header.hbs
+@@ -3,7 +3,13 @@
+ <header class="header">
+   <div class="logo">
+     {{#link 'help_center'}}
+-      <img src="{{settings.logo}}" alt="{{t 'home_page' name=help_center.name}}" />
++      {{!-- Falls back to the bundled brand logo, so the theme ships with the
++            right mark rather than depending on a manual upload. --}}
++      {{#if settings.logo}}
++        <img src="{{settings.logo}}" alt="{{t 'home_page' name=help_center.name}}" />
++      {{else}}
++        <img src="{{asset 'cp-logo-horizontal-black.svg'}}" alt="{{t 'home_page' name=help_center.name}}" />
++      {{/if}}
+       {{#if settings.show_brand_name}}
+         <span aria-hidden="true">{{help_center.name}}</span>
+       {{/if}}

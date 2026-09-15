@@ -1,0 +1,12 @@
+[
+  {
+    "op": "replace",
+    "path": "/author",
+    "value": "ControlPlane"
+  },
+  {
+    "op": "replace",
+    "path": "/version",
+    "value": "1.0.0"
+  }
+]
