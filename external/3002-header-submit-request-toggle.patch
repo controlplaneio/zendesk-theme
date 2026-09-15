@@ -1,0 +1,25 @@
+--- a/templates/header.hbs
++++ b/templates/header.hbs
+@@ -21,7 +21,9 @@
+       <ul class="user-nav-list">
+         <li>{{link 'community'}}</li>
+         <li>{{link 'service_catalog'}}</li>
+-        <li>{{link 'new_request' class='submit-a-request'}}</li>
++        {{#if settings.show_submit_request}}
++          <li>{{link 'new_request' class='submit-a-request'}}</li>
++        {{/if}}
+         {{#unless signed_in}}
+           <li>
+             {{#link "sign_in" class="sign-in" role="link"}}
+@@ -99,8 +101,10 @@
+         {{/if}}
+        
+         <li class="item">{{link 'community'}}</li>
+-        <li class="item">{{link 'new_request' class='submit-a-request'}}</li>
+         <li class="item">{{link 'service_catalog'}}</li>
++        {{#if settings.show_submit_request}}
++          <li class="item">{{link 'new_request' class='submit-a-request'}}</li>
++        {{/if}}
+         <li class="nav-divider"></li>
+         {{#if signed_in}}
+           <li class="item">
