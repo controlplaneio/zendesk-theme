@@ -11,7 +11,7 @@ import { applyReplacements } from "./utils/additions/replacements.mjs";
 import { mergeTranslation } from "./utils/additions/translation-merge.mjs";
 
 const themeDir = "copenhagen_theme";
-const releases = ["external", "internal"];
+const releases = ["external"];
 const CONCURRENCY = 2;
 
 async function log(label, centre, fn) {

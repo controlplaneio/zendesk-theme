@@ -68,11 +68,6 @@ describe("build pipeline", () => {
       "",
     ].join("\n"));
 
-    await write("internal/manifest.patch.json", JSON.stringify([
-      { op: "replace", path: "/name", value: "Internal" },
-    ]));
-    await write("internal/additions/style.css", ".internal { color: green; }");
-
     await run(process.execPath, [buildScript], { cwd: tmpDir });
   });
 
@@ -82,7 +77,7 @@ describe("build pipeline", () => {
 
   it("copies the base theme through build.include", async () => {
     expect(await read("external/build/script.js")).toContain("// base script");
-    expect(await read("internal/build/templates/header.hbs")).toContain("<header>");
+    expect(await read("external/build/templates/header.hbs")).toContain("<header>");
   });
 
   it("applies a centre additions/<dir>/ translation merge", async () => {
@@ -91,15 +86,9 @@ describe("build pipeline", () => {
     expect(t).toEqual({ base_key: "base", shared_key: "shared", external_key: "external" });
   });
 
-  it("keeps centre-only translations out of the other centre", async () => {
-    const t = await readJson("internal/build/translations/en-us.json");
-    expect(t).toEqual({ base_key: "base", shared_key: "shared" });
-  });
-
   it("keeps shared replacements, rather than letting the base copy overwrite them", async () => {
     // Regression: shared replacements ran before the base theme was copied.
     expect(await read("external/build/templates/footer.hbs")).toBe("<footer>shared</footer>\n");
-    expect(await read("internal/build/templates/footer.hbs")).toBe("<footer>shared</footer>\n");
   });
 
   it("appends shared additions to a theme root file", async () => {
@@ -111,8 +100,6 @@ describe("build pipeline", () => {
     const css = await read("external/build/style.css");
     expect(css).toBe(".base { color: red; }\n.external { color: blue; }");
     expect(css).not.toContain("@import");
-
-    expect(await read("internal/build/style.css")).toBe(".base { color: red; }\n.internal { color: green; }");
   });
 
   it("layers shared then centre JSON patches onto the base manifest", async () => {
@@ -121,20 +108,11 @@ describe("build pipeline", () => {
       author: "ControlPlane",
       version: "4.47.2",
     });
-    expect(await readJson("internal/build/manifest.json")).toEqual({
-      name: "Internal",
-      author: "ControlPlane",
-      version: "4.47.2",
-    });
   });
 
   it("applies a centre unified diff patch, deletions included", async () => {
     expect(await read("external/build/templates/header.hbs")).toBe(
       "<header>\n  {{#if settings.logo}}\n    <img src=\"logo\" />\n  {{/if}}\n</header>\n"
-    );
-    // Centre patches must not leak into the other centre
-    expect(await read("internal/build/templates/header.hbs")).toBe(
-      "<header>\n<img src=\"logo\" />\n</header>\n"
     );
   });
 });

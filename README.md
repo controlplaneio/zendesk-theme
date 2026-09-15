@@ -1,17 +1,18 @@
 # ControlPlane-ZD-theme
 
-Zendesk theme source for the External and Internal help centres. These are two separate Zendesk Guide installs, each getting its own theme package, sharing a common base stylesheet with per-centre overrides.
+Zendesk theme source for the External help centre, built from the upstream Copenhagen theme plus per-centre overrides. The structure supports several help centres sharing a common base, should another be added.
 
 ## Structure
 
 - `copenhagen_theme` — a submodule reference to the upstream
 - `shared` — changes that are applied to all help centre themes
 - `external` — changes that are only applied external
-- `internal` — changes that are only applied internal
+
+Additional help centres are added as a sibling folder of `external`, then listed in `releases` in `scripts/build.mjs`.
 
 ### Modifications
 
-`shared`, `external`, and `internal` can modify the base theme in the following ways:
+`shared` and each centre folder can modify the base theme in the following ways:
 
 - `build.include` — specifies the files to copy or ignore from the base theme
 - `additions/` — matches the same paths as the base theme, any content will be attached to the end of the matching file
@@ -43,7 +44,6 @@ Zendesk theme source for the External and Internal help centres. These are two s
       - `shared/2001-some-shared-change-after-centres.patch` - it's not completely after but is after the `1000` range centres can use
       - `shared/1001-some-pre-centre-change.patch` - it's not completely before but is before the `3000` range `shared` can use
       - `external/3001-some-external-centre-change.patch`
-      - `internal/3001-some-internal-centre-change.patch`
 
 ## Building
 
@@ -51,7 +51,7 @@ Ensure you have the submodules by running `git submodule update --init --recursi
 
 Run `./scripts/build.mjs` after making modifications according to the [guidance above](#modifications), ready for `zcli themes:preview` / `zcli themes:import`.
 
-Build output lands in `external/build` and `internal/build`, which are not committed.
+Build output lands in `<centre>/build` — currently just `external/build` — which is not committed.
 
 The build tooling has its own tests: `cd scripts && npm install && npm test`.
 
