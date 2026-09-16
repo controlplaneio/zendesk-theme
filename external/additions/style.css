@@ -38,9 +38,13 @@
   --cp-rule-soft: color-mix(in srgb, var(--cp-ink) 8%, var(--cp-ground));
   --cp-fill: color-mix(in srgb, var(--cp-ink) 6%, var(--cp-card));
 
-  /* On the dark banner the same idea, mixed towards the banner colour. */
-  --cp-hero-soft: color-mix(in srgb, var(--cp-hero-text) 72%, var(--cp-hero));
-  --cp-hero-faint: color-mix(in srgb, var(--cp-hero-text) 55%, var(--cp-hero));
+  /* On the hero the same idea, but the levels are set by contrast rather
+     than by eye. The rendered background is an image showing through a
+     partial tint, so it is lighter than the hero colour and varies across
+     the banner. These values clear 4.5:1 even against a white image, which
+     matters because the image is a theme setting and will be swapped. */
+  --cp-hero-soft: color-mix(in srgb, var(--cp-hero-text) 88%, var(--cp-hero));
+  --cp-hero-faint: color-mix(in srgb, var(--cp-hero-text) 80%, var(--cp-hero));
 
   --cp-radius: 6px;
   --cp-radius-sm: 4px;
@@ -162,8 +166,8 @@ a.cp-phone:visited {
 .cp-hero-has-image {
   background-image:
     linear-gradient(
-      color-mix(in srgb, var(--cp-hero) 72%, transparent),
-      color-mix(in srgb, var(--cp-hero) 86%, transparent)
+      color-mix(in srgb, var(--cp-hero) 78%, transparent),
+      color-mix(in srgb, var(--cp-hero) 90%, transparent)
     ),
     url($homepage_background_image);
   background-position: center;
@@ -192,7 +196,7 @@ a.cp-phone:visited {
    reads as a paragraph that happens to be centred. */
 .cp-hero-sub {
   margin: var(--cp-space-2) 0 0;
-  font-size: 17px;
+  font-size: 18px;
   line-height: 1.55;
   color: var(--cp-hero-soft);
   max-width: var(--cp-measure-text);
@@ -232,7 +236,7 @@ a.cp-phone:visited {
 
 .cp-hero-prepare {
   margin: var(--cp-space-2) 0 0;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   color: var(--cp-hero-faint);
   max-width: 58ch;
@@ -240,16 +244,29 @@ a.cp-phone:visited {
 
 .cp-hero-alt {
   margin: 0;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.6;
   color: var(--cp-hero-soft);
   max-width: 58ch;
 }
 
-.cp-hero-alt .cp-phone {
-  color: var(--cp-pale);
+/* The number gets its own line and a step up in size. It is the Severity 1
+   route, so it should be findable at a glance, while the sentence above it
+   stays quiet: calling is the alternative, not a competing action. */
+.cp-hero-phone {
+  display: inline-block;
+  margin-top: var(--cp-space-1);
+  font-size: 20px;
   font-weight: 600;
+  color: var(--cp-pale);
   white-space: nowrap;
+  text-decoration: none;
+}
+
+.cp-hero-phone:hover,
+.cp-hero-phone:focus {
+  color: var(--cp-pale);
+  text-decoration: underline;
 }
 
 a.cp-phone:hover,

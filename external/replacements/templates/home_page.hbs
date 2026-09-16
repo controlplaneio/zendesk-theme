@@ -63,12 +63,11 @@
     {{/if}}
 
     {{#if settings.cp_sev1_alt_text}}
-      <p class="cp-hero-alt">
-        {{settings.cp_sev1_alt_text}}
-        {{#if settings.cp_support_phone}}
-          <a class="cp-phone" href="tel:{{settings.cp_support_phone}}">{{settings.cp_support_phone}}</a>
-        {{/if}}
-      </p>
+      <p class="cp-hero-alt">{{settings.cp_sev1_alt_text}}</p>
+    {{/if}}
+
+    {{#if settings.cp_support_phone}}
+      <a class="cp-hero-phone" href="tel:{{settings.cp_support_phone}}">{{settings.cp_support_phone}}</a>
     {{/if}}
   </div>
 </section>
