@@ -1,4 +1,71 @@
-/* External help centre overrides */
+/* External help centre overrides
+
+   A NOTE ON CLASS NAMES. Ad blockers hide elements by class name, and Brave
+   ships that behaviour switched on by default. A class called cp-banner had
+   the entire call to action hidden on the live site while leaving it present
+   in the page source, which fails silently and is very hard to spot.
+
+   So avoid advertising and marketing words in any class on a client-facing
+   page: banner, promo, promoted, sponsor, advert, newsletter, popup, social,
+   share, widget. Test in a browser with blocking on, not a clean one.
+*/
+
+/***** Brand palette *****************************************************
+   Every colour below comes from a theme setting, so the palette can be
+   swapped in Guide admin without touching this file. Nothing further down
+   carries a hex value: greys, rules and muted text are all mixed from the
+   ink and ground tokens, so changing the palette moves them too.
+
+   The palette is provisional (2026-09-16, from the website work in
+   Figma), which is the whole reason it is wired up this way.
+ ************************************************************************/
+:root {
+  --cp-action: $cp_action_color;
+  --cp-action-text: $cp_action_text_color;
+  --cp-hero: $cp_banner_color;
+  --cp-hero-text: $cp_banner_text_color;
+  --cp-ink: $cp_ink_color;
+  --cp-ground: $cp_ground_color;
+  --cp-accent: $cp_accent_color;
+  --cp-deep: $cp_deep_blue_color;
+  --cp-pale: $cp_pale_blue_color;
+  --cp-card: $card_background_color;
+
+  /* Derived neutrals. Mixed rather than fixed so they follow the palette. */
+  --cp-ink-soft: color-mix(in srgb, var(--cp-ink) 62%, var(--cp-ground));
+  --cp-ink-faint: color-mix(in srgb, var(--cp-ink) 45%, var(--cp-ground));
+  --cp-rule: color-mix(in srgb, var(--cp-ink) 14%, var(--cp-ground));
+  --cp-rule-soft: color-mix(in srgb, var(--cp-ink) 8%, var(--cp-ground));
+  --cp-fill: color-mix(in srgb, var(--cp-ink) 6%, var(--cp-card));
+
+  /* On the dark banner the same idea, mixed towards the banner colour. */
+  --cp-hero-soft: color-mix(in srgb, var(--cp-hero-text) 72%, var(--cp-hero));
+  --cp-hero-faint: color-mix(in srgb, var(--cp-hero-text) 55%, var(--cp-hero));
+
+  --cp-radius: 6px;
+  --cp-radius-sm: 4px;
+}
+
+body {
+  background-color: var(--cp-ground);
+  color: var(--cp-ink);
+}
+
+/* Copenhagen's visited_link_color is a pre-existing setting, so a theme
+   update cannot move it off the old purple. Pulling visited links onto the
+   palette keeps them with the brand rather than needing a second value set
+   by hand in Guide admin. */
+a:visited {
+  color: var(--cp-action);
+}
+
+.cp-hero-action:visited {
+  color: var(--cp-action-text);
+}
+
+a.cp-phone:visited {
+  color: var(--cp-pale);
+}
 
 /***** Header logo *****/
 /* The brand SVG carries a viewBox but no intrinsic width/height, so a
@@ -11,15 +78,15 @@
   display: block;
 }
 
-/***** Homepage: announcement banner *****/
-.cp-announcement {
-  background-color: #EDF7F6;
-  border-top: 1px solid #C9E3E0;
-  border-bottom: 1px solid #C9E3E0;
-  color: $text_color;
+/***** Homepage: the announcement bar *****/
+.cp-notice {
+  background-color: color-mix(in srgb, var(--cp-pale) 40%, var(--cp-card));
+  border-top: 1px solid var(--cp-rule);
+  border-bottom: 1px solid var(--cp-rule);
+  color: var(--cp-ink);
 }
 
-.cp-announcement-inner {
+.cp-notice-inner {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -28,184 +95,271 @@
   flex-wrap: wrap;
 }
 
-.cp-announcement-icon {
-  color: $brand_color;
+.cp-notice-icon {
+  color: var(--cp-action);
   flex: none;
 }
 
-.cp-announcement-heading {
+.cp-notice-heading {
   font-weight: 600;
 }
 
-.cp-announcement-body {
-  color: #68737D;
+.cp-notice-body {
+  color: var(--cp-ink-soft);
 }
 
-.cp-announcement-link {
+.cp-notice-link {
   margin-left: auto;
   font-weight: 600;
 }
 
-/***** Homepage: hero *****/
+/***** Homepage: the banner ***********************************************
+   One job: start a case. Dark ground echoing the website hero, with the
+   action in the brand blue and the alternative route as a line below it
+   rather than a competing panel.
+ *************************************************************************/
 .cp-hero {
+  background-color: var(--cp-hero);
+  color: var(--cp-hero-text);
+  border-radius: var(--cp-radius);
+  padding: 44px 28px 40px;
+  margin-top: 28px;
+  margin-bottom: 32px;
   text-align: center;
-  padding: 44px 20px 40px;
-  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
 }
 
-.cp-hero-inner {
-  max-width: 610px;
-  margin: 0 auto;
+.cp-hero-greeting,
+.cp-hero-question {
+  font-size: 26px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin: 0;
+  max-width: 24em;
+  color: var(--cp-hero-text);
 }
 
-.cp-hero-heading {
-  margin-bottom: 8px;
+/* The two lines read as one opening, so they sit at the same size with no
+   gap between them. */
+.cp-hero-question {
+  margin-top: -6px;
 }
 
 .cp-hero-sub {
-  margin: 0 0 24px;
-  color: #68737D;
-}
-
-/***** Homepage: ticket lists *****/
-.cp-ticket-columns {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 30px;
-}
-
-@media (min-width: 768px) {
-  .cp-ticket-columns {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-/* Panels carry their own fill so they stay lighter than a tinted page
-   background instead of inheriting it. */
-.cp-ticket-panel {
-  background-color: $card_background_color;
-  border: 1px solid #E4E6E7;
-  border-radius: 6px;
-  padding: 24px 24px 8px;
-  box-shadow: 0 1px 2px rgba(47, 57, 65, 0.04);
-}
-
-.cp-panel-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 4px;
-}
-
-.cp-panel-head h2 {
   margin: 0;
+  font-size: 15px;
+  color: var(--cp-hero-soft);
+  max-width: 52ch;
 }
 
-.cp-panel-head a {
-  font-size: 14px;
-  flex: none;
+.cp-hero-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background-color: var(--cp-action);
+  color: var(--cp-action-text);
+  border-radius: var(--cp-radius-sm);
+  padding: 15px 30px;
+  font-weight: 600;
+  font-size: 17px;
+  text-decoration: none;
+  margin-top: 4px;
 }
 
-.cp-ticket-items {
+.cp-hero-action:hover,
+.cp-hero-action:focus {
+  background-color: color-mix(in srgb, var(--cp-action) 85%, var(--cp-ink));
+  color: var(--cp-action-text);
+  text-decoration: none;
+}
+
+.cp-hero-action .cp-arrow {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  background-color: color-mix(in srgb, var(--cp-action-text) 20%, transparent);
+  font-size: 13px;
+  line-height: 1;
+}
+
+.cp-hero-prepare {
+  margin: 4px 0 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--cp-hero-faint);
+  max-width: 60ch;
+}
+
+.cp-hero-alt {
+  margin: 0;
+  font-size: 13px;
+  color: var(--cp-hero-soft);
+  max-width: 64ch;
+}
+
+.cp-hero-alt .cp-phone {
+  color: var(--cp-pale);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+a.cp-phone:hover,
+a.cp-phone:focus {
+  color: var(--cp-pale);
+}
+
+/***** Homepage: the client's own cases *****/
+.cp-cases {
+  background-color: var(--cp-card);
+  border: 1px solid var(--cp-rule);
+  border-radius: var(--cp-radius);
+  padding: 22px 24px;
+  margin-bottom: 20px;
+}
+
+.cp-cases-heading {
+  margin: 0 0 6px;
+  font-size: 17px;
+}
+
+.cp-case-items {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.cp-ticket-item {
-  border-bottom: 1px solid #ddd;
-  padding: 16px 0;
-}
-
-.cp-ticket-meta {
+.cp-case-item {
   display: flex;
   align-items: center;
-  gap: 10px;
-  flex-wrap: wrap;
-  margin-bottom: 4px;
+  gap: 12px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--cp-rule-soft);
 }
 
-.cp-status {
-  font-size: 12px;
-  font-weight: 600;
-  border-radius: 3px;
-  padding: 2px 8px;
-  background-color: #F3F5F7;
-  color: #68737D;
+.cp-case-item:last-child {
+  border-bottom: none;
 }
 
-/* Anything awaiting the client is the one state worth pulling forward. */
-.cp-status-pending {
-  background-color: #EDF7F6;
-  color: $brand_color;
-}
-
-.cp-product {
-  font-size: 12px;
-  font-weight: 600;
-  color: #68737D;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-  padding: 1px 7px;
-}
-
-.cp-ticket-id,
-.cp-ticket-updated {
+.cp-case-id {
   font-size: 13px;
-  color: #68737D;
+  color: var(--cp-ink-faint);
+  font-variant-numeric: tabular-nums;
+  flex: none;
 }
 
-.cp-ticket-updated {
-  margin-top: 4px;
-}
-
-.cp-ticket-subject {
-  font-size: 16px;
+.cp-case-subject {
+  flex: 1 1 auto;
+  min-width: 0;
+  font-size: 15px;
   font-weight: 600;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.cp-case-updated {
+  font-size: 12px;
+  color: var(--cp-ink-faint);
+  flex: none;
+  white-space: nowrap;
+}
+
+/* Severity and status read as the same kind of label, so they share a pill.
+   Deliberately not colour-coded by severity: the design shows severity as
+   information, not as an alarm. */
+.cp-pill {
+  font-size: 12px;
+  border: 1px solid var(--cp-rule);
+  border-radius: 99px;
+  padding: 2px 10px;
+  color: var(--cp-ink-soft);
+  white-space: nowrap;
+  flex: none;
+}
+
+.cp-cases-link {
+  display: inline-block;
+  margin-top: 14px;
+  font-size: 14px;
 }
 
 .cp-muted {
-  color: #68737D;
-  margin: 12px 0 16px;
+  color: var(--cp-ink-soft);
+  margin: 12px 0;
+}
+
+/***** Homepage: the organisation's cases, as a count *****/
+.cp-org-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 15px 20px;
+  border: 1px solid var(--cp-rule);
+  border-radius: var(--cp-radius);
+  background-color: var(--cp-card);
+  margin-bottom: 32px;
+  text-decoration: none;
+}
+
+a.cp-org-strip:hover,
+a.cp-org-strip:focus {
+  border-color: var(--cp-action);
+  text-decoration: none;
+}
+
+.cp-org-left {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  min-width: 0;
+}
+
+.cp-org-count {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--cp-deep);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  flex: none;
+}
+
+.cp-org-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cp-ink);
+}
+
+.cp-org-sub {
+  display: block;
+  font-size: 12px;
+  color: var(--cp-ink-soft);
+}
+
+.cp-org-link {
+  font-size: 13px;
+  color: var(--cp-ink-soft);
+  white-space: nowrap;
+  flex: none;
 }
 
 .cp-signed-out {
-  background-color: $card_background_color;
-  border: 1px solid #E4E6E7;
-  border-radius: 6px;
+  background-color: var(--cp-card);
+  border: 1px solid var(--cp-rule);
+  border-radius: var(--cp-radius);
   padding: 24px 30px;
   text-align: center;
+  margin-bottom: 32px;
 }
 
-/***** Homepage: severity 1 notice *****/
-/* Sized to its content rather than the full container: the notice can be as
-   short as a phone number, and a full-width band leaves a large empty field. */
-.cp-sev1 {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  border: 1px solid #D8A25C;
-  border-radius: 6px;
-  background-color: #FDF6EC;
-  padding: 16px 22px;
-  color: #AD5F00;
-  width: fit-content;
-  max-width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.cp-sev1-title {
-  font-weight: 600;
-  color: $text_color;
-}
-
-.cp-sev1-body {
-  color: #68737D;
-}
-
-/***** Homepage: products, promoted articles, resources *****/
+/***** Homepage: browse by topic and promoted articles *****/
 .cp-section-heading {
   margin-bottom: 20px;
 }
@@ -229,15 +383,24 @@
   }
 }
 
+/***** Homepage: useful links *****/
 .cp-resources {
-  border-top: 1px solid #ddd;
-  padding-top: 20px;
+  background-color: var(--cp-card);
+  border: 1px solid var(--cp-rule);
+  border-radius: var(--cp-radius);
+  padding: 22px 24px;
+  margin-bottom: 40px;
+}
+
+.cp-resources .cp-section-heading {
+  margin: 0 0 18px;
+  font-size: 17px;
 }
 
 .cp-resource-columns {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  gap: 30px;
+  gap: 24px;
 }
 
 @media (min-width: 768px) {
@@ -247,9 +410,11 @@
 }
 
 .cp-resource-title {
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--cp-rule);
 }
 
 .cp-resource-columns ul {
@@ -258,5 +423,67 @@
   padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 7px;
+}
+
+.cp-resource-columns a {
+  font-size: 14px;
+}
+
+/***** Raise a case page **************************************************
+   Second half of the primary route, so it carries the same heading wording
+   and the same Severity 1 line as the banner.
+ *************************************************************************/
+.cp-request-intro {
+  max-width: 68ch;
+  color: var(--cp-ink-soft);
+  margin: 0 0 12px;
+}
+
+.cp-request-alt {
+  max-width: 68ch;
+  font-size: 14px;
+  color: var(--cp-ink-soft);
+  border-left: 3px solid var(--cp-action);
+  padding-left: 14px;
+  margin: 0 0 28px;
+}
+
+.cp-request-alt .cp-phone {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+/***** Diagnostics ********************************************************
+   Only rendered when the page is loaded with ?cp_diag=1, so it is invisible
+   in normal use. It exists to answer two questions that cannot be settled
+   from an admin session: whether an end user can read the Severity Level
+   field, and what the organisation count costs in page load time.
+ *************************************************************************/
+.cp-diag {
+  background-color: var(--cp-card);
+  border: 2px dashed var(--cp-action);
+  border-radius: var(--cp-radius);
+  padding: 18px 22px;
+  margin-bottom: 32px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: var(--cp-ink);
+}
+
+.cp-diag h2 {
+  font-size: 15px;
+  margin: 0 0 10px;
+}
+
+.cp-diag pre {
+  background-color: var(--cp-fill);
+  border: 1px solid var(--cp-rule);
+  border-radius: var(--cp-radius-sm);
+  padding: 12px 14px;
+  overflow-x: auto;
+  font-size: 12px;
+  margin: 8px 0 0;
+  white-space: pre-wrap;
+  word-break: break-word;
 }

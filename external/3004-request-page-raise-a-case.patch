@@ -1,0 +1,33 @@
+--- a/templates/new_request_page.hbs
++++ b/templates/new_request_page.hbs
+@@ -11,10 +11,27 @@
+     </div>
+   </div>
+ 
+-  <h1>
+-    {{t 'submit_a_request'}}
+-  </h1>
++  {{!-- "Submit a request" is a Zendesk system string rather than one of the
++        theme's own translation keys, which is why setting the ticket form's
++        title never changed it. The template is ours, so the heading comes
++        from a theme setting instead and falls back to the system string. --}}
++  <h1 class="cp-request-heading">
++    {{#if settings.cp_request_heading}}{{settings.cp_request_heading}}{{else}}{{t 'submit_a_request'}}{{/if}}
++  </h1>
++
++  {{#if settings.cp_request_intro}}
++    <p class="cp-request-intro">{{settings.cp_request_intro}}</p>
++  {{/if}}
++
++  {{!-- The same Severity 1 wording as the home page banner, drawn from the
++        same two settings, so a client meets one description of Severity 1
++        rather than two that can drift apart. --}}
++  {{#if settings.cp_request_show_sev1_line}}
++    {{#if settings.cp_support_phone}}
++      <p class="cp-request-alt">{{settings.cp_sev1_alt_text}} <a class="cp-phone" href="tel:{{settings.cp_support_phone}}">{{settings.cp_support_phone}}</a></p>
++    {{/if}}
++  {{/if}}
+ 
+   <div id="main-content" class="form">
+     <div id="new-request-form"></div>
+   </div>

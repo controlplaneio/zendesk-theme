@@ -6,7 +6,7 @@
          <li>{{link 'service_catalog'}}</li>
 -        <li>{{link 'new_request' class='submit-a-request'}}</li>
 +        {{#if settings.show_submit_request}}
-+          <li>{{link 'new_request' class='submit-a-request'}}</li>
++          <li>{{#link 'new_request' class='submit-a-request'}}{{#if settings.cp_request_heading}}{{settings.cp_request_heading}}{{else}}{{t 'submit_a_request'}}{{/if}}{{/link}}</li>
 +        {{/if}}
          {{#unless signed_in}}
            <li>
@@ -18,7 +18,7 @@
 -        <li class="item">{{link 'new_request' class='submit-a-request'}}</li>
          <li class="item">{{link 'service_catalog'}}</li>
 +        {{#if settings.show_submit_request}}
-+          <li class="item">{{link 'new_request' class='submit-a-request'}}</li>
++          <li class="item">{{#link 'new_request' class='submit-a-request'}}{{#if settings.cp_request_heading}}{{settings.cp_request_heading}}{{else}}{{t 'submit_a_request'}}{{/if}}{{/link}}</li>
 +        {{/if}}
          <li class="nav-divider"></li>
          {{#if signed_in}}
