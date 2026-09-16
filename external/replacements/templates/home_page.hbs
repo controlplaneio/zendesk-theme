@@ -33,28 +33,28 @@
   {{!-- The banner. Its only job is starting a case: one recommended route
         named as the quickest, with calling offered underneath as the
         alternative rather than as a warning panel. --}}
-  <section id="main-content" class="cp-banner">
+  <section id="main-content" class="cp-hero">
     {{!-- The greeting is personalised client side, so a missing or unusual
           name falls back to the generic wording rather than printing
           something strange. --}}
-    <p class="cp-banner-greeting" data-cp-greeting>{{settings.cp_banner_greeting_generic}}</p>
-    <p class="cp-banner-question">{{settings.cp_banner_question}}</p>
+    <p class="cp-hero-greeting" data-cp-greeting>{{settings.cp_banner_greeting_generic}}</p>
+    <p class="cp-hero-question">{{settings.cp_banner_question}}</p>
 
     {{#if settings.cp_banner_sub}}
-      <p class="cp-banner-sub">{{settings.cp_banner_sub}}</p>
+      <p class="cp-hero-sub">{{settings.cp_banner_sub}}</p>
     {{/if}}
 
-    <a class="cp-banner-action" href="{{settings.cp_action_url}}">
+    <a class="cp-hero-action" href="{{settings.cp_action_url}}">
       {{settings.cp_action_text}}
       <span class="cp-arrow" aria-hidden="true">&rarr;</span>
     </a>
 
     {{#if settings.cp_prepare_text}}
-      <p class="cp-banner-prepare">{{settings.cp_prepare_text}}</p>
+      <p class="cp-hero-prepare">{{settings.cp_prepare_text}}</p>
     {{/if}}
 
     {{#if settings.cp_sev1_alt_text}}
-      <p class="cp-banner-alt">
+      <p class="cp-hero-alt">
         {{settings.cp_sev1_alt_text}}
         {{#if settings.cp_support_phone}}
           <a class="cp-phone" href="tel:{{settings.cp_support_phone}}">{{settings.cp_support_phone}}</a>

@@ -12,8 +12,8 @@
 :root {
   --cp-action: $cp_action_color;
   --cp-action-text: $cp_action_text_color;
-  --cp-banner: $cp_banner_color;
-  --cp-banner-text: $cp_banner_text_color;
+  --cp-hero: $cp_banner_color;
+  --cp-hero-text: $cp_banner_text_color;
   --cp-ink: $cp_ink_color;
   --cp-ground: $cp_ground_color;
   --cp-accent: $cp_accent_color;
@@ -29,8 +29,8 @@
   --cp-fill: color-mix(in srgb, var(--cp-ink) 6%, var(--cp-card));
 
   /* On the dark banner the same idea, mixed towards the banner colour. */
-  --cp-banner-soft: color-mix(in srgb, var(--cp-banner-text) 72%, var(--cp-banner));
-  --cp-banner-faint: color-mix(in srgb, var(--cp-banner-text) 55%, var(--cp-banner));
+  --cp-hero-soft: color-mix(in srgb, var(--cp-hero-text) 72%, var(--cp-hero));
+  --cp-hero-faint: color-mix(in srgb, var(--cp-hero-text) 55%, var(--cp-hero));
 
   --cp-radius: 6px;
   --cp-radius-sm: 4px;
@@ -39,6 +39,22 @@
 body {
   background-color: var(--cp-ground);
   color: var(--cp-ink);
+}
+
+/* Copenhagen's visited_link_color is a pre-existing setting, so a theme
+   update cannot move it off the old purple. Pulling visited links onto the
+   palette keeps them with the brand rather than needing a second value set
+   by hand in Guide admin. */
+a:visited {
+  color: var(--cp-action);
+}
+
+.cp-hero-action:visited {
+  color: var(--cp-action-text);
+}
+
+a.cp-phone:visited {
+  color: var(--cp-pale);
 }
 
 /***** Header logo *****/
@@ -92,9 +108,9 @@ body {
    action in the brand blue and the alternative route as a line below it
    rather than a competing panel.
  *************************************************************************/
-.cp-banner {
-  background-color: var(--cp-banner);
-  color: var(--cp-banner-text);
+.cp-hero {
+  background-color: var(--cp-hero);
+  color: var(--cp-hero-text);
   border-radius: var(--cp-radius);
   padding: 44px 28px 40px;
   margin-top: 28px;
@@ -106,31 +122,31 @@ body {
   gap: 14px;
 }
 
-.cp-banner-greeting,
-.cp-banner-question {
+.cp-hero-greeting,
+.cp-hero-question {
   font-size: 26px;
   line-height: 1.25;
   font-weight: 600;
   letter-spacing: -0.01em;
   margin: 0;
   max-width: 24em;
-  color: var(--cp-banner-text);
+  color: var(--cp-hero-text);
 }
 
 /* The two lines read as one opening, so they sit at the same size with no
    gap between them. */
-.cp-banner-question {
+.cp-hero-question {
   margin-top: -6px;
 }
 
-.cp-banner-sub {
+.cp-hero-sub {
   margin: 0;
   font-size: 15px;
-  color: var(--cp-banner-soft);
+  color: var(--cp-hero-soft);
   max-width: 52ch;
 }
 
-.cp-banner-action {
+.cp-hero-action {
   display: inline-flex;
   align-items: center;
   gap: 10px;
@@ -144,14 +160,14 @@ body {
   margin-top: 4px;
 }
 
-.cp-banner-action:hover,
-.cp-banner-action:focus {
+.cp-hero-action:hover,
+.cp-hero-action:focus {
   background-color: color-mix(in srgb, var(--cp-action) 85%, var(--cp-ink));
   color: var(--cp-action-text);
   text-decoration: none;
 }
 
-.cp-banner-action .cp-arrow {
+.cp-hero-action .cp-arrow {
   display: grid;
   place-items: center;
   width: 20px;
@@ -162,22 +178,22 @@ body {
   line-height: 1;
 }
 
-.cp-banner-prepare {
+.cp-hero-prepare {
   margin: 4px 0 0;
   font-size: 13px;
   line-height: 1.5;
-  color: var(--cp-banner-faint);
+  color: var(--cp-hero-faint);
   max-width: 60ch;
 }
 
-.cp-banner-alt {
+.cp-hero-alt {
   margin: 0;
   font-size: 13px;
-  color: var(--cp-banner-soft);
+  color: var(--cp-hero-soft);
   max-width: 64ch;
 }
 
-.cp-banner-alt .cp-phone {
+.cp-hero-alt .cp-phone {
   color: var(--cp-pale);
   font-weight: 600;
   white-space: nowrap;
