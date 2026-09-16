@@ -1,0 +1,36 @@
+--- a/templates/header.hbs
++++ b/templates/header.hbs
+@@ -24,6 +24,12 @@
+         {{#if settings.show_submit_request}}
+           <li>{{#link 'new_request' class='submit-a-request'}}{{#if settings.cp_request_heading}}{{settings.cp_request_heading}}{{else}}{{t 'submit_a_request'}}{{/if}}{{/link}}</li>
+         {{/if}}
++        {{#if signed_in}}
++          <li>{{#link 'requests'}}{{settings.cp_own_cases_heading}}{{/link}}</li>
++          {{#if settings.cp_show_org_nav}}
++            <li><a href="/hc/requests?selected_tab_name=org-requests">{{settings.cp_org_nav_text}}</a></li>
++          {{/if}}
++        {{/if}}
+         {{#unless signed_in}}
+           <li>
+             {{#link "sign_in" class="sign-in" role="link"}}
+@@ -52,7 +58,7 @@
+         </button>
+         <div class="dropdown-menu" role="menu">
+           {{#my_profile role="menuitem"}}{{t 'profile'}}{{/my_profile}}
+-          {{link "requests" role="menuitem"}}
++          {{#link "requests" role="menuitem"}}{{settings.cp_own_cases_heading}}{{/link}}
+           {{#link "contributions" role="menuitem"}}{{t "activities"}}{{/link}}
+           {{link "approval_requests" role="menuitem"}}
+           {{contact_details role="menuitem"}}
+@@ -85,7 +91,10 @@
+               </div>
+             {{/my_profile}}
+           </li>
+-          <li class="item">{{link "requests"}}</li>
++          <li class="item">{{#link "requests"}}{{settings.cp_own_cases_heading}}{{/link}}</li>
++          {{#if settings.cp_show_org_nav}}
++            <li class="item"><a href="/hc/requests?selected_tab_name=org-requests">{{settings.cp_org_nav_text}}</a></li>
++          {{/if}}
+           <li class="item">{{#link "contributions"}}{{t "activities"}}{{/link}}</li>
+           <li class="item">{{link "approval_requests"}}</li>
+           <li class="item">{{contact_details}}</li>

@@ -44,6 +44,21 @@
 
   --cp-radius: 6px;
   --cp-radius-sm: 4px;
+
+  /* Spacing scale. Whitespace reads as deliberate when it comes off a scale
+     rather than being chosen per element, which is most of what makes the
+     reference pages feel composed rather than merely roomy. */
+  --cp-space-1: 8px;
+  --cp-space-2: 16px;
+  --cp-space-3: 24px;
+  --cp-space-4: 40px;
+  --cp-space-5: 64px;
+  --cp-space-6: 96px;
+
+  /* Copenhagen's own container, matched so the hero's contents line up with
+     everything below it. */
+  --cp-measure-page: 1160px;
+  --cp-measure-text: 56ch;
 }
 
 body {
@@ -113,47 +128,74 @@ a.cp-phone:visited {
   font-weight: 600;
 }
 
-/***** Homepage: the banner ***********************************************
-   One job: start a case. Dark ground echoing the website hero, with the
-   action in the brand blue and the alternative route as a line below it
-   rather than a competing panel.
+/***** Homepage: the hero *************************************************
+   One job: start a case. Full bleed rather than a card inside the container,
+   so it reads as the top of the page. The action sits in the brand blue and
+   the alternative route is a line below it rather than a competing panel.
+
+   The generous vertical space is the point rather than decoration: it is
+   what stops a centred block of text reading as a filled box.
  *************************************************************************/
 .cp-hero {
   background-color: var(--cp-hero);
   color: var(--cp-hero-text);
-  border-radius: var(--cp-radius);
-  padding: 44px 28px 40px;
-  margin-top: 28px;
-  margin-bottom: 32px;
+  padding: var(--cp-space-6) var(--cp-space-3);
+  margin-bottom: var(--cp-space-5);
   text-align: center;
+}
+
+/* Matches Copenhagen's own container, so the hero's contents sit on the same
+   measure as the cards below rather than drifting wider. */
+.cp-hero-inner {
+  max-width: var(--cp-measure-page);
+  margin: 0 auto;
+  padding: 0 5%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: var(--cp-space-2);
+}
+
+/* An uploaded banner sits under a tint of the hero colour, so white text
+   stays legible whatever image ends up being used and the image still reads
+   as part of the brand rather than a photo behind some words. */
+.cp-hero-has-image {
+  background-image:
+    linear-gradient(
+      color-mix(in srgb, var(--cp-hero) 72%, transparent),
+      color-mix(in srgb, var(--cp-hero) 86%, transparent)
+    ),
+    url($homepage_background_image);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .cp-hero-greeting,
 .cp-hero-question {
-  font-size: 26px;
-  line-height: 1.25;
+  font-size: clamp(28px, 3.6vw, 42px);
+  line-height: 1.15;
   font-weight: 600;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
   margin: 0;
-  max-width: 24em;
+  max-width: 20ch;
   color: var(--cp-hero-text);
 }
 
 /* The two lines read as one opening, so they sit at the same size with no
    gap between them. */
 .cp-hero-question {
-  margin-top: -6px;
+  margin-top: calc(var(--cp-space-1) * -1);
 }
 
+/* A narrow measure is what gives the centred text its shape. Left wide it
+   reads as a paragraph that happens to be centred. */
 .cp-hero-sub {
-  margin: 0;
-  font-size: 15px;
+  margin: var(--cp-space-2) 0 0;
+  font-size: 17px;
+  line-height: 1.55;
   color: var(--cp-hero-soft);
-  max-width: 52ch;
+  max-width: var(--cp-measure-text);
 }
 
 .cp-hero-action {
@@ -163,11 +205,11 @@ a.cp-phone:visited {
   background-color: var(--cp-action);
   color: var(--cp-action-text);
   border-radius: var(--cp-radius-sm);
-  padding: 15px 30px;
+  padding: 17px 34px;
   font-weight: 600;
   font-size: 17px;
   text-decoration: none;
-  margin-top: 4px;
+  margin-top: var(--cp-space-2);
 }
 
 .cp-hero-action:hover,
@@ -189,18 +231,19 @@ a.cp-phone:visited {
 }
 
 .cp-hero-prepare {
-  margin: 4px 0 0;
-  font-size: 13px;
-  line-height: 1.5;
+  margin: var(--cp-space-2) 0 0;
+  font-size: 14px;
+  line-height: 1.6;
   color: var(--cp-hero-faint);
-  max-width: 60ch;
+  max-width: 58ch;
 }
 
 .cp-hero-alt {
   margin: 0;
-  font-size: 13px;
+  font-size: 14px;
+  line-height: 1.6;
   color: var(--cp-hero-soft);
-  max-width: 64ch;
+  max-width: 58ch;
 }
 
 .cp-hero-alt .cp-phone {
@@ -214,13 +257,19 @@ a.cp-phone:focus {
   color: var(--cp-pale);
 }
 
+/* The page below the hero. The bottom space matters as much as the top: a
+   page that stops dead under its last card reads as truncated. */
+.cp-main {
+  padding-bottom: var(--cp-space-6);
+}
+
 /***** Homepage: the client's own cases *****/
 .cp-cases {
   background-color: var(--cp-card);
   border: 1px solid var(--cp-rule);
   border-radius: var(--cp-radius);
-  padding: 22px 24px;
-  margin-bottom: 20px;
+  padding: var(--cp-space-3);
+  margin-bottom: var(--cp-space-3);
 }
 
 .cp-cases-heading {
@@ -304,7 +353,7 @@ a.cp-phone:focus {
   border: 1px solid var(--cp-rule);
   border-radius: var(--cp-radius);
   background-color: var(--cp-card);
-  margin-bottom: 32px;
+  margin-bottom: var(--cp-space-5);
   text-decoration: none;
 }
 
@@ -354,9 +403,9 @@ a.cp-org-strip:focus {
   background-color: var(--cp-card);
   border: 1px solid var(--cp-rule);
   border-radius: var(--cp-radius);
-  padding: 24px 30px;
+  padding: var(--cp-space-4) var(--cp-space-3);
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: var(--cp-space-5);
 }
 
 /***** Homepage: browse by topic and promoted articles *****/
@@ -388,8 +437,8 @@ a.cp-org-strip:focus {
   background-color: var(--cp-card);
   border: 1px solid var(--cp-rule);
   border-radius: var(--cp-radius);
-  padding: 22px 24px;
-  margin-bottom: 40px;
+  padding: var(--cp-space-4) var(--cp-space-3);
+  margin-bottom: 0;
 }
 
 .cp-resources .cp-section-heading {

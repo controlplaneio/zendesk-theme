@@ -204,6 +204,13 @@
           "value": "Your cases"
         },
         {
+          "identifier": "cp_show_own_cases",
+          "type": "checkbox",
+          "description": "cp_show_own_cases_description",
+          "label": "cp_show_own_cases_label",
+          "value": true
+        },
+        {
           "identifier": "cp_own_cases_link_text",
           "type": "text",
           "description": "cp_own_cases_link_text_description",
@@ -211,11 +218,11 @@
           "value": "See all your cases"
         },
         {
-          "identifier": "cp_own_cases_limit",
+          "identifier": "cp_own_cases_count",
           "type": "text",
-          "description": "cp_own_cases_limit_description",
-          "label": "cp_own_cases_limit_label",
-          "value": "5"
+          "description": "cp_own_cases_count_description",
+          "label": "cp_own_cases_count_label",
+          "value": "3"
         },
         {
           "identifier": "cp_org_cases_label",
@@ -232,11 +239,25 @@
           "value": "Raised by your Authorised Users"
         },
         {
-          "identifier": "cp_show_org_count",
+          "identifier": "cp_show_org_cases",
           "type": "checkbox",
-          "description": "cp_show_org_count_description",
-          "label": "cp_show_org_count_label",
+          "description": "cp_show_org_cases_description",
+          "label": "cp_show_org_cases_label",
+          "value": false
+        },
+        {
+          "identifier": "cp_show_org_nav",
+          "type": "checkbox",
+          "description": "cp_show_org_nav_description",
+          "label": "cp_show_org_nav_label",
           "value": true
+        },
+        {
+          "identifier": "cp_org_nav_text",
+          "type": "text",
+          "description": "cp_org_nav_text_description",
+          "label": "cp_org_nav_text_label",
+          "value": "Your organisation's cases"
         },
         {
           "identifier": "cp_severity_field_id",

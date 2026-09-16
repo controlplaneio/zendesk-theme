@@ -25,15 +25,24 @@
   </div>
 {{/if}}
 
+{{!-- Only ever shown when the page is loaded with ?cp_diag=1. --}}
 <div class="container">
-
-  {{!-- Only ever shown when the page is loaded with ?cp_diag=1. --}}
   <div class="cp-diag" data-cp-diag hidden></div>
+</div>
 
-  {{!-- The banner. Its only job is starting a case: one recommended route
-        named as the quickest, with calling offered underneath as the
-        alternative rather than as a warning panel. --}}
-  <section id="main-content" class="cp-hero">
+{{!-- The hero. Deliberately full bleed rather than a card inside the
+      container, so it reads as the top of the page rather than a block
+      sitting on it. Its only job is starting a case: one recommended route
+      named as the quickest, with calling offered underneath as the
+      alternative rather than as a warning panel.
+
+      The background image is Copenhagen's own homepage_background_image
+      setting, so a banner can be uploaded in Guide admin and swapped as the
+      brand design settles rather than being baked in here. With no image the
+      hero is a solid brand colour, and the overlay keeps white text legible
+      over whatever ends up being uploaded. --}}
+<section id="main-content" class="cp-hero{{#if settings.homepage_background_image}} cp-hero-has-image{{/if}}">
+  <div class="cp-hero-inner">
     {{!-- The greeting is personalised client side, so a missing or unusual
           name falls back to the generic wording rather than printing
           something strange. --}}
@@ -61,34 +70,45 @@
         {{/if}}
       </p>
     {{/if}}
-  </section>
+  </div>
+</section>
+
+<div class="container cp-main">
 
   {{#if signed_in}}
     {{!-- Cases are loaded client side: Guide exposes request data only on the
-          requests template, so there is no server-side list to render here. --}}
-    <section class="cp-cases">
-      <h2 class="cp-cases-heading">{{settings.cp_own_cases_heading}}</h2>
-      <div data-cp-own-cases>
-        <p class="cp-muted">Loading your cases...</p>
-      </div>
-      <a class="cp-cases-link" href="/hc/requests">{{settings.cp_own_cases_link_text}}</a>
-    </section>
+          requests template, so there is no server-side list to render here.
+
+          Both blocks are toggles. Neither is the only route to a client's
+          cases - Your cases sits in the navigation on every page, and the
+          organisation's cases are a tab on that page - so turning either off
+          hides a convenience rather than removing access to anything. --}}
+    {{#if settings.cp_show_own_cases}}
+      <section class="cp-cases">
+        <h2 class="cp-cases-heading">{{settings.cp_own_cases_heading}}</h2>
+        <div data-cp-own-cases>
+          <p class="cp-muted">Loading your cases...</p>
+        </div>
+        <a class="cp-cases-link" href="/hc/requests">{{settings.cp_own_cases_link_text}}</a>
+      </section>
+    {{/if}}
 
     {{!-- The organisation's cases are a link with a count, not a list. Names
           cannot be shown to an end user, so a list would be rows with nobody
-          on them. --}}
-    <a class="cp-org-strip" href="/hc/requests/organization" data-cp-org-strip>
-      <span class="cp-org-left">
-        {{#if settings.cp_show_org_count}}
+          on them. Off by default: Zendesk's own cases page already carries the
+          same thing as a tab. --}}
+    {{#if settings.cp_show_org_cases}}
+      <a class="cp-org-strip" href="/hc/requests?selected_tab_name=org-requests" data-cp-org-strip>
+        <span class="cp-org-left">
           <span class="cp-org-count" data-cp-org-count>&mdash;</span>
-        {{/if}}
-        <span>
-          <span class="cp-org-label">{{settings.cp_org_cases_label}}</span>
-          <span class="cp-org-sub">{{settings.cp_org_cases_sub}}</span>
+          <span>
+            <span class="cp-org-label">{{settings.cp_org_cases_label}}</span>
+            <span class="cp-org-sub">{{settings.cp_org_cases_sub}}</span>
+          </span>
         </span>
-      </span>
-      <span class="cp-org-link">View all</span>
-    </a>
+        <span class="cp-org-link">View all</span>
+      </a>
+    {{/if}}
   {{else}}
     <div class="cp-signed-out">
       {{#link "sign_in"}}Sign in{{/link}} to see your cases and your organisation's cases.
@@ -183,8 +203,7 @@
   var GREETING = {{json settings.cp_banner_greeting}};
   var GREETING_GENERIC = {{json settings.cp_banner_greeting_generic}};
   var SEVERITY_FIELD_ID = Number({{json settings.cp_severity_field_id}}) || null;
-  var OWN_LIMIT = Number({{json settings.cp_own_cases_limit}}) || 5;
-  var SHOW_ORG_COUNT = {{json settings.cp_show_org_count}};
+  var OWN_LIMIT = Number({{json settings.cp_own_cases_count}}) || 3;
 
   // Severity comes back as the field's tag value. These are the live tags on
   // the Severity Level field, shared with the bot - see the ticket form build
@@ -345,9 +364,10 @@
     panel.appendChild(el('pre', null, JSON.stringify(report, null, 2)));
   }
 
+  // Either block can be switched off in the theme settings, so nothing here
+  // assumes both are present. The greeting has to run either way.
   var ownContainer = document.querySelector('[data-cp-own-cases]');
   var orgCountEl = document.querySelector('[data-cp-org-count]');
-  if (!ownContainer) { return; }
 
   var orgResult = { requested: false };
 
@@ -364,27 +384,30 @@
     greet(me && me.name);
 
     if (!me) {
-      fail(ownContainer, "We couldn't load your cases.");
+      if (ownContainer) { fail(ownContainer, "We couldn't load your cases."); }
       if (orgCountEl) { orgCountEl.textContent = '—'; }
       if (DIAG) { showDiagnostics(null, null, orgResult); }
       return;
     }
 
-    var ownCases = get('/api/v2/requests.json?sort_by=updated_at&sort_order=desc&per_page=' + OWN_LIMIT, 'own cases')
-      .then(function (data) {
-        if (!data || !data.requests) {
-          fail(ownContainer, "We couldn't load your cases.");
-          return null;
-        }
-        renderCases(ownContainer, data.requests, statusLabels, "You haven't raised a case yet.");
-        return data.requests;
-      });
+    var ownCases = Promise.resolve(null);
+    if (ownContainer) {
+      ownCases = get('/api/v2/requests.json?sort_by=updated_at&sort_order=desc&per_page=' + OWN_LIMIT, 'own cases')
+        .then(function (data) {
+          if (!data || !data.requests) {
+            fail(ownContainer, "We couldn't load your cases.");
+            return null;
+          }
+          renderCases(ownContainer, data.requests, statusLabels, "You haven't raised a case yet.");
+          return data.requests;
+        });
+    }
 
     // The count is a separate request, so it is kept as cheap as possible
     // (one row, read the collection total) and it never blocks the case list:
     // if it is slow or fails, the strip stays a plain link.
     var orgCount = Promise.resolve(null);
-    if (SHOW_ORG_COUNT && orgCountEl && me.organization_id) {
+    if (orgCountEl && me.organization_id) {
       orgResult.requested = true;
       orgCount = get(
         '/api/v2/requests.json?organization_id=' + me.organization_id +
@@ -404,7 +427,7 @@
         return count;
       });
     } else if (orgCountEl) {
-      orgResult.outcome = me.organization_id ? 'turned off in settings' : 'no organisation on this account';
+      orgResult.outcome = 'no organisation on this account';
     }
 
     // The count failing must not hide the strip, so hide the number instead.
