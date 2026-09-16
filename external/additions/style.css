@@ -1,4 +1,14 @@
-/* External help centre overrides */
+/* External help centre overrides
+
+   A NOTE ON CLASS NAMES. Ad blockers hide elements by class name, and Brave
+   ships that behaviour switched on by default. A class called cp-banner had
+   the entire call to action hidden on the live site while leaving it present
+   in the page source, which fails silently and is very hard to spot.
+
+   So avoid advertising and marketing words in any class on a client-facing
+   page: banner, promo, promoted, sponsor, advert, newsletter, popup, social,
+   share, widget. Test in a browser with blocking on, not a clean one.
+*/
 
 /***** Brand palette *****************************************************
    Every colour below comes from a theme setting, so the palette can be
@@ -68,15 +78,15 @@ a.cp-phone:visited {
   display: block;
 }
 
-/***** Homepage: announcement banner *****/
-.cp-announcement {
+/***** Homepage: the announcement bar *****/
+.cp-notice {
   background-color: color-mix(in srgb, var(--cp-pale) 40%, var(--cp-card));
   border-top: 1px solid var(--cp-rule);
   border-bottom: 1px solid var(--cp-rule);
   color: var(--cp-ink);
 }
 
-.cp-announcement-inner {
+.cp-notice-inner {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -85,20 +95,20 @@ a.cp-phone:visited {
   flex-wrap: wrap;
 }
 
-.cp-announcement-icon {
+.cp-notice-icon {
   color: var(--cp-action);
   flex: none;
 }
 
-.cp-announcement-heading {
+.cp-notice-heading {
   font-weight: 600;
 }
 
-.cp-announcement-body {
+.cp-notice-body {
   color: var(--cp-ink-soft);
 }
 
-.cp-announcement-link {
+.cp-notice-link {
   margin-left: auto;
   font-weight: 600;
 }
