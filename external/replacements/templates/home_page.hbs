@@ -25,15 +25,24 @@
   </div>
 {{/if}}
 
+{{!-- Only ever shown when the page is loaded with ?cp_diag=1. --}}
 <div class="container">
-
-  {{!-- Only ever shown when the page is loaded with ?cp_diag=1. --}}
   <div class="cp-diag" data-cp-diag hidden></div>
+</div>
 
-  {{!-- The banner. Its only job is starting a case: one recommended route
-        named as the quickest, with calling offered underneath as the
-        alternative rather than as a warning panel. --}}
-  <section id="main-content" class="cp-hero">
+{{!-- The hero. Deliberately full bleed rather than a card inside the
+      container, so it reads as the top of the page rather than a block
+      sitting on it. Its only job is starting a case: one recommended route
+      named as the quickest, with calling offered underneath as the
+      alternative rather than as a warning panel.
+
+      The background image is Copenhagen's own homepage_background_image
+      setting, so a banner can be uploaded in Guide admin and swapped as the
+      brand design settles rather than being baked in here. With no image the
+      hero is a solid brand colour, and the overlay keeps white text legible
+      over whatever ends up being uploaded. --}}
+<section id="main-content" class="cp-hero{{#if settings.homepage_background_image}} cp-hero-has-image{{/if}}">
+  <div class="cp-hero-inner">
     {{!-- The greeting is personalised client side, so a missing or unusual
           name falls back to the generic wording rather than printing
           something strange. --}}
@@ -61,7 +70,10 @@
         {{/if}}
       </p>
     {{/if}}
-  </section>
+  </div>
+</section>
+
+<div class="container cp-main">
 
   {{#if signed_in}}
     {{!-- Cases are loaded client side: Guide exposes request data only on the
