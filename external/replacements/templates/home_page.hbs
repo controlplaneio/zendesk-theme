@@ -1,5 +1,14 @@
-{{!-- Announcement banner. Text and link are theme settings, so they can be
-      changed in Guide admin without a redeploy. --}}
+{{!-- External help centre home page, v2 (Option C).
+
+      Design brief: "Help centre redesign - design brief" in the vault, and the
+      wireframe at https://claude.ai/artifact/GjsUa11xoJM2FZFUY2KoAz - this is
+      section B of that page.
+
+      Wording follows the service schedules' defined terms: a client raises a
+      Case, and a ticket number is only its reference. Almost every string here
+      is a theme setting, so wording can change in Guide admin without a
+      redeploy. --}}
+
 {{#if settings.show_announcement}}
   <div class="cp-announcement">
     <div class="container cp-announcement-inner">
@@ -16,132 +25,122 @@
   </div>
 {{/if}}
 
-{{!-- Hero. The greeting is personalised client side from data-user-name, so a
-      missing or unusual name falls back to the generic heading rather than
-      printing something strange. --}}
-<section id="main-content" class="section cp-hero">
-  <div class="cp-hero-inner">
-    <h1 class="cp-hero-heading">How can we help?</h1>
-    <p class="cp-hero-sub">Search the knowledge base, or start a conversation to raise a ticket.</p>
-    <div class="search-container">
-      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
-        <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
-        <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
-      </svg>
-      {{search submit=false instant=settings.instant_search class='search search-full'}}
-    </div>
-  </div>
-</section>
-
 <div class="container">
 
-  {{#if settings.show_severity_one_notice}}
-    <section class="section cp-sev1">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-        <path d="M10.3 3.9 2.4 17.4A1.5 1.5 0 0 0 3.7 19.7h16.6a1.5 1.5 0 0 0 1.3-2.3L13.7 3.9a1.5 1.5 0 0 0-2.6 0Z"/>
-        <path d="M12 9v4"/>
-        <path d="M12 16.5h.01"/>
-      </svg>
-      <div>
-        {{!-- The heading falls back to default wording so the notice is never
-              headless; the text below deliberately does not. --}}
-        <div class="cp-sev1-title">
-          {{#if settings.severity_notice_heading}}{{settings.severity_notice_heading}}{{else}}Critical issue?{{/if}}
-        </div>
-        {{!-- Blank is a valid choice here, so there is no fallback: clearing the
-              setting removes the line rather than restoring default wording. --}}
-        {{#if settings.support_phone}}
-          <div class="cp-sev1-body">
-            Call us on <strong>{{settings.support_phone}}</strong>. {{settings.severity_notice_body}}
-          </div>
-        {{else}}
-          {{#if settings.severity_notice_body}}
-            <div class="cp-sev1-body">{{settings.severity_notice_body}}</div>
-          {{/if}}
+  {{!-- Only ever shown when the page is loaded with ?cp_diag=1. --}}
+  <div class="cp-diag" data-cp-diag hidden></div>
+
+  {{!-- The banner. Its only job is starting a case: one recommended route
+        named as the quickest, with calling offered underneath as the
+        alternative rather than as a warning panel. --}}
+  <section id="main-content" class="cp-banner">
+    {{!-- The greeting is personalised client side, so a missing or unusual
+          name falls back to the generic wording rather than printing
+          something strange. --}}
+    <p class="cp-banner-greeting" data-cp-greeting>{{settings.cp_banner_greeting_generic}}</p>
+    <p class="cp-banner-question">{{settings.cp_banner_question}}</p>
+
+    {{#if settings.cp_banner_sub}}
+      <p class="cp-banner-sub">{{settings.cp_banner_sub}}</p>
+    {{/if}}
+
+    <a class="cp-banner-action" href="{{settings.cp_action_url}}">
+      {{settings.cp_action_text}}
+      <span class="cp-arrow" aria-hidden="true">&rarr;</span>
+    </a>
+
+    {{#if settings.cp_prepare_text}}
+      <p class="cp-banner-prepare">{{settings.cp_prepare_text}}</p>
+    {{/if}}
+
+    {{#if settings.cp_sev1_alt_text}}
+      <p class="cp-banner-alt">
+        {{settings.cp_sev1_alt_text}}
+        {{#if settings.cp_support_phone}}
+          <a class="cp-phone" href="tel:{{settings.cp_support_phone}}">{{settings.cp_support_phone}}</a>
         {{/if}}
-      </div>
-    </section>
-  {{/if}}
-
-  {{!-- Tickets: the dominant element on this page. Populated client side from
-        the Requests API, because Guide exposes request data only on the
-        requests template. --}}
-  <section class="section cp-tickets">
-    {{#if signed_in}}
-      <div class="cp-ticket-columns">
-        <div class="cp-ticket-panel">
-          <div class="cp-panel-head">
-            <h2>Tickets you've raised</h2>
-            <a href="/hc/requests">View all</a>
-          </div>
-          <div class="cp-ticket-list" data-cp-list="own">
-            <p class="cp-muted">Loading your tickets...</p>
-          </div>
-        </div>
-
-        <div class="cp-ticket-panel">
-          <div class="cp-panel-head">
-            <h2>Your organisation's tickets</h2>
-            <a href="/hc/requests/organization">View all</a>
-          </div>
-          <div class="cp-ticket-list" data-cp-list="org">
-            <p class="cp-muted">Loading your team's tickets...</p>
-          </div>
-        </div>
-      </div>
-    {{else}}
-      <div class="cp-signed-out">
-        {{#link "sign_in"}}Sign in{{/link}} to see the tickets you and your team have raised.
-      </div>
+      </p>
     {{/if}}
   </section>
 
-  {{!-- Products. Driven by the help centre's own categories rather than
-        hardcoded, so adding a product does not need a theme change. --}}
-  <section class="section cp-products">
-    <h2 class="cp-section-heading">Browse by topic</h2>
-    <ul class="blocks-list cp-product-list">
-      {{#each categories}}
-        <li class="blocks-item">
-          <a href='{{url}}' class="blocks-item-link">
-            <span class="blocks-item-title">{{name}}</span>
-            <span class="blocks-item-description">{{excerpt description}}</span>
-          </a>
-        </li>
-      {{/each}}
-    </ul>
-    {{pagination}}
-  </section>
+  {{#if signed_in}}
+    {{!-- Cases are loaded client side: Guide exposes request data only on the
+          requests template, so there is no server-side list to render here. --}}
+    <section class="cp-cases">
+      <h2 class="cp-cases-heading">{{settings.cp_own_cases_heading}}</h2>
+      <div data-cp-own-cases>
+        <p class="cp-muted">Loading your cases...</p>
+      </div>
+      <a class="cp-cases-link" href="/hc/requests">{{settings.cp_own_cases_link_text}}</a>
+    </section>
 
-  {{#if promoted_articles}}
-    <section class="section cp-promoted">
-      <h2 class="cp-section-heading">{{t 'promoted_articles'}}</h2>
-      <ul class="cp-article-list">
-        {{#each promoted_articles}}
-          <li>
-            <a href="{{url}}">
-              {{title}}
-              {{#if internal}}
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="icon-lock" title="{{t 'internal'}}">
-                  <rect width="12" height="9" x="2" y="7" fill="currentColor" rx="1" ry="1"/>
-                  <path fill="none" stroke="currentColor" d="M4.5 7.5V4a3.5 3.5 0 017 0v3.5"/>
-                </svg>
-              {{/if}}
+    {{!-- The organisation's cases are a link with a count, not a list. Names
+          cannot be shown to an end user, so a list would be rows with nobody
+          on them. --}}
+    <a class="cp-org-strip" href="/hc/requests/organization" data-cp-org-strip>
+      <span class="cp-org-left">
+        {{#if settings.cp_show_org_count}}
+          <span class="cp-org-count" data-cp-org-count>&mdash;</span>
+        {{/if}}
+        <span>
+          <span class="cp-org-label">{{settings.cp_org_cases_label}}</span>
+          <span class="cp-org-sub">{{settings.cp_org_cases_sub}}</span>
+        </span>
+      </span>
+      <span class="cp-org-link">View all</span>
+    </a>
+  {{else}}
+    <div class="cp-signed-out">
+      {{#link "sign_in"}}Sign in{{/link}} to see your cases and your organisation's cases.
+    </div>
+  {{/if}}
+
+  {{!-- Browse by topic is in the navigation on every page, so it is off here
+        by default. The setting turns it back on without a code change. --}}
+  {{#if settings.cp_show_browse_topics}}
+    <section class="section cp-products">
+      <h2 class="cp-section-heading">Browse by topic</h2>
+      <ul class="blocks-list cp-product-list">
+        {{#each categories}}
+          <li class="blocks-item">
+            <a href='{{url}}' class="blocks-item-link">
+              <span class="blocks-item-title">{{name}}</span>
+              <span class="blocks-item-description">{{excerpt description}}</span>
             </a>
           </li>
         {{/each}}
       </ul>
+      {{pagination}}
     </section>
+
+    {{#if promoted_articles}}
+      <section class="section cp-promoted">
+        <h2 class="cp-section-heading">{{t 'promoted_articles'}}</h2>
+        <ul class="cp-article-list">
+          {{#each promoted_articles}}
+            <li>
+              <a href="{{url}}">
+                {{title}}
+                {{#if internal}}
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" focusable="false" viewBox="0 0 16 16" class="icon-lock" title="{{t 'internal'}}">
+                    <rect width="12" height="9" x="2" y="7" fill="currentColor" rx="1" ry="1"/>
+                    <path fill="none" stroke="currentColor" d="M4.5 7.5V4a3.5 3.5 0 017 0v3.5"/>
+                  </svg>
+                {{/if}}
+              </a>
+            </li>
+          {{/each}}
+        </ul>
+      </section>
+    {{/if}}
   {{/if}}
 
-  {{!-- Project resources. Each link renders only when its URL setting is filled
-        in, so nothing shows as a dead link. --}}
+  {{!-- Outbound links to the ControlPlane, Flux CD and OpenBao sites. Each
+        link renders only when its URL setting is filled in, so nothing shows
+        as a dead link. --}}
   {{#if settings.show_resources}}
-    <section class="section cp-resources">
+    <section class="cp-resources">
       <h2 class="cp-section-heading">{{#if settings.resources_heading}}{{settings.resources_heading}}{{else}}Useful links{{/if}}</h2>
-      {{!-- Each link renders only when its URL is set, and takes its wording
-            from the matching text setting, falling back to the URL so a link
-            is never blank. --}}
       <div class="cp-resource-columns">
         <div>
           <div class="cp-resource-title">{{settings.resources_col1_title}}</div>
@@ -179,82 +178,125 @@
 {{#if signed_in}}
 <script>
 (function () {
-  var PRODUCT_FIELD_ID = Number('{{settings.product_field_id}}') || null;
+  'use strict';
+
+  var GREETING = {{json settings.cp_banner_greeting}};
+  var GREETING_GENERIC = {{json settings.cp_banner_greeting_generic}};
+  var SEVERITY_FIELD_ID = Number({{json settings.cp_severity_field_id}}) || null;
+  var OWN_LIMIT = Number({{json settings.cp_own_cases_limit}}) || 5;
+  var SHOW_ORG_COUNT = {{json settings.cp_show_org_count}};
+
+  // Severity comes back as the field's tag value. These are the live tags on
+  // the Severity Level field, shared with the bot - see the ticket form build
+  // notes. Sev2 splits into two options across one severity level.
+  var SEVERITY_LABELS = {
+    severity_sev1_urgent: 'Severity 1',
+    severity_sev2_high: 'Severity 2',
+    severity_sev2_workaround: 'Severity 2',
+    severity_sev3_normal: 'Severity 3',
+    severity_sev4_low: 'Severity 4'
+  };
+
+  var DIAG = /[?&]cp_diag=1(&|$)/.test(window.location.search);
+  var timings = [];
 
   function el(tag, cls, text) {
     var n = document.createElement(tag);
-    if (cls) n.className = cls;
-    if (text !== undefined && text !== null) n.textContent = text;
+    if (cls) { n.className = cls; }
+    if (text !== undefined && text !== null) { n.textContent = text; }
     return n;
   }
 
-  function get(url) {
+  // Every call is timed, so the diagnostic can answer what the organisation
+  // count actually costs rather than it being a guess.
+  function get(url, label) {
+    var started = (window.performance && performance.now) ? performance.now() : Date.now();
+    function record(outcome) {
+      var ended = (window.performance && performance.now) ? performance.now() : Date.now();
+      timings.push({ label: label, url: url, ms: Math.round(ended - started), outcome: outcome });
+    }
     return fetch(url, { credentials: 'same-origin', headers: { Accept: 'application/json' } })
-      .then(function (res) { return res.ok ? res.json() : null; })
-      .catch(function () { return null; });
+      .then(function (res) {
+        if (!res.ok) { record('HTTP ' + res.status); return null; }
+        return res.json().then(function (body) { record('ok'); return body; });
+      })
+      .catch(function (err) { record('failed: ' + err); return null; });
   }
 
-  // Personalised greeting: first word of the name from the API, and only when
-  // it looks like a name. Anything else leaves the generic heading alone.
   function greet(name) {
-    var heading = document.querySelector('.cp-hero-heading');
-    if (!heading || !name) return;
+    var target = document.querySelector('[data-cp-greeting]');
+    if (!target) { return; }
+    if (!name) { target.textContent = GREETING_GENERIC; return; }
     var first = String(name).trim().split(/\s+/)[0];
     if (first && first.length > 1 && first.length < 20 && !/[0-9@]/.test(first)) {
-      heading.textContent = 'Hello, ' + first;
+      target.textContent = 'Hi ' + first + ', ' + GREETING;
+    } else {
+      target.textContent = GREETING_GENERIC;
     }
   }
 
-  // Product label comes from the ticket's own custom field, so no extra request.
-  function productLabel(request) {
-    if (!PRODUCT_FIELD_ID || !request.custom_fields) return null;
-    var value = null;
-    request.custom_fields.forEach(function (f) {
-      if (f.id === PRODUCT_FIELD_ID && f.value) value = String(f.value);
-    });
-    if (!value) return null;
-    var v = value.toLowerCase();
-    if (v.indexOf('flux') !== -1) return 'Flux CD';
-    if (v.indexOf('openbao') !== -1) return 'OpenBao';
+  // Reads the Severity Level field off the case itself, so there is no extra
+  // request per row. Prefers the configured field ID; without one it looks for
+  // any field whose value is a severity tag, which means the pills work before
+  // anyone has filled that setting in.
+  function severityLabel(request) {
+    var fields = request && request.custom_fields;
+    if (!fields || !fields.length) { return null; }
+    var i, f, value;
+    if (SEVERITY_FIELD_ID) {
+      for (i = 0; i < fields.length; i++) {
+        f = fields[i];
+        if (f && f.id === SEVERITY_FIELD_ID && f.value) {
+          return SEVERITY_LABELS[String(f.value)] || null;
+        }
+      }
+      return null;
+    }
+    for (i = 0; i < fields.length; i++) {
+      f = fields[i];
+      value = f && f.value ? String(f.value) : '';
+      if (SEVERITY_LABELS[value]) { return SEVERITY_LABELS[value]; }
+    }
     return null;
   }
 
   function timeAgo(iso) {
     var then = new Date(iso).getTime();
-    if (isNaN(then)) return '';
+    if (isNaN(then)) { return ''; }
     var mins = Math.round((Date.now() - then) / 60000);
-    if (mins < 1) return 'just now';
-    if (mins < 60) return mins + (mins === 1 ? ' minute ago' : ' minutes ago');
+    if (mins < 1) { return 'just now'; }
+    if (mins < 60) { return mins + (mins === 1 ? ' minute ago' : ' minutes ago'); }
     var hours = Math.round(mins / 60);
-    if (hours < 24) return hours + (hours === 1 ? ' hour ago' : ' hours ago');
+    if (hours < 24) { return hours + (hours === 1 ? ' hour ago' : ' hours ago'); }
     var days = Math.round(hours / 24);
-    if (days < 31) return days + (days === 1 ? ' day ago' : ' days ago');
+    if (days < 31) { return days + (days === 1 ? ' day ago' : ' days ago'); }
     return new Date(iso).toLocaleDateString();
   }
 
-  function render(container, requests, statusLabels, emptyMessage) {
+  function renderCases(container, requests, statusLabels, emptyMessage) {
     container.innerHTML = '';
     if (!requests.length) {
       container.appendChild(el('p', 'cp-muted', emptyMessage));
       return;
     }
-    var list = el('ul', 'cp-ticket-items');
+    var list = el('ul', 'cp-case-items');
     requests.forEach(function (r) {
-      var item = el('li', 'cp-ticket-item');
+      var item = el('li', 'cp-case-item');
+      item.appendChild(el('span', 'cp-case-id', '#' + r.id));
 
-      var meta = el('div', 'cp-ticket-meta');
-      var label = statusLabels[r.custom_status_id] || r.status;
-      meta.appendChild(el('span', 'cp-status cp-status-' + (r.status || 'open'), label));
-      var product = productLabel(r);
-      if (product) meta.appendChild(el('span', 'cp-product', product));
-      meta.appendChild(el('span', 'cp-ticket-id', '#' + r.id));
-      item.appendChild(meta);
-
-      var link = el('a', 'cp-ticket-subject', r.subject || '(no subject)');
+      var link = el('a', 'cp-case-subject', r.subject || '(no subject)');
       link.href = '/hc/requests/' + r.id;
+      link.title = r.subject || '';
       item.appendChild(link);
 
-      item.appendChild(el('div', 'cp-ticket-updated', 'Updated ' + timeAgo(r.updated_at)));
+      item.appendChild(el('span', 'cp-case-updated', timeAgo(r.updated_at)));
+
+      // Severity is only shown when it can actually be read, so an unreadable
+      // field leaves a tidy row rather than an empty pill.
+      var severity = severityLabel(r);
+      if (severity) { item.appendChild(el('span', 'cp-pill', severity)); }
+
+      item.appendChild(el('span', 'cp-pill', statusLabels[r.custom_status_id] || r.status));
       list.appendChild(item);
     });
     container.appendChild(list);
@@ -263,19 +305,55 @@
   function fail(container, message) {
     container.innerHTML = '';
     var p = el('p', 'cp-muted', message + ' ');
-    var a = el('a', null, 'View them in My Activities');
+    var a = el('a', null, 'See all your cases');
     a.href = '/hc/requests';
     p.appendChild(a);
     container.appendChild(p);
   }
 
-  var ownList = document.querySelector('[data-cp-list="own"]');
-  var orgList = document.querySelector('[data-cp-list="org"]');
-  if (!ownList && !orgList) return;
+  function showDiagnostics(me, ownRequests, orgResult) {
+    var panel = document.querySelector('[data-cp-diag]');
+    if (!panel) { return; }
+    panel.hidden = false;
+    panel.appendChild(el('h2', null, 'Diagnostics (?cp_diag=1)'));
+
+    var report = {
+      signed_in_as: me ? { id: me.id, role: me.role, organization_id: me.organization_id || null } : null,
+      severity_field_setting: SEVERITY_FIELD_ID,
+      severity_readable: null,
+      severity_found_in_field_id: null,
+      custom_fields_on_first_case: null,
+      organisation_count: orgResult,
+      timings: timings
+    };
+
+    if (ownRequests && ownRequests.length) {
+      var first = ownRequests[0];
+      report.custom_fields_on_first_case = first.custom_fields || 'none returned';
+      report.severity_readable = false;
+      (first.custom_fields || []).forEach(function (f) {
+        if (f && f.value && SEVERITY_LABELS[String(f.value)]) {
+          report.severity_readable = true;
+          report.severity_found_in_field_id = f.id;
+        }
+      });
+      report.severity_across_all_listed_cases = ownRequests.map(function (r) {
+        return { id: r.id, severity: severityLabel(r) };
+      });
+    }
+
+    panel.appendChild(el('pre', null, JSON.stringify(report, null, 2)));
+  }
+
+  var ownContainer = document.querySelector('[data-cp-own-cases]');
+  var orgCountEl = document.querySelector('[data-cp-org-count]');
+  if (!ownContainer) { return; }
+
+  var orgResult = { requested: false };
 
   Promise.all([
-    get('/api/v2/users/me.json'),
-    get('/api/v2/custom_statuses.json')
+    get('/api/v2/users/me.json', 'users/me'),
+    get('/api/v2/custom_statuses.json', 'custom_statuses')
   ]).then(function (results) {
     var me = results[0] && results[0].user ? results[0].user : null;
     var statusLabels = {};
@@ -283,36 +361,63 @@
       results[1].custom_statuses.forEach(function (s) { statusLabels[s.id] = s.label; });
     }
 
-    if (me) greet(me.name);
+    greet(me && me.name);
 
     if (!me) {
-      if (ownList) fail(ownList, "We couldn't load your tickets.");
-      if (orgList) fail(orgList, "We couldn't load your team's tickets.");
+      fail(ownContainer, "We couldn't load your cases.");
+      if (orgCountEl) { orgCountEl.textContent = '—'; }
+      if (DIAG) { showDiagnostics(null, null, orgResult); }
       return;
     }
 
-    if (ownList) {
-      get('/api/v2/requests.json?sort_by=updated_at&sort_order=desc&per_page=3')
-        .then(function (data) {
-          if (!data || !data.requests) { fail(ownList, "We couldn't load your tickets."); return; }
-          render(ownList, data.requests, statusLabels, "You haven't raised any tickets yet.");
-        });
+    var ownCases = get('/api/v2/requests.json?sort_by=updated_at&sort_order=desc&per_page=' + OWN_LIMIT, 'own cases')
+      .then(function (data) {
+        if (!data || !data.requests) {
+          fail(ownContainer, "We couldn't load your cases.");
+          return null;
+        }
+        renderCases(ownContainer, data.requests, statusLabels, "You haven't raised a case yet.");
+        return data.requests;
+      });
+
+    // The count is a separate request, so it is kept as cheap as possible
+    // (one row, read the collection total) and it never blocks the case list:
+    // if it is slow or fails, the strip stays a plain link.
+    var orgCount = Promise.resolve(null);
+    if (SHOW_ORG_COUNT && orgCountEl && me.organization_id) {
+      orgResult.requested = true;
+      orgCount = get(
+        '/api/v2/requests.json?organization_id=' + me.organization_id +
+          '&status=new,open,pending,hold&per_page=1',
+        'organisation count'
+      ).then(function (data) {
+        if (!data) { orgResult.outcome = 'request failed'; return null; }
+        var count = (typeof data.count === 'number') ? data.count : null;
+        if (count === null && data.requests) {
+          count = data.requests.length;
+          orgResult.outcome = 'no count field, fell back to row length';
+        } else {
+          orgResult.outcome = 'read from the count field';
+        }
+        orgResult.value = count;
+        if (count !== null) { orgCountEl.textContent = String(count); }
+        return count;
+      });
+    } else if (orgCountEl) {
+      orgResult.outcome = me.organization_id ? 'turned off in settings' : 'no organisation on this account';
     }
 
-    if (orgList) {
-      if (!me.organization_id) {
-        orgList.innerHTML = '';
-        orgList.appendChild(el('p', 'cp-muted', 'Your account is not linked to an organisation, so there are no team tickets to show.'));
-        return;
+    // The count failing must not hide the strip, so hide the number instead.
+    orgCount.then(function (count) {
+      if (orgCountEl && (count === null || count === undefined)) {
+        orgCountEl.hidden = true;
       }
-      // The API cannot filter to "raised by someone else", so fetch a page of
-      // organisation tickets and drop this user's own.
-      get('/api/v2/requests.json?organization_id=' + me.organization_id + '&sort_by=updated_at&sort_order=desc&per_page=100')
-        .then(function (data) {
-          if (!data || !data.requests) { fail(orgList, "We couldn't load your team's tickets."); return; }
-          var others = data.requests.filter(function (r) { return r.requester_id !== me.id; }).slice(0, 3);
-          render(orgList, others, statusLabels, 'No one else in your organisation has raised a ticket recently.');
-        });
+    });
+
+    if (DIAG) {
+      Promise.all([ownCases, orgCount]).then(function (r) {
+        showDiagnostics(me, r[0], orgResult);
+      });
     }
   });
 })();

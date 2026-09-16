@@ -50,6 +50,252 @@
     "op": "add",
     "path": "/settings/-",
     "value": {
+      "label": "cp_palette_group_label",
+      "variables": [
+        {
+          "identifier": "cp_action_color",
+          "type": "color",
+          "description": "cp_action_color_description",
+          "label": "cp_action_color_label",
+          "value": "#2158e8"
+        },
+        {
+          "identifier": "cp_action_text_color",
+          "type": "color",
+          "description": "cp_action_text_color_description",
+          "label": "cp_action_text_color_label",
+          "value": "#ffffff"
+        },
+        {
+          "identifier": "cp_banner_color",
+          "type": "color",
+          "description": "cp_banner_color_description",
+          "label": "cp_banner_color_label",
+          "value": "#23243b"
+        },
+        {
+          "identifier": "cp_banner_text_color",
+          "type": "color",
+          "description": "cp_banner_text_color_description",
+          "label": "cp_banner_text_color_label",
+          "value": "#ffffff"
+        },
+        {
+          "identifier": "cp_ink_color",
+          "type": "color",
+          "description": "cp_ink_color_description",
+          "label": "cp_ink_color_label",
+          "value": "#23243b"
+        },
+        {
+          "identifier": "cp_ground_color",
+          "type": "color",
+          "description": "cp_ground_color_description",
+          "label": "cp_ground_color_label",
+          "value": "#eeefee"
+        },
+        {
+          "identifier": "cp_accent_color",
+          "type": "color",
+          "description": "cp_accent_color_description",
+          "label": "cp_accent_color_label",
+          "value": "#26a7df"
+        },
+        {
+          "identifier": "cp_deep_blue_color",
+          "type": "color",
+          "description": "cp_deep_blue_color_description",
+          "label": "cp_deep_blue_color_label",
+          "value": "#183789"
+        },
+        {
+          "identifier": "cp_pale_blue_color",
+          "type": "color",
+          "description": "cp_pale_blue_color_description",
+          "label": "cp_pale_blue_color_label",
+          "value": "#bee3f4"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/settings/-",
+    "value": {
+      "label": "cp_banner_group_label",
+      "variables": [
+        {
+          "identifier": "cp_banner_greeting",
+          "type": "text",
+          "description": "cp_banner_greeting_description",
+          "label": "cp_banner_greeting_label",
+          "value": "welcome to ControlPlane support"
+        },
+        {
+          "identifier": "cp_banner_greeting_generic",
+          "type": "text",
+          "description": "cp_banner_greeting_generic_description",
+          "label": "cp_banner_greeting_generic_label",
+          "value": "Welcome to ControlPlane support"
+        },
+        {
+          "identifier": "cp_banner_question",
+          "type": "text",
+          "description": "cp_banner_question_description",
+          "label": "cp_banner_question_label",
+          "value": "Something wrong, or need to ask us something?"
+        },
+        {
+          "identifier": "cp_banner_sub",
+          "type": "text",
+          "description": "cp_banner_sub_description",
+          "label": "cp_banner_sub_label",
+          "value": "Raising a case is the quickest way to reach an engineer."
+        },
+        {
+          "identifier": "cp_action_text",
+          "type": "text",
+          "description": "cp_action_text_description",
+          "label": "cp_action_text_label",
+          "value": "Raise a case"
+        },
+        {
+          "identifier": "cp_action_url",
+          "type": "text",
+          "description": "cp_action_url_description",
+          "label": "cp_action_url_label",
+          "value": "/hc/requests/new"
+        },
+        {
+          "identifier": "cp_prepare_text",
+          "type": "text",
+          "description": "cp_prepare_text_description",
+          "label": "cp_prepare_text_label",
+          "value": "Before you start, have your environment, the versions you are running and any error output to hand. It gets you a useful answer sooner."
+        },
+        {
+          "identifier": "cp_sev1_alt_text",
+          "type": "text",
+          "description": "cp_sev1_alt_text_description",
+          "label": "cp_sev1_alt_text_label",
+          "value": "Production system completely unusable, with no workaround? Calling is faster -"
+        },
+        {
+          "identifier": "cp_support_phone",
+          "type": "text",
+          "description": "cp_support_phone_description",
+          "label": "cp_support_phone_label",
+          "value": "+44 2045 710 371"
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/settings/-",
+    "value": {
+      "label": "cp_cases_group_label",
+      "variables": [
+        {
+          "identifier": "cp_own_cases_heading",
+          "type": "text",
+          "description": "cp_own_cases_heading_description",
+          "label": "cp_own_cases_heading_label",
+          "value": "Your cases"
+        },
+        {
+          "identifier": "cp_own_cases_link_text",
+          "type": "text",
+          "description": "cp_own_cases_link_text_description",
+          "label": "cp_own_cases_link_text_label",
+          "value": "See all your cases"
+        },
+        {
+          "identifier": "cp_own_cases_limit",
+          "type": "text",
+          "description": "cp_own_cases_limit_description",
+          "label": "cp_own_cases_limit_label",
+          "value": "5"
+        },
+        {
+          "identifier": "cp_org_cases_label",
+          "type": "text",
+          "description": "cp_org_cases_label_description",
+          "label": "cp_org_cases_label_label",
+          "value": "Open cases across your organisation"
+        },
+        {
+          "identifier": "cp_org_cases_sub",
+          "type": "text",
+          "description": "cp_org_cases_sub_description",
+          "label": "cp_org_cases_sub_label",
+          "value": "Raised by your Authorised Users"
+        },
+        {
+          "identifier": "cp_show_org_count",
+          "type": "checkbox",
+          "description": "cp_show_org_count_description",
+          "label": "cp_show_org_count_label",
+          "value": true
+        },
+        {
+          "identifier": "cp_severity_field_id",
+          "type": "text",
+          "description": "cp_severity_field_id_description",
+          "label": "cp_severity_field_id_label",
+          "value": ""
+        },
+        {
+          "identifier": "show_submit_request",
+          "type": "checkbox",
+          "description": "show_submit_request_description",
+          "label": "show_submit_request_label",
+          "value": true
+        },
+        {
+          "identifier": "cp_show_browse_topics",
+          "type": "checkbox",
+          "description": "cp_show_browse_topics_description",
+          "label": "cp_show_browse_topics_label",
+          "value": false
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/settings/-",
+    "value": {
+      "label": "cp_request_page_group_label",
+      "variables": [
+        {
+          "identifier": "cp_request_heading",
+          "type": "text",
+          "description": "cp_request_heading_description",
+          "label": "cp_request_heading_label",
+          "value": "Raise a case"
+        },
+        {
+          "identifier": "cp_request_intro",
+          "type": "text",
+          "description": "cp_request_intro_description",
+          "label": "cp_request_intro_label",
+          "value": "Tell us what is happening and a ControlPlane engineer will pick it up within the Response Time set by your agreement. Your environment, the versions you are running and any error output all help."
+        },
+        {
+          "identifier": "cp_request_show_sev1_line",
+          "type": "checkbox",
+          "description": "cp_request_show_sev1_line_description",
+          "label": "cp_request_show_sev1_line_label",
+          "value": true
+        }
+      ]
+    }
+  },
+  {
+    "op": "add",
+    "path": "/settings/-",
+    "value": {
       "label": "announcement_group_label",
       "variables": [
         {
@@ -86,66 +332,6 @@
           "description": "announcement_link_url_description",
           "label": "announcement_link_url_label",
           "value": ""
-        }
-      ]
-    }
-  },
-  {
-    "op": "add",
-    "path": "/settings/-",
-    "value": {
-      "label": "support_contact_group_label",
-      "variables": [
-        {
-          "identifier": "show_severity_one_notice",
-          "type": "checkbox",
-          "description": "show_severity_one_notice_description",
-          "label": "show_severity_one_notice_label",
-          "value": true
-        },
-        {
-          "identifier": "severity_notice_heading",
-          "type": "text",
-          "description": "severity_notice_heading_description",
-          "label": "severity_notice_heading_label",
-          "value": "Critical issue?"
-        },
-        {
-          "identifier": "severity_notice_body",
-          "type": "text",
-          "description": "severity_notice_body_description",
-          "label": "severity_notice_body_label",
-          "value": "Our quickest response times apply to issues reported by phone."
-        },
-        {
-          "identifier": "support_phone",
-          "type": "text",
-          "description": "support_phone_description",
-          "label": "support_phone_label",
-          "value": ""
-        }
-      ]
-    }
-  },
-  {
-    "op": "add",
-    "path": "/settings/-",
-    "value": {
-      "label": "tickets_group_label",
-      "variables": [
-        {
-          "identifier": "show_submit_request",
-          "type": "checkbox",
-          "description": "show_submit_request_description",
-          "label": "show_submit_request_label",
-          "value": true
-        },
-        {
-          "identifier": "product_field_id",
-          "type": "text",
-          "description": "product_field_id_description",
-          "label": "product_field_id_label",
-          "value": "6074456505503"
         }
       ]
     }
