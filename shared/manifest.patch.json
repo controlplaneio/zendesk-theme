@@ -7,6 +7,6 @@
   {
     "op": "replace",
     "path": "/version",
-    "value": "1.9.2"
+    "value": "1.9.3"
   }
 ]

@@ -100,11 +100,17 @@ a.cp-phone:visited {
   display: block;
 }
 
-/***** Homepage: the announcement bar *****/
+/***** Homepage: the announcement bar *************************************
+   Full-strength pale blue rather than a tint of it. At 40% it was almost the
+   same as the white header above and disappeared into the page chrome, which
+   is the opposite of what a notice is for. It also sits between the white
+   header and the dark hero, so it separates them instead of merging with
+   either - a dark bar here would give two dark bands stacked.
+ *************************************************************************/
 .cp-notice {
-  background-color: color-mix(in srgb, var(--cp-pale) 40%, var(--cp-card));
-  border-top: 1px solid var(--cp-rule);
-  border-bottom: 1px solid var(--cp-rule);
+  background-color: var(--cp-pale);
+  border-top: 1px solid color-mix(in srgb, var(--cp-pale) 70%, var(--cp-deep));
+  border-bottom: 1px solid color-mix(in srgb, var(--cp-pale) 70%, var(--cp-deep));
   color: var(--cp-ink);
 }
 
@@ -118,21 +124,27 @@ a.cp-phone:visited {
 }
 
 .cp-notice-icon {
-  color: var(--cp-action);
+  color: var(--cp-deep);
   flex: none;
 }
 
 .cp-notice-heading {
   font-weight: 600;
+  color: var(--cp-deep);
 }
 
 .cp-notice-body {
-  color: var(--cp-ink-soft);
+  color: var(--cp-ink);
 }
 
 .cp-notice-link {
-  margin-left: auto;
   font-weight: 600;
+  color: var(--cp-deep);
+  text-decoration: underline;
+}
+
+.cp-notice-link:visited {
+  color: var(--cp-deep);
 }
 
 /***** Homepage: the hero *************************************************
