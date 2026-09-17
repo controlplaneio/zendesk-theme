@@ -1,0 +1,23 @@
+--- a/templates/requests_page.hbs
++++ b/templates/requests_page.hbs
+@@ -1,8 +1,16 @@
+-<div class="container">
+-  <header class="my-activities-header">
+-    <h1>{{t "requests"}}</h1>
+-  </header>
++{{!-- Same slim band as the Raise a case page. Zendesk renders the list
++      itself with its own module, so only the page around it changes. --}}
++<section class="cp-page-head{{#if settings.homepage_background_image}} cp-page-head-has-image{{/if}}">
++  <div class="container cp-page-head-inner">
++    {{!-- No narrow column here: the list below is a table and needs the full
++          width, so the heading lines up with it rather than with a form. --}}
++    <h1 class="cp-page-head-title">
++      {{#if settings.cp_own_cases_heading}}{{settings.cp_own_cases_heading}}{{else}}{{t "requests"}}{{/if}}
++    </h1>
++  </div>
++</section>
+ 
++<div class="container cp-main">
+   <div id="main-content">
+   </div>
+ </div>

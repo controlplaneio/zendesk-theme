@@ -63,6 +63,9 @@
      everything below it. */
   --cp-measure-page: 1160px;
   --cp-measure-text: 56ch;
+  /* The reading column for task pages. A form wants a narrow measure; a table
+     does not, which is why Your cases keeps the full container width. */
+  --cp-measure-column: 700px;
 }
 
 body {
@@ -518,6 +521,212 @@ a.cp-org-strip:focus {
 .cp-request-alt .cp-phone {
   font-weight: 600;
   white-space: nowrap;
+}
+
+/***** Inner page band ****************************************************
+   A short version of the home page hero for the Raise a case and Your cases
+   pages, so the portal does not change character on the second click. It
+   reuses the same image setting and the same tint, so there is one thing to
+   maintain rather than three.
+
+   Deliberately shallow. These are task pages: on Raise a case the form has to
+   stay visible without scrolling, which a full-height hero would prevent.
+ *************************************************************************/
+/* No horizontal padding here: the inner element carries Copenhagen's own
+   .container, so the band's contents line up with the form below it whatever
+   the viewport width. */
+.cp-page-head {
+  background-color: var(--cp-hero);
+  color: var(--cp-hero-text);
+  padding: var(--cp-space-4) 0;
+  margin-bottom: var(--cp-space-4);
+}
+
+.cp-page-head-has-image {
+  background-image:
+    linear-gradient(
+      color-mix(in srgb, var(--cp-hero) 78%, transparent),
+      color-mix(in srgb, var(--cp-hero) 90%, transparent)
+    ),
+    url($homepage_background_image);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+/* Geometry comes from .container; this class only carries what is specific
+   to the band. */
+.cp-page-head-inner {
+  display: block;
+}
+
+/* One centred column shared by the band's contents and the form below, so
+   they cannot drift apart at any width. On a narrow screen it simply fills
+   the container, which is what makes this work on a phone without a separate
+   set of rules. */
+.cp-column {
+  max-width: var(--cp-measure-column);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Copenhagen caps the form at 650px and does not centre it, which would leave
+   it narrower than the heading above and pinned to the left of the column. */
+.cp-column .form {
+  max-width: 100%;
+}
+
+.cp-page-head-title {
+  margin: 0;
+  font-size: clamp(26px, 3vw, 34px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--cp-hero-text);
+}
+
+.cp-page-head-intro {
+  margin: var(--cp-space-2) 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--cp-hero-soft);
+  max-width: 68ch;
+}
+
+/* Our own breadcrumb, replacing Zendesk's {{breadcrumbs}} helper on the
+   Raise a case page. The helper names the last crumb from the page's system
+   title ("Submit a request"), which a theme cannot reword, so the trail is
+   built by hand from the same setting as the heading. Real <nav> and <ol>
+   markup with aria-current, so it is still announced as a breadcrumb. */
+.cp-crumbs {
+  margin: 0 0 var(--cp-space-2);
+  font-size: 14px;
+}
+
+.cp-crumbs ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.cp-crumbs li {
+  color: var(--cp-hero-faint);
+}
+
+.cp-crumbs li + li::before {
+  content: "\203A";
+  margin: 0 8px;
+  color: var(--cp-hero-faint);
+}
+
+.cp-crumbs a,
+.cp-crumbs a:visited {
+  color: var(--cp-hero-soft);
+}
+
+.cp-crumbs a:hover,
+.cp-crumbs a:focus {
+  color: var(--cp-hero-text);
+}
+
+/***** Case status, everywhere it appears *******************************
+   Colour is made to mean one thing: is this waiting on the client? Copenhagen
+   ships red for "Open" and green for "Awaiting your reply", which is backwards
+   - red says something is wrong when nothing is, and the one state that needs
+   the client to act is the calm one.
+
+   The same three treatments are used on the home page pills and on the
+   Requests page badges, so the two surfaces agree. All three clear 4.5:1.
+
+   Zendesk's own status values map onto them: "pending" means waiting on the
+   requester, so it is the one that gets the solid fill.
+ ************************************************************************/
+
+/* Waiting on the client. The only one that should catch the eye. */
+.cp-pill-pending,
+.status-label-pending,
+.status-label-pending-moderation {
+  background-color: var(--cp-action);
+  border-color: var(--cp-action);
+  color: var(--cp-action-text);
+}
+
+/* With us. Clearly live, but nothing for the client to do. */
+.cp-pill-new,
+.cp-pill-open,
+.cp-pill-hold,
+.status-label,
+.status-label-new,
+.status-label-open,
+.status-label-hold {
+  background-color: var(--cp-pale);
+  border-color: color-mix(in srgb, var(--cp-pale) 70%, var(--cp-deep));
+  color: var(--cp-deep);
+}
+
+/* Done. Recedes. */
+.cp-pill-solved,
+.cp-pill-closed,
+.status-label-solved,
+.status-label-closed,
+.status-label-not-planned {
+  background-color: var(--cp-ground);
+  border-color: var(--cp-rule);
+  color: var(--cp-ink-soft);
+}
+
+/* Severity stays a neutral outline deliberately: severity is information, not
+   an alarm, and if both pills shout they compete with each other. */
+.cp-pill-severity {
+  background-color: transparent;
+  border-color: var(--cp-rule);
+  color: var(--cp-ink-soft);
+}
+
+/***** Requests page ******************************************************
+   Zendesk renders this with its own React module, so the layout is left
+   alone and only the surrounding page is brought onto the palette. The
+   badges above are Copenhagen classes the module uses, which is why they are
+   reachable at all.
+ *************************************************************************/
+.status-label {
+  border-radius: 99px;
+  border: 1px solid transparent;
+  font-weight: 600;
+  padding: 3px 10px;
+}
+
+/***** Form controls ******************************************************
+   Zendesk's request form is a React module built on Garden components.
+   Target data-garden-id, which names the component and is stable; the
+   generated styled-components class (StyledTextInput-sc-...) changes on any
+   Zendesk update and must not be relied on.
+
+   Garden derives its form palette from Copenhagen's background_color
+   setting, which is our page ground. That made every field exactly the same
+   colour as the page behind it, so the controls read as flat slabs with no
+   edge. Setting them to the card colour restores the distinction between a
+   field and the page.
+
+   Only the background is set: Garden's border, radius, chevron and focus
+   states are already right, and leaving them alone is what makes the fields
+   match each other rather than merely look similar. The selectors are not
+   scoped to .form because the open listbox renders in a portal outside it.
+ *************************************************************************/
+/* Belt and braces behind the settings correction in the template. Garden
+   injects its styles at runtime, after this stylesheet, so at equal
+   specificity theirs wins - which is why the plain rule below had no effect
+   even though the selectors were right. !important is the correct tool
+   against a third-party sheet we do not control and cannot reorder; raising
+   specificity instead would break the moment Garden raised theirs.
+
+   If the template correction proves sufficient on its own, this block can go. */
+[data-garden-id="forms.input"],
+[data-garden-id="forms.textarea"],
+[data-garden-id="dropdowns.combobox.trigger"],
+[data-garden-id="dropdowns.combobox.listbox"] {
+  background-color: var(--cp-card) !important;
 }
 
 /***** Diagnostics ********************************************************
