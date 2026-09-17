@@ -47,6 +47,18 @@
     "value": false
   },
   {
+    "op": "remove",
+    "path": "/settings/3/variables/3"
+  },
+  {
+    "op": "remove",
+    "path": "/settings/3/variables/2"
+  },
+  {
+    "op": "remove",
+    "path": "/settings/3/variables/1"
+  },
+  {
     "op": "add",
     "path": "/settings/-",
     "value": {
