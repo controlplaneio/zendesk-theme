@@ -277,6 +277,34 @@
           "description": "cp_show_browse_topics_description",
           "label": "cp_show_browse_topics_label",
           "value": false
+        },
+        {
+          "identifier": "cp_cases_tab_ccd",
+          "type": "text",
+          "value": "Cases you're copied on",
+          "description": "cp_cases_tab_ccd_description",
+          "label": "cp_cases_tab_ccd_label"
+        },
+        {
+          "identifier": "cp_cases_tab_org",
+          "type": "text",
+          "value": "Your organisation's cases",
+          "description": "cp_cases_tab_org_description",
+          "label": "cp_cases_tab_org_label"
+        },
+        {
+          "identifier": "cp_awaiting_labels",
+          "type": "text",
+          "value": "Awaiting your reply, Awaiting reply",
+          "description": "cp_awaiting_labels_description",
+          "label": "cp_awaiting_labels_label"
+        },
+        {
+          "identifier": "cp_done_labels",
+          "type": "text",
+          "value": "Solved, Closed",
+          "description": "cp_done_labels_description",
+          "label": "cp_done_labels_label"
         }
       ]
     }

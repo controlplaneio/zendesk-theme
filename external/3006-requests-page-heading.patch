@@ -21,3 +21,97 @@
    <div id="main-content">
    </div>
  </div>
+@@ -14,6 +22,11 @@
+   const settings = {{json settings}}; 
+ 
+ 
++
++  // Garden builds this module's palette from background_color, which on
++  // this theme is the page ground, so its controls came out the same colour
++  // as the page behind them.
++  settings.background_color = {{json settings.card_background_color}};
+   const props = {   
+     locale: {{json help_center.base_locale}},
+     customStatusesEnabled: {{json help_center.custom_statuses_enabled}},
+@@ -22,3 +35,81 @@
+   
+   renderRequestList(settings, props, container);
+ </script>
++
++<script>
++(function () {
++  'use strict';
++
++  // This page's table, tabs and badges are drawn by Zendesk's own module, not
++  // by this theme, so they can only be adjusted from the outside. Two things
++  // are corrected here.
++  //
++  // WORDING. Zendesk's strings say "request" throughout. The service
++  // schedules' defined term is Case, so the tab labels are relabelled. Those
++  // strings live in a minified vendored bundle that is effectively one line,
++  // so patching the file is not maintainable; doing it here also keeps the
++  // wording editable in Guide admin like the rest of the portal.
++  //
++  // STATUS COLOUR. Every badge is the same Garden component with nothing in
++  // the DOM saying which status it is, and Zendesk hardcodes the colours, so
++  // neither CSS nor the theme settings can tell them apart. The stylesheet
++  // neutralises them all first, then this marks the ones that need the
++  // client's attention. If this script never runs, the page degrades to
++  // every badge neutral rather than to Zendesk's red.
++  //
++  // The labels come from settings rather than being written in here, so a
++  // renamed custom status is a Guide admin change, not a redeploy.
++
++  var TABS = [
++    ['My requests', {{json settings.cp_own_cases_heading}}],
++    ["Requests I am CC'd on", {{json settings.cp_cases_tab_ccd}}],
++    ['Organisational requests', {{json settings.cp_cases_tab_org}}],
++    ['Organizational requests', {{json settings.cp_cases_tab_org}}]
++  ];
++
++  function split(value) {
++    return String(value || '')
++      .split(',')
++      .map(function (s) { return s.trim().toLowerCase(); })
++      .filter(Boolean);
++  }
++
++  var AWAITING = split({{json settings.cp_awaiting_labels}});
++  var DONE = split({{json settings.cp_done_labels}});
++
++  var root = document.getElementById('main-content');
++  if (!root) { return; }
++
++  function apply() {
++    TABS.forEach(function (pair) {
++      if (!pair[1]) { return; }
++      root.querySelectorAll('[role="tab"], button, a').forEach(function (el) {
++        if (el.textContent.trim() === pair[0]) { el.textContent = pair[1]; }
++      });
++    });
++
++    root.querySelectorAll('[data-garden-id="tags.tag_view"]').forEach(function (tag) {
++      // Read the inner label, not the tag. The tag also holds a hidden tooltip
++      // description, so its textContent comes back as the label twice over
++      // followed by the description: "OpenOpen - We are working on a response
++      // for you". Confirmed live rather than assumed.
++      var label = tag.querySelector('[data-garden-id="typography.ellipsis"]');
++      var text = (label || tag).textContent.replace(/s+/g, ' ').trim().toLowerCase();
++      tag.classList.toggle('cp-tag-awaiting', AWAITING.indexOf(text) !== -1);
++      tag.classList.toggle('cp-tag-done', DONE.indexOf(text) !== -1);
++    });
++  }
++
++  apply();
++
++  // The table re-renders on sort, filter and paging, which would undo the
++  // above. An observer is event driven rather than polling, and the work it
++  // triggers is a class change on at most a page of rows.
++  var queued = false;
++  new MutationObserver(function () {
++    if (queued) { return; }
++    queued = true;
++    requestAnimationFrame(function () { queued = false; apply(); });
++  }).observe(root, { childList: true, subtree: true });
++})();
++</script>

@@ -645,35 +645,64 @@ a.cp-org-strip:focus {
 
 /* Waiting on the client. The only one that should catch the eye. */
 .cp-pill-pending,
-.status-label-pending,
-.status-label-pending-moderation {
-  background-color: var(--cp-action);
+.cp-tag-awaiting[data-garden-id="tags.tag_view"] {
+  background-color: var(--cp-action) !important;
   border-color: var(--cp-action);
-  color: var(--cp-action-text);
+  color: var(--cp-action-text) !important;
 }
 
-/* With us. Clearly live, but nothing for the client to do. */
+/* With us. Clearly live, but nothing for the client to do.
+
+   On the cases page every badge starts here, because Zendesk's module gives
+   no way to tell them apart and hardcodes a red for Open. Neutralising them
+   all first means the page never flashes red while the script runs, and that
+   a script failure leaves everything calm rather than everything wrong.
+
+   !important because Garden injects its styles after this sheet at equal
+   specificity, so an ordinary rule silently loses. */
 .cp-pill-new,
 .cp-pill-open,
 .cp-pill-hold,
-.status-label,
-.status-label-new,
-.status-label-open,
-.status-label-hold {
-  background-color: var(--cp-pale);
+[data-garden-id="tags.tag_view"] {
+  background-color: var(--cp-pale) !important;
   border-color: color-mix(in srgb, var(--cp-pale) 70%, var(--cp-deep));
-  color: var(--cp-deep);
+  color: var(--cp-deep) !important;
 }
 
 /* Done. Recedes. */
 .cp-pill-solved,
 .cp-pill-closed,
-.status-label-solved,
-.status-label-closed,
-.status-label-not-planned {
-  background-color: var(--cp-ground);
+.cp-tag-done[data-garden-id="tags.tag_view"] {
+  background-color: var(--cp-ground) !important;
   border-color: var(--cp-rule);
-  color: var(--cp-ink-soft);
+  color: var(--cp-ink-soft) !important;
+}
+
+/* Match the home page pills rather than Zendesk's square chips. */
+[data-garden-id="tags.tag_view"] {
+  border-radius: 99px;
+  font-weight: 600;
+}
+
+/***** Your cases: the table **********************************************
+   Correcting background_color for the module turned the header row white
+   while the body kept showing the page through it, so the table was two
+   colours. Setting the table itself means the whole thing reads as one
+   block against the ground, like the cards on the home page.
+
+   !important throughout because Garden injects its styles after this sheet.
+ *************************************************************************/
+[data-garden-id="tables.table"] {
+  background-color: var(--cp-card) !important;
+  border: 1px solid var(--cp-rule);
+}
+
+/* The rows carry no fill of their own, so the table's colour shows through
+   rather than each row needing to know about it. */
+[data-garden-id="tables.body"],
+[data-garden-id="tables.row"],
+[data-garden-id="tables.cell"] {
+  background-color: transparent !important;
 }
 
 /* Severity stays a neutral outline deliberately: severity is information, not
@@ -682,19 +711,6 @@ a.cp-org-strip:focus {
   background-color: transparent;
   border-color: var(--cp-rule);
   color: var(--cp-ink-soft);
-}
-
-/***** Requests page ******************************************************
-   Zendesk renders this with its own React module, so the layout is left
-   alone and only the surrounding page is brought onto the palette. The
-   badges above are Copenhagen classes the module uses, which is why they are
-   reachable at all.
- *************************************************************************/
-.status-label {
-  border-radius: 99px;
-  border: 1px solid transparent;
-  font-weight: 600;
-  padding: 3px 10px;
 }
 
 /***** Form controls ******************************************************
