@@ -35,6 +35,8 @@
   "cp_banner_sub_label": "Recommended route line",
   "cp_banner_text_color_description": "Text colour used on the dark banner",
   "cp_banner_text_color_label": "Banner text colour",
+  "cp_case_number_label_description": "Replaces Zendesk's \"Id\" label on a case, where the defined term is Case",
+  "cp_case_number_label_label": "Case number label",
   "cp_cases_group_label": "Cases on the home page",
   "cp_cases_tab_ccd_description": "Replaces Zendesk's \"Requests I am CC'd on\" tab label on the cases page",
   "cp_cases_tab_ccd_label": "Copied-in cases tab",

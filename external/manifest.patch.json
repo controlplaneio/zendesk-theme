@@ -305,6 +305,13 @@
           "value": "Solved, Closed",
           "description": "cp_done_labels_description",
           "label": "cp_done_labels_label"
+        },
+        {
+          "identifier": "cp_case_number_label",
+          "type": "text",
+          "description": "cp_case_number_label_description",
+          "label": "cp_case_number_label_label",
+          "value": "Case number"
         }
       ]
     }

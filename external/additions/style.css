@@ -684,6 +684,94 @@ a.cp-org-strip:focus {
   font-weight: 600;
 }
 
+/***** A single case ******************************************************
+   Unlike the other two inner pages this template is entirely ours, with no
+   Zendesk module in it, so everything here is ordinary CSS against markup we
+   control. No !important needed.
+
+   Copenhagen puts a semantic class on the status here -
+   status-label-{{request.status}} - which is why these three rules can be
+   exact where the cases list needed a script to tell its badges apart.
+ *************************************************************************/
+/* The base carries the neutral "with us" treatment rather than Copenhagen's
+   green, so a status this theme does not recognise comes out calm instead of
+   claiming something. Custom statuses mean the class is not always one of
+   Copenhagen's five. */
+.status-label {
+  border-radius: 99px;
+  border: 1px solid color-mix(in srgb, var(--cp-pale) 70%, var(--cp-deep));
+  background-color: var(--cp-pale);
+  color: var(--cp-deep);
+  font-weight: 600;
+  font-size: 12px;
+  padding: 3px 10px;
+}
+
+/* Waiting on the client. The help centre uses its own status vocabulary
+   rather than the agent-side one: a ticket that is Pending to an agent is
+   "answered" here, and shows to the client as "Awaiting your reply".
+   Confirmed against the live page and Zendesk's ticket status admin. */
+.status-label-answered,
+.status-label-pending {
+  background-color: var(--cp-action);
+  border-color: var(--cp-action);
+  color: var(--cp-action-text);
+}
+
+/* With us. */
+.status-label-new,
+.status-label-open,
+.status-label-hold {
+  background-color: var(--cp-pale);
+  border-color: color-mix(in srgb, var(--cp-pale) 70%, var(--cp-deep));
+  color: var(--cp-deep);
+}
+
+/* Done. */
+.status-label-solved,
+.status-label-closed {
+  background-color: var(--cp-ground);
+  border-color: var(--cp-rule);
+  color: var(--cp-ink-soft);
+}
+
+/* The conversation and the details both become cards, so they read as the
+   content of the page rather than floating on the background. */
+.request-main,
+.request-sidebar {
+  background-color: var(--cp-card);
+  border: 1px solid var(--cp-rule);
+  border-radius: var(--cp-radius);
+  padding: var(--cp-space-3);
+}
+
+/* Copenhagen gives the sidebar rules top and bottom only, which made sense
+   when it had no fill of its own. */
+.request-sidebar {
+  border-top: 1px solid var(--cp-rule);
+  border-bottom: 1px solid var(--cp-rule);
+}
+
+.request-main .comment-show-container {
+  background-color: var(--cp-card);
+  border-color: var(--cp-rule);
+  border-radius: var(--cp-radius-sm);
+}
+
+.request-container {
+  gap: var(--cp-space-3);
+  padding-bottom: var(--cp-space-5);
+}
+
+/* The severity a client chose was being truncated to "No loss of service -
+   ques...", which hides the most useful thing in the panel. */
+.request-details dd {
+  overflow-wrap: anywhere;
+  white-space: normal;
+  text-overflow: clip;
+  overflow: visible;
+}
+
 /***** Your cases: the table **********************************************
    Correcting background_color for the module turned the header row white
    while the body kept showing the page through it, so the table was two
