@@ -246,20 +246,6 @@
           "value": false
         },
         {
-          "identifier": "cp_show_org_nav",
-          "type": "checkbox",
-          "description": "cp_show_org_nav_description",
-          "label": "cp_show_org_nav_label",
-          "value": true
-        },
-        {
-          "identifier": "cp_org_nav_text",
-          "type": "text",
-          "description": "cp_org_nav_text_description",
-          "label": "cp_org_nav_text_label",
-          "value": "Your organisation's cases"
-        },
-        {
           "identifier": "cp_severity_field_id",
           "type": "text",
           "description": "cp_severity_field_id_description",
