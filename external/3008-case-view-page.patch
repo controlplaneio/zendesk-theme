@@ -1,0 +1,47 @@
+--- a/templates/request_page.hbs
++++ b/templates/request_page.hbs
+@@ -1,8 +1,25 @@
+-<div class="container">
+-  <div class="request-breadcrumbs">{{breadcrumbs}}</div>
++{{!-- Same slim band as the other inner pages. The heading is the case's own
++      subject, because that is what a client recognises; the case number is
++      rarely quoted back to us, so it stays in the sidebar rather than
++      competing for the title.
+ 
+-  <h1 class="request-title">{{request.subject}}</h1>
++      Our own breadcrumb rather than {{breadcrumbs}}: Zendesk's helper names
++      the middle crumb "Requests" from the page's system title, which a theme
++      cannot reword, and the defined term is Case. --}}
++<section class="cp-page-head{{#if settings.homepage_background_image}} cp-page-head-has-image{{/if}}">
++  <div class="container cp-page-head-inner">
++    <nav class="cp-crumbs" aria-label="Breadcrumb">
++      <ol>
++        <li>{{#link 'help_center'}}{{help_center.name}}{{/link}}</li>
++        <li>{{#link 'requests'}}{{settings.cp_own_cases_heading}}{{/link}}</li>
++      </ol>
++    </nav>
+ 
++    <h1 class="cp-page-head-title">{{request.subject}}</h1>
++  </div>
++</section>
++
++<div class="container cp-main">
+   <div id="main-content" class="request-container">
+     <section class="request-main">
+       {{satisfaction}}
+@@ -186,14 +203,7 @@
+         </dl>
+ 
+         <dl class="request-details">
+-          {{#if assignee}}
+-            <dt>{{t 'assignee'}}</dt>
+-            <dd>
+-              {{assignee.name}}
+-            </dd>
+-          {{/if}}
+-
+-          <dt>{{t 'id'}}</dt>
++          <dt>{{#if settings.cp_case_number_label}}{{settings.cp_case_number_label}}{{else}}{{t 'id'}}{{/if}}</dt>
+           <dd>#{{request.id}}</dd>
+ 
+           {{#form 'organization' id='request-organization' class='hbs-form'}}

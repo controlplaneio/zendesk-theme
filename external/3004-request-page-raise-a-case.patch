@@ -1,33 +1,87 @@
 --- a/templates/new_request_page.hbs
 +++ b/templates/new_request_page.hbs
-@@ -11,10 +11,27 @@
+@@ -1,22 +1,55 @@
+-<div class="container-divider"></div>
+-<div class="container">
+-  <div class="sub-nav">
+-    {{breadcrumbs}}
+-    <div class="search-container">
+-      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
+-        <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
+-        <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
+-      </svg>
+-      {{search submit=false}}
++{{!-- A slim version of the home page hero, so the journey does not drop
++      character on the second click. Deliberately short: this is a task page,
++      and the form has to stay visible without scrolling.
++
++      The band's contents and the form below sit in the same .cp-column, so
++      they are centred together and share one left edge at every width. On a
++      narrow screen the column simply fills the container. --}}
++<section class="cp-page-head{{#if settings.homepage_background_image}} cp-page-head-has-image{{/if}}">
++  <div class="container cp-page-head-inner">
++    <div class="cp-column">
++      {{!-- Our own trail rather than {{breadcrumbs}}. Zendesk's helper builds
++            the last crumb from the page's system name, which is "Submit a
++            request" and cannot be reworded from a theme. This reads from the
++            same setting as the heading and the nav, so the three cannot
++            drift apart. --}}
++      <nav class="cp-crumbs" aria-label="Breadcrumb">
++        <ol>
++          <li>{{#link 'help_center'}}{{help_center.name}}{{/link}}</li>
++          <li aria-current="page">{{#if settings.cp_request_heading}}{{settings.cp_request_heading}}{{else}}{{t 'submit_a_request'}}{{/if}}</li>
++        </ol>
++      </nav>
++
++      {{!-- "Submit a request" is a Zendesk system string rather than one of
++            the theme's own translation keys, which is why setting the ticket
++            form's title never changed it. The template is ours, so the
++            heading comes from a theme setting and falls back to it. --}}
++      <h1 class="cp-page-head-title">
++        {{#if settings.cp_request_heading}}{{settings.cp_request_heading}}{{else}}{{t 'submit_a_request'}}{{/if}}
++      </h1>
++
++      {{#if settings.cp_request_intro}}
++        <p class="cp-page-head-intro">{{settings.cp_request_intro}}</p>
++      {{/if}}
      </div>
    </div>
++</section>
  
 -  <h1>
 -    {{t 'submit_a_request'}}
 -  </h1>
-+  {{!-- "Submit a request" is a Zendesk system string rather than one of the
-+        theme's own translation keys, which is why setting the ticket form's
-+        title never changed it. The template is ours, so the heading comes
-+        from a theme setting instead and falls back to the system string. --}}
-+  <h1 class="cp-request-heading">
-+    {{#if settings.cp_request_heading}}{{settings.cp_request_heading}}{{else}}{{t 'submit_a_request'}}{{/if}}
-+  </h1>
-+
-+  {{#if settings.cp_request_intro}}
-+    <p class="cp-request-intro">{{settings.cp_request_intro}}</p>
-+  {{/if}}
-+
-+  {{!-- The same Severity 1 wording as the home page banner, drawn from the
-+        same two settings, so a client meets one description of Severity 1
-+        rather than two that can drift apart. --}}
-+  {{#if settings.cp_request_show_sev1_line}}
-+    {{#if settings.cp_support_phone}}
-+      <p class="cp-request-alt">{{settings.cp_sev1_alt_text}} <a class="cp-phone" href="tel:{{settings.cp_support_phone}}">{{settings.cp_support_phone}}</a></p>
-+    {{/if}}
-+  {{/if}}
++<div class="container cp-main">
++  <div class="cp-column">
  
-   <div id="main-content" class="form">
-     <div id="new-request-form"></div>
+-  <div id="main-content" class="form">
+-    <div id="new-request-form"></div>
++    {{!-- The same Severity 1 wording as the home page hero, drawn from the
++          same two settings, so a client meets one description of Severity 1
++          rather than two that can drift apart. --}}
++    {{#if settings.cp_request_show_sev1_line}}
++      {{#if settings.cp_support_phone}}
++        <p class="cp-request-alt">{{settings.cp_sev1_alt_text}} <a class="cp-phone" href="tel:{{settings.cp_support_phone}}">{{settings.cp_support_phone}}</a></p>
++      {{/if}}
++    {{/if}}
++
++    <div id="main-content" class="form">
++      <div id="new-request-form"></div>
++    </div>
    </div>
+ </div>
+ 
+@@ -27,6 +60,13 @@
+ 
+   const settings = {{json settings}};
+ 
++  // Garden, Zendesk's own component library, builds this form's palette from
++  // background_color, which on this theme is the page ground. Left alone,
++  // every field renders the same colour as the page behind it. Correcting it
++  // here fixes the cause; overriding in CSS is unreliable because Garden
++  // injects its styles after ours at equal specificity.
++  settings.background_color = {{json settings.card_background_color}};
++
+   const showSuggestedArticles = settings.show_suggested_articles ?? true;
+   const props = {
+     requestForm: {{json new_request_form}},

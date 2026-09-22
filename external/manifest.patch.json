@@ -47,6 +47,18 @@
     "value": false
   },
   {
+    "op": "remove",
+    "path": "/settings/3/variables/3"
+  },
+  {
+    "op": "remove",
+    "path": "/settings/3/variables/2"
+  },
+  {
+    "op": "remove",
+    "path": "/settings/3/variables/1"
+  },
+  {
     "op": "add",
     "path": "/settings/-",
     "value": {
@@ -129,28 +141,28 @@
           "type": "text",
           "description": "cp_banner_greeting_description",
           "label": "cp_banner_greeting_label",
-          "value": "welcome to ControlPlane support"
+          "value": "welcome to ControlPlane Enterprise Support"
         },
         {
           "identifier": "cp_banner_greeting_generic",
           "type": "text",
           "description": "cp_banner_greeting_generic_description",
           "label": "cp_banner_greeting_generic_label",
-          "value": "Welcome to ControlPlane support"
+          "value": "Welcome to ControlPlane Enterprise Support"
         },
         {
           "identifier": "cp_banner_question",
           "type": "text",
           "description": "cp_banner_question_description",
           "label": "cp_banner_question_label",
-          "value": "Something wrong, or need to ask us something?"
+          "value": ""
         },
         {
           "identifier": "cp_banner_sub",
           "type": "text",
           "description": "cp_banner_sub_description",
           "label": "cp_banner_sub_label",
-          "value": "Raising a case is the quickest way to reach an engineer."
+          "value": ""
         },
         {
           "identifier": "cp_action_text",
@@ -171,14 +183,14 @@
           "type": "text",
           "description": "cp_prepare_text_description",
           "label": "cp_prepare_text_label",
-          "value": "Before you start, have your environment, the versions you are running and any error output to hand. It gets you a useful answer sooner."
+          "value": "It helps if you have your environment, the versions you're running and any error outputs to hand."
         },
         {
           "identifier": "cp_sev1_alt_text",
           "type": "text",
           "description": "cp_sev1_alt_text_description",
           "label": "cp_sev1_alt_text_label",
-          "value": "Production system completely unusable, with no workaround? Calling is faster -"
+          "value": "If it's urgent, or you'd prefer to speak to someone, call us and we'll raise the case for you:"
         },
         {
           "identifier": "cp_support_phone",
@@ -265,6 +277,41 @@
           "description": "cp_show_browse_topics_description",
           "label": "cp_show_browse_topics_label",
           "value": false
+        },
+        {
+          "identifier": "cp_cases_tab_ccd",
+          "type": "text",
+          "value": "Cases you're copied on",
+          "description": "cp_cases_tab_ccd_description",
+          "label": "cp_cases_tab_ccd_label"
+        },
+        {
+          "identifier": "cp_cases_tab_org",
+          "type": "text",
+          "value": "Your organisation's cases",
+          "description": "cp_cases_tab_org_description",
+          "label": "cp_cases_tab_org_label"
+        },
+        {
+          "identifier": "cp_awaiting_labels",
+          "type": "text",
+          "value": "Awaiting your reply, Awaiting reply",
+          "description": "cp_awaiting_labels_description",
+          "label": "cp_awaiting_labels_label"
+        },
+        {
+          "identifier": "cp_done_labels",
+          "type": "text",
+          "value": "Solved, Closed",
+          "description": "cp_done_labels_description",
+          "label": "cp_done_labels_label"
+        },
+        {
+          "identifier": "cp_case_number_label",
+          "type": "text",
+          "description": "cp_case_number_label_description",
+          "label": "cp_case_number_label_label",
+          "value": "Case number"
         }
       ]
     }

@@ -63,12 +63,11 @@
     {{/if}}
 
     {{#if settings.cp_sev1_alt_text}}
-      <p class="cp-hero-alt">
-        {{settings.cp_sev1_alt_text}}
-        {{#if settings.cp_support_phone}}
-          <a class="cp-phone" href="tel:{{settings.cp_support_phone}}">{{settings.cp_support_phone}}</a>
-        {{/if}}
-      </p>
+      <p class="cp-hero-alt">{{settings.cp_sev1_alt_text}}</p>
+    {{/if}}
+
+    {{#if settings.cp_support_phone}}
+      <a class="cp-hero-phone" href="tel:{{settings.cp_support_phone}}">{{settings.cp_support_phone}}</a>
     {{/if}}
   </div>
 </section>
@@ -313,9 +312,12 @@
       // Severity is only shown when it can actually be read, so an unreadable
       // field leaves a tidy row rather than an empty pill.
       var severity = severityLabel(r);
-      if (severity) { item.appendChild(el('span', 'cp-pill', severity)); }
+      if (severity) { item.appendChild(el('span', 'cp-pill cp-pill-severity', severity)); }
 
-      item.appendChild(el('span', 'cp-pill', statusLabels[r.custom_status_id] || r.status));
+      // The modifier carries Zendesk's own status value, so the colour follows
+      // the state rather than the custom status's wording, which is editable.
+      var status = String(r.status || 'open').toLowerCase();
+      item.appendChild(el('span', 'cp-pill cp-pill-' + status, statusLabels[r.custom_status_id] || r.status));
       list.appendChild(item);
     });
     container.appendChild(list);
