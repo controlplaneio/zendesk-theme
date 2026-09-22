@@ -141,28 +141,28 @@
           "type": "text",
           "description": "cp_banner_greeting_description",
           "label": "cp_banner_greeting_label",
-          "value": "welcome to ControlPlane support"
+          "value": "welcome to ControlPlane Enterprise Support"
         },
         {
           "identifier": "cp_banner_greeting_generic",
           "type": "text",
           "description": "cp_banner_greeting_generic_description",
           "label": "cp_banner_greeting_generic_label",
-          "value": "Welcome to ControlPlane support"
+          "value": "Welcome to ControlPlane Enterprise Support"
         },
         {
           "identifier": "cp_banner_question",
           "type": "text",
           "description": "cp_banner_question_description",
           "label": "cp_banner_question_label",
-          "value": "Something wrong, or need to ask us something?"
+          "value": ""
         },
         {
           "identifier": "cp_banner_sub",
           "type": "text",
           "description": "cp_banner_sub_description",
           "label": "cp_banner_sub_label",
-          "value": "Raising a case is the quickest way to reach an engineer."
+          "value": ""
         },
         {
           "identifier": "cp_action_text",
@@ -183,14 +183,14 @@
           "type": "text",
           "description": "cp_prepare_text_description",
           "label": "cp_prepare_text_label",
-          "value": "Before you start, have your environment, the versions you are running and any error output to hand. It gets you a useful answer sooner."
+          "value": "It helps if you have your environment, the versions you're running and any error outputs to hand."
         },
         {
           "identifier": "cp_sev1_alt_text",
           "type": "text",
           "description": "cp_sev1_alt_text_description",
           "label": "cp_sev1_alt_text_label",
-          "value": "Production system completely unusable, with no workaround? Calling is faster -"
+          "value": "If it's urgent, or you'd prefer to speak to someone, call us and we'll raise the case for you:"
         },
         {
           "identifier": "cp_support_phone",
