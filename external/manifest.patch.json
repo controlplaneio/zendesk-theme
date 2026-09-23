@@ -316,7 +316,7 @@
         {
           "identifier": "cp_awaiting_labels",
           "type": "text",
-          "value": "Awaiting your reply, Awaiting reply",
+          "value": "Waiting for Customer",
           "description": "cp_awaiting_labels_description",
           "label": "cp_awaiting_labels_label"
         },
