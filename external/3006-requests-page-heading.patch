@@ -96,7 +96,7 @@
 +      // followed by the description: "OpenOpen - We are working on a response
 +      // for you". Confirmed live rather than assumed.
 +      var label = tag.querySelector('[data-garden-id="typography.ellipsis"]');
-+      var text = (label || tag).textContent.replace(/s+/g, ' ').trim().toLowerCase();
++      var text = (label || tag).textContent.replace(/\s+/g, ' ').trim().toLowerCase();
 +      tag.classList.toggle('cp-tag-awaiting', AWAITING.indexOf(text) !== -1);
 +      tag.classList.toggle('cp-tag-done', DONE.indexOf(text) !== -1);
 +    });
