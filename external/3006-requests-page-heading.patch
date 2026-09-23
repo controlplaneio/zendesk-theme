@@ -33,7 +33,7 @@
    const props = {   
      locale: {{json help_center.base_locale}},
      customStatusesEnabled: {{json help_center.custom_statuses_enabled}},
-@@ -22,3 +35,81 @@
+@@ -22,3 +35,192 @@
    
    renderRequestList(settings, props, container);
  </script>
@@ -100,6 +100,115 @@
 +      tag.classList.toggle('cp-tag-awaiting', AWAITING.indexOf(text) !== -1);
 +      tag.classList.toggle('cp-tag-done', DONE.indexOf(text) !== -1);
 +    });
++
++    shortenSeverity();
++    relabelCount();
++    relabelColumns();
++  }
++
++  // A ticket field has one customer-facing title, and Zendesk reuses it as the
++  // form label, the table heading and the entry in the show and hide columns
++  // menu. A question is right on the form and too long for a column, so the
++  // short name is swapped in on this page only - the form is a different
++  // template and keeps the question.
++  //
++  // The menu renders in a portal outside the table, so this one scan runs over
++  // the whole document rather than the table's own root. It only touches
++  // elements with no children of their own whose text is exactly a title we
++  // know, which is why it cannot wander into a case subject that happens to
++  // read the same way.
++  var COLUMN_LABELS = pairs({{json settings.cp_column_labels}});
++
++  function relabelColumns() {
++    if (!COLUMN_LABELS.length) { return; }
++    document.querySelectorAll('div, span, button, a, li, th, td, label').forEach(function (el) {
++      if (el.children.length) { return; }
++      var text = el.textContent.trim().toLowerCase();
++      if (!text) { return; }
++      for (var i = 0; i < COLUMN_LABELS.length; i++) {
++        if (text === COLUMN_LABELS[i].from) {
++          if (el.textContent !== COLUMN_LABELS[i].to) { el.textContent = COLUMN_LABELS[i].to; }
++          return;
++        }
++      }
++    });
++  }
++
++  // Zendesk writes "1 - 15 of 80 requests" above the table, built from a count,
++  // so it cannot be matched exactly and cannot be changed in its settings. Only
++  // the trailing noun is replaced, and only on text that matches the counter,
++  // so nothing else on the page is touched.
++  var NOUNS = String({{json settings.cp_cases_noun}} || '').split(',');
++  var SINGULAR = (NOUNS[0] || '').trim();
++  var PLURAL = (NOUNS[1] || '').trim();
++  var COUNTER = /^(\d[\d,]*\s*-\s*\d[\d,]*\s+of\s+\d[\d,]*|\d[\d,]*)\s+(requests?)$/i;
++
++  function relabelCount() {
++    if (!SINGULAR || !PLURAL) { return; }
++    root.querySelectorAll('div, p, span').forEach(function (el) {
++      if (el.children.length) { return; }
++      var text = el.textContent.trim();
++      var match = COUNTER.exec(text);
++      if (!match) { return; }
++      var word = match[2].toLowerCase() === 'request' ? SINGULAR : PLURAL;
++      var replaced = match[1] + ' ' + word;
++      if (el.textContent !== replaced) { el.textContent = replaced; }
++    });
++  }
++
++  function pairs(value) {
++    return String(value || '').split(';').map(function (pair) {
++      var bits = pair.split('=>');
++      if (bits.length !== 2) { return null; }
++      return { from: bits[0].trim().toLowerCase(), to: bits[1].trim() };
++    }).filter(function (rule) { return rule && rule.from && rule.to; });
++  }
++
++
++  // The Severity Level column prints the option's wording in full, which is a
++  // whole sentence and far too long for a column. Zendesk draws this table, so
++  // the rendered text is the only lever. Every cell carries
++  // data-test-id="table-cell-<column>", and for a custom field that column is
++  // the field's id, so the right column is addressed directly rather than by
++  // hunting for text anywhere on the page.
++  //
++  // The mapping lives in a setting so a reworded option is a Guide admin
++  // change. It matches on the start of the option, so a trailing edit does not
++  // break it, and anything unmatched keeps Zendesk's own text.
++  var SHORT = pairs({{json settings.cp_severity_short_labels}});
++
++  var SEVERITY_FIELD_ID = String({{json settings.cp_severity_field_id}} || '').trim();
++
++  function shortenSeverity() {
++    if (!SHORT.length) { return; }
++
++    var selector = SEVERITY_FIELD_ID
++      ? '[data-test-id="table-cell-' + SEVERITY_FIELD_ID + '"]'
++      : '[data-test-id^="table-cell-"]';
++
++    root.querySelectorAll(selector).forEach(function (cell) {
++      // With no field id configured, only numeric columns are considered.
++      // Every built-in column has a word for an identifier, so a number is a
++      // custom field, and the mapping still has to match before anything moves.
++      if (!SEVERITY_FIELD_ID) {
++        var id = cell.getAttribute('data-test-id').slice('table-cell-'.length);
++        if (!/^[0-9]+$/.test(id)) { return; }
++      }
++
++      var target = cell.querySelector('[data-garden-id="typography.ellipsis"]') || cell;
++      var text = target.textContent.trim();
++      if (!text || text === '-') { return; }
++
++      var lower = text.toLowerCase();
++      for (var i = 0; i < SHORT.length; i++) {
++        if (lower.indexOf(SHORT[i].from) === 0) {
++          // Guarded so the observer below is not woken by a write that changes
++          // nothing, which would otherwise be a loop.
++          if (target.textContent !== SHORT[i].to) { target.textContent = SHORT[i].to; }
++          return;
++        }
++      }
++    });
 +  }
 +
 +  apply();
@@ -112,6 +221,8 @@
 +    if (queued) { return; }
 +    queued = true;
 +    requestAnimationFrame(function () { queued = false; apply(); });
-+  }).observe(root, { childList: true, subtree: true });
++    // The document rather than the table: sorting and paging redraw the table,
++    // but the columns menu is opened into a portal elsewhere in the page.
++  }).observe(document.body, { childList: true, subtree: true });
 +})();
 +</script>
