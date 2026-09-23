@@ -45,3 +45,63 @@
            <dd>#{{request.id}}</dd>
  
            {{#form 'organization' id='request-organization' class='hbs-form'}}
+@@ -265,3 +265,59 @@
+     </section>
+   </div>
+ </div>
++
++{{!-- The sidebar prints each custom field's title and value straight from
++      Handlebars, with no way to map either, so both are adjusted here.
++
++      The Severity Level value is the option's full sentence, which is right on
++      the form where a client is choosing and far too long in a narrow sidebar.
++      The field titles are questions for the same reason, and a question makes a
++      poor label beside its answer.
++
++      Both mappings are the settings the cases table already uses, so the two
++      pages cannot drift apart. Unlike that page nothing here re-renders, so a
++      single pass is enough and there is no observer. --}}
++<script>
++(function () {
++  'use strict';
++
++  function pairs(value) {
++    return String(value || '').split(';').map(function (pair) {
++      var bits = pair.split('=>');
++      if (bits.length !== 2) { return null; }
++      return { from: bits[0].trim().toLowerCase(), to: bits[1].trim() };
++    }).filter(function (rule) { return rule && rule.from && rule.to; });
++  }
++
++  var LABELS = pairs({{json settings.cp_column_labels}});
++  var VALUES = pairs({{json settings.cp_severity_short_labels}});
++
++  // Exact match for a title, which is a known string. Start-of-text for a
++  // value, so a reworded option still matches on its opening.
++  function swap(el, rules, exact) {
++    var text = el.textContent.trim();
++    if (!text) { return; }
++    var lower = text.toLowerCase();
++    for (var i = 0; i < rules.length; i++) {
++      var hit = exact ? lower === rules[i].from : lower.indexOf(rules[i].from) === 0;
++      if (hit) {
++        if (el.textContent !== rules[i].to) { el.textContent = rules[i].to; }
++        return;
++      }
++    }
++  }
++
++  if (LABELS.length) {
++    document.querySelectorAll('.request-details dt').forEach(function (dt) {
++      swap(dt, LABELS, true);
++    });
++  }
++
++  if (VALUES.length) {
++    document.querySelectorAll('.request-details dd').forEach(function (dd) {
++      if (dd.children.length) { return; }
++      swap(dd, VALUES, false);
++    });
++  }
++})();
++</script>
