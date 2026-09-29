@@ -721,8 +721,10 @@ a.cp-org-strip:focus {
 
 /* Waiting on the client. The help centre uses its own status vocabulary
    rather than the agent-side one: a ticket that is Pending to an agent is
-   "answered" here, and shows to the client as "Awaiting your reply".
-   Confirmed against the live page and Zendesk's ticket status admin. */
+   "answered" here. Its label to the client is our own, "Waiting for
+   Customer", set in Admin Center's ticket statuses since 2026-09-23. The
+   class carries the status value rather than the label, so relabelling
+   never changes the colour here. */
 .status-label-answered,
 .status-label-pending {
   background-color: var(--cp-action);

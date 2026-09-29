@@ -20,7 +20,7 @@
   "cp_action_text_label": "Main button text",
   "cp_action_url_description": "Where the main button goes. Leave as /hc/requests/new for the case form",
   "cp_action_url_label": "Main button link",
-  "cp_awaiting_labels_description": "Comma separated. Cases with these statuses get the strong colour, because the client has to do something. Zendesk sets these words, so only change them if Zendesk does",
+  "cp_awaiting_labels_description": "Comma separated. Cases with these statuses get the strong colour on Your Cases, because the client has to do something. Must match the end user label of the Pending status in Admin Center exactly, so change both together",
   "cp_awaiting_labels_label": "Statuses that need the client",
   "cp_banner_color_description": "Background of the dark banner at the top of the home page",
   "cp_banner_color_label": "Banner background colour",
