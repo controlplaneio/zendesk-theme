@@ -815,6 +815,20 @@ a.cp-org-strip:focus {
   color: var(--cp-ink-soft);
 }
 
+/***** Your cases: no following the organisation **************************
+   Following an organisation sends Zendesk's organisation subscription email,
+   which carries the comment text, and that email cannot be edited. Clients
+   can still see and reply to their colleagues' Cases; they just cannot
+   subscribe to them from here.
+
+   The module draws the button twice, once per screen size, and has no option
+   to leave it out. data-test-id is Zendesk's own and survives restyling. This
+   hides the button only - the feature itself stays on in Zendesk.
+ *************************************************************************/
+[data-test-id="followOrganizationButton"] {
+  display: none !important;
+}
+
 /***** Form controls ******************************************************
    Zendesk's request form is a React module built on Garden components.
    Target data-garden-id, which names the component and is stable; the
