@@ -169,7 +169,7 @@
           "type": "text",
           "description": "cp_action_text_description",
           "label": "cp_action_text_label",
-          "value": "Raise a case"
+          "value": "Raise a Case"
         },
         {
           "identifier": "cp_action_url",
@@ -190,7 +190,7 @@
           "type": "text",
           "description": "cp_sev1_alt_text_description",
           "label": "cp_sev1_alt_text_label",
-          "value": "If it's urgent, or you'd prefer to speak to someone, call us and we'll raise the case for you:"
+          "value": "If it's urgent, or you'd prefer to speak to someone, call us and we'll raise the Case for you:"
         },
         {
           "identifier": "cp_support_phone",
@@ -213,7 +213,7 @@
           "type": "text",
           "description": "cp_own_cases_heading_description",
           "label": "cp_own_cases_heading_label",
-          "value": "Your cases"
+          "value": "Your Cases"
         },
         {
           "identifier": "cp_show_own_cases",
@@ -227,7 +227,7 @@
           "type": "text",
           "description": "cp_own_cases_link_text_description",
           "label": "cp_own_cases_link_text_label",
-          "value": "See all your cases"
+          "value": "See all your Cases"
         },
         {
           "identifier": "cp_own_cases_count",
@@ -241,7 +241,7 @@
           "type": "text",
           "description": "cp_org_cases_label_description",
           "label": "cp_org_cases_label_label",
-          "value": "Open cases across your organisation"
+          "value": "Open Cases across your organisation"
         },
         {
           "identifier": "cp_org_cases_sub",
@@ -263,6 +263,27 @@
           "description": "cp_severity_field_id_description",
           "label": "cp_severity_field_id_label",
           "value": ""
+        },
+        {
+          "identifier": "cp_severity_short_labels",
+          "type": "text",
+          "description": "cp_severity_short_labels_description",
+          "label": "cp_severity_short_labels_label",
+          "value": "Production system completely unusable=>Severity 1;Restricted operation, no workaround=>Severity 2;Restricted operation, workaround=>Severity 3;Partial, non-critical loss=>Severity 3;No loss of service=>Severity 4"
+        },
+        {
+          "identifier": "cp_column_labels",
+          "type": "text",
+          "description": "cp_column_labels_description",
+          "label": "cp_column_labels_label",
+          "value": "What is the business impact?=>Business impact;What does this Case relate to?=>Product"
+        },
+        {
+          "identifier": "cp_cases_noun",
+          "type": "text",
+          "description": "cp_cases_noun_description",
+          "label": "cp_cases_noun_label",
+          "value": "Case,Cases"
         },
         {
           "identifier": "show_submit_request",
@@ -288,7 +309,7 @@
         {
           "identifier": "cp_cases_tab_org",
           "type": "text",
-          "value": "Your organisation's cases",
+          "value": "Your organisation's Cases",
           "description": "cp_cases_tab_org_description",
           "label": "cp_cases_tab_org_label"
         },
@@ -327,14 +348,14 @@
           "type": "text",
           "description": "cp_request_heading_description",
           "label": "cp_request_heading_label",
-          "value": "Raise a case"
+          "value": "Raise a Case"
         },
         {
           "identifier": "cp_request_intro",
           "type": "text",
           "description": "cp_request_intro_description",
           "label": "cp_request_intro_label",
-          "value": "Tell us what is happening and a ControlPlane engineer will pick it up within the Response Time set by your agreement. Your environment, the versions you are running and any error output all help."
+          "value": "Tell us what is happening and a ControlPlane Engineer will pick it up within the Response Time set by your agreement. Your environment, the versions you are running and any error output all help."
         },
         {
           "identifier": "cp_request_show_sev1_line",

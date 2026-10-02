@@ -86,7 +86,7 @@
       <section class="cp-cases">
         <h2 class="cp-cases-heading">{{settings.cp_own_cases_heading}}</h2>
         <div data-cp-own-cases>
-          <p class="cp-muted">Loading your cases...</p>
+          <p class="cp-muted">Loading your Cases...</p>
         </div>
         <a class="cp-cases-link" href="/hc/requests">{{settings.cp_own_cases_link_text}}</a>
       </section>
@@ -110,7 +110,7 @@
     {{/if}}
   {{else}}
     <div class="cp-signed-out">
-      {{#link "sign_in"}}Sign in{{/link}} to see your cases and your organisation's cases.
+      {{#link "sign_in"}}Sign in{{/link}} to see your Cases and your organisation's Cases.
     </div>
   {{/if}}
 
@@ -210,7 +210,9 @@
   var SEVERITY_LABELS = {
     severity_sev1_urgent: 'Severity 1',
     severity_sev2_high: 'Severity 2',
-    severity_sev2_workaround: 'Severity 2',
+    // The schedules reclassify a Severity 2 with an implemented workaround as
+    // a Severity 3, in Table 1 of both, so that is what a client is shown.
+    severity_sev2_workaround: 'Severity 3',
     severity_sev3_normal: 'Severity 3',
     severity_sev4_low: 'Severity 4'
   };
@@ -326,7 +328,7 @@
   function fail(container, message) {
     container.innerHTML = '';
     var p = el('p', 'cp-muted', message + ' ');
-    var a = el('a', null, 'See all your cases');
+    var a = el('a', null, 'See all your Cases');
     a.href = '/hc/requests';
     p.appendChild(a);
     container.appendChild(p);
@@ -386,7 +388,7 @@
     greet(me && me.name);
 
     if (!me) {
-      if (ownContainer) { fail(ownContainer, "We couldn't load your cases."); }
+      if (ownContainer) { fail(ownContainer, "We couldn't load your Cases."); }
       if (orgCountEl) { orgCountEl.textContent = '—'; }
       if (DIAG) { showDiagnostics(null, null, orgResult); }
       return;
@@ -397,10 +399,10 @@
       ownCases = get('/api/v2/requests.json?sort_by=updated_at&sort_order=desc&per_page=' + OWN_LIMIT, 'own cases')
         .then(function (data) {
           if (!data || !data.requests) {
-            fail(ownContainer, "We couldn't load your cases.");
+            fail(ownContainer, "We couldn't load your Cases.");
             return null;
           }
-          renderCases(ownContainer, data.requests, statusLabels, "You haven't raised a case yet.");
+          renderCases(ownContainer, data.requests, statusLabels, "You haven't raised a Case yet.");
           return data.requests;
         });
     }
