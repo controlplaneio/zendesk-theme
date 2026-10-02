@@ -1,0 +1,55 @@
+
+/* ControlPlane Internal help centre. Colours come from the theme's colour
+   settings ($brand_color and friends), so nothing here carries a hex value. */
+
+/* Hero: tint the image so the heading and search stay readable whatever
+   image is uploaded. */
+.hero {
+  position: relative;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  /* Same tint as the External help centre: 78% of the ink colour at the top
+     rising to 90% at the bottom. */
+  background-image: linear-gradient(
+    color-mix(in srgb, $text_color 78%, transparent),
+    color-mix(in srgb, $text_color 90%, transparent)
+  );
+}
+.hero-inner {
+  z-index: 1;
+}
+/* The search icon is absolutely positioned and centres on its nearest
+   positioned ancestor, so give it one that is just the search box. */
+.cp-hero-search {
+  position: relative;
+}
+.cp-hero-heading {
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  margin: 0 0 20px;
+}
+
+/* Category cards: fixed width and centred, so one card (most staff) or two
+   (Engineers) both look deliberate rather than stretched to the full row. */
+.blocks-list {
+  justify-content: center;
+}
+.blocks-item {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  flex: 0 1 460px;
+}
+
+/* Logo: stock Copenhagen sizes the image from its container, and with the
+   Help Centre name switched off nothing holds the container open, so the
+   logo collapses to zero width. Give it an explicit size. */
+.logo img {
+  height: 37px;
+  width: auto;
+}

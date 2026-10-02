@@ -1,0 +1,58 @@
+[
+  {
+    "op": "replace",
+    "path": "/name",
+    "value": "ControlPlane Internal Help Centre theme"
+  },
+  {
+    "op": "replace",
+    "path": "/version",
+    "value": "5.3.3"
+  },
+  {
+    "op": "replace",
+    "path": "/settings/0/variables/0/value",
+    "value": "#2158E8"
+  },
+  {
+    "op": "replace",
+    "path": "/settings/0/variables/1/value",
+    "value": "#FFFFFF"
+  },
+  {
+    "op": "replace",
+    "path": "/settings/0/variables/2/value",
+    "value": "#23243B"
+  },
+  {
+    "op": "replace",
+    "path": "/settings/0/variables/3/value",
+    "value": "#2158E8"
+  },
+  {
+    "op": "replace",
+    "path": "/settings/0/variables/4/value",
+    "value": "#183789"
+  },
+  {
+    "op": "replace",
+    "path": "/settings/0/variables/5/value",
+    "value": "#183789"
+  },
+  {
+    "op": "replace",
+    "path": "/settings/0/variables/6/value",
+    "value": "#F7F8F9"
+  },
+  {
+    "op": "add",
+    "path": "/settings/5/variables/-",
+    "value": {
+      "identifier": "cp_hero_heading",
+      "type": "text",
+      "description": "cp_hero_heading_description",
+      "label": "cp_hero_heading_label",
+      "value": "How can we help?"
+    }
+  }
+]
