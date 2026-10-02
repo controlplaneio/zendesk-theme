@@ -287,14 +287,10 @@
 .cp-promoted-chips .cp-list-promoted {
   margin-bottom: 28px;
 }
+/* The heading is left as the home page's own h2, the same as Recent activity's,
+   so the two read as a pair. */
 .cp-promoted-chips .articles h2 {
-  color: color-mix(in srgb, $text_color 62%, $background_color);
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.06em;
   margin: 0 0 12px;
-  text-align: center;
-  text-transform: uppercase;
 }
 .cp-promoted-chips .promoted-articles {
   flex-direction: row;
@@ -308,7 +304,7 @@
   border-radius: 999px;
   box-shadow: 0 1px 2px color-mix(in srgb, $text_color 10%, transparent);
   display: inline-block;
-  font-size: 14px;
+  font-size: 15px;
   padding: 8px 16px;
 }
 .cp-promoted-chips .promoted-articles-item a:hover,
