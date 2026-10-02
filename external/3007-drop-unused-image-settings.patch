@@ -1,0 +1,26 @@
+--- a/style.css
++++ b/style.css
+@@ -1417,7 +1417,6 @@
+ .community-image {
+   min-height: 300px;
+   margin-top: 32px;
+-  background-image: url($community_image);
+   background-position: center;
+   background-repeat: no-repeat;
+   max-width: 100%;
+@@ -2385,7 +2384,6 @@
+ 
+ /***** Community *****/
+ .community-hero {
+-  background-image: url($community_background_image);
+   margin-bottom: 10px;
+ }
+ .community-footer {
+@@ -4782,7 +4780,6 @@
+ }
+ 
+ .service-catalog-hero {
+-  background-image: url($service_catalog_hero_image);
+   margin-bottom: 10px;
+   height: 320px;
+ }
