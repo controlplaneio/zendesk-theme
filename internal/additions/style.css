@@ -340,3 +340,44 @@
 .cp-hero-help a:focus {
   text-decoration: none;
 }
+
+/***** Requests: the list and a single request *****/
+
+/* A single request: Copenhagen gave the breadcrumbs 40-60px below and the title
+   a rule, a 66% cap and bottom padding, all for the old layout. In the band the
+   breadcrumbs sit tight above the title and the title runs the full width. */
+.cp-page-head .request-breadcrumbs {
+  margin-bottom: 0;
+}
+.cp-page-head .request-title {
+  border: 0;
+  margin: 0;
+  max-width: 100%;
+  padding: 0;
+}
+
+/* The details panel (requester, status and so on) was a grey slab a shade
+   darker than the page. Make it a card like the others. It only has this look
+   from 1024px, where it sits beside the conversation. */
+@media (min-width: 1024px) {
+  .request-sidebar {
+    background-color: $card_background_color;
+    border: 1px solid color-mix(in srgb, $text_color 14%, transparent);
+    border-radius: 8px;
+  }
+}
+
+/* The requests list is a Zendesk module built from Garden components. Garden
+   injects its styles after this sheet, so !important is the right tool against
+   a sheet we cannot reorder. The module's search box and buttons are fixed at
+   the source, by handing it the card colour in the template. The table itself
+   is set here as one block, so the header row and the body are one colour. */
+[data-garden-id="tables.table"] {
+  background-color: $card_background_color !important;
+  border: 1px solid color-mix(in srgb, $text_color 14%, transparent);
+}
+[data-garden-id="tables.body"],
+[data-garden-id="tables.row"],
+[data-garden-id="tables.cell"] {
+  background-color: transparent !important;
+}

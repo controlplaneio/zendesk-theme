@@ -1,0 +1,33 @@
+--- a/templates/requests_page.hbs
++++ b/templates/requests_page.hbs
+@@ -1,8 +1,12 @@
+-<div class="container">
+-  <header class="my-activities-header">
+-    <h1>{{t "requests"}}</h1>
+-  </header>
++{{!-- Same slim band as the other pages. Zendesk draws the list itself with its
++      own module, so only the page around it changes. --}}
++<section class="cp-page-head{{#if settings.homepage_background_image}} cp-page-head-has-image{{/if}}">
++  <div class="container">
++    <h1 class="cp-page-head-title">{{t "requests"}}</h1>
++  </div>
++</section>
+ 
++<div class="container cp-after-band">
+   <div id="main-content">
+   </div>
+ </div>
+@@ -13,7 +17,13 @@
+   const container = document.getElementById("main-content"); 
+   const settings = {{json settings}}; 
+ 
++  // Garden, Zendesk's own component library, builds this module's palette from
++  // background_color, which on this theme is the page ground, so its search box
++  // and buttons came out the same colour as the page behind them. Correcting it
++  // here fixes the cause.
++  settings.background_color = {{json settings.card_background_color}};
+ 
++
+   const props = {   
+     locale: {{json help_center.base_locale}},
+     customStatusesEnabled: {{json help_center.custom_statuses_enabled}},
