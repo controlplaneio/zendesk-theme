@@ -381,3 +381,14 @@
 [data-garden-id="tables.cell"] {
   background-color: transparent !important;
 }
+
+/* Service catalogue: the same band as the other pages replaces Copenhagen's
+   tall illustrated hero. The breadcrumbs sit tight above the title, as in the
+   other bands. The module's search box and controls are fixed at the source,
+   by handing it the card colour in the template. */
+.cp-page-head .service-catalog-breadcrumbs {
+  align-items: center;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+}
