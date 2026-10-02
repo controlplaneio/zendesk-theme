@@ -252,11 +252,11 @@
 }
 
 /***** Home page: promoted articles and Recent activity *****
-   Both live in one row (.cp-lists). The cp_promoted_layout setting picks the
-   class cp-promoted-chips or cp-promoted-list, and only the CSS below changes
-   between them. Copenhagen draws each promoted link as a block of its own with
-   a bottom border, so those are reset first. Colours are set for visited links
-   too, for the same reason as Recent activity. */
+   Both live in one row (.cp-lists): promoted articles in a column on the left,
+   Recent activity beside it, stacked on a phone. Copenhagen draws each promoted
+   link as a block of its own with a bottom border, so those are reset first.
+   Colours are set for visited links too, for the same reason as Recent
+   activity. */
 .cp-lists .promoted-articles {
   display: flex;
   margin: 0;
@@ -282,39 +282,7 @@
   margin: 0;
 }
 
-/* Chips: a centred row above Recent activity. Suits one article or many, since
-   they wrap. */
-.cp-promoted-chips .cp-list-promoted {
-  margin-bottom: 28px;
-}
-/* The heading is left as the home page's own h2, the same as Recent activity's,
-   so the two read as a pair. */
-.cp-promoted-chips .articles h2 {
-  margin: 0 0 12px;
-}
-.cp-promoted-chips .promoted-articles {
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-}
-.cp-promoted-chips .promoted-articles-item a {
-  background-color: $card_background_color;
-  border: 1px solid color-mix(in srgb, $text_color 14%, transparent);
-  border-radius: 999px;
-  box-shadow: 0 1px 2px color-mix(in srgb, $text_color 10%, transparent);
-  display: inline-block;
-  font-size: 15px;
-  padding: 8px 16px;
-}
-.cp-promoted-chips .promoted-articles-item a:hover,
-.cp-promoted-chips .promoted-articles-item a:focus {
-  border-color: $link_color;
-  text-decoration: none;
-}
-
-/* List: a column beside Recent activity, stacked on a phone. With only one of
-   the two present, that one takes the full row and keeps its centred look. */
+/* Promoted links as compact rows, matching Recent activity. */
 .cp-promoted-list .promoted-articles {
   flex-direction: column;
 }
@@ -334,6 +302,8 @@
     gap: 48px;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr);
   }
+  /* With only one of the two present, that one takes the full row and keeps
+     its centred look. */
   .cp-promoted-list .cp-list:only-child {
     grid-column: 1 / -1;
   }

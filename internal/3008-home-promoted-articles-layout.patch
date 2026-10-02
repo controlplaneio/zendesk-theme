@@ -29,19 +29,17 @@
    </section>
  
    {{#if help_center.community_enabled}}
-@@ -75,9 +53,40 @@
+@@ -75,9 +53,38 @@
      </section>
    {{/if}}
  
-+  {{!-- Promoted articles and Recent activity share one row. The
-+        cp_promoted_layout setting only changes how CSS arranges them (chips
-+        above the list, or a column beside it), so the markup is the same
-+        either way. --}}
++  {{!-- Promoted articles beside Recent activity, in one row. With only one of
++        the two present, that one takes the whole row. --}}
    <section class="section home-section activity">
 -    {{#if settings.show_recent_activity}}
 -      {{recent_activity}}
 -    {{/if}}
-+    <div class="cp-lists cp-promoted-{{settings.cp_promoted_layout}}">
++    <div class="cp-lists cp-promoted-list">
 +      {{#if promoted_articles}}
 +        <div class="cp-list cp-list-promoted">
 +          <section class="articles">
