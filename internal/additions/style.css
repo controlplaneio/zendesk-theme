@@ -189,3 +189,54 @@
 .blocks-item-link {
   justify-content: flex-start;
 }
+
+/* Home page Recent activity: Copenhagen gives each item a block of its own
+   (95px, full width), which made the list the biggest thing on the page. Make
+   it a compact list: one line per item, article first, then its section in
+   muted text, then the time on the right, at a readable width. Zendesk's
+   recent_activity helper draws the rows, so this works on its classes.
+   The comment count is hidden because comments are not used here. */
+.activity {
+  padding: 24px 0;
+}
+.recent-activity {
+  margin: 0 auto;
+  max-width: 760px;
+}
+.recent-activity-item {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2px 16px;
+  overflow: visible;
+  padding: 10px 0;
+}
+.recent-activity-item h3 {
+  flex: 0 1 auto;
+  margin: 0;
+  order: 2;
+}
+.recent-activity-item-parent {
+  color: color-mix(in srgb, $text_color 62%, $background_color);
+  font-size: 13px;
+  font-weight: 400;
+  width: auto;
+}
+.recent-activity-item-link {
+  flex: 1 1 0;
+  font-size: 15px;
+  font-weight: 600;
+  margin: 0;
+  min-width: 0;
+  order: 1;
+  width: auto;
+}
+.recent-activity-item-meta {
+  float: none;
+  margin: 0 0 0 auto;
+  order: 3;
+  white-space: nowrap;
+}
+.recent-activity-item-comment {
+  display: none;
+}
