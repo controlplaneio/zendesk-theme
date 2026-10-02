@@ -107,3 +107,37 @@
 .cp-page-head .breadcrumbs li a:focus {
   color: #fff;
 }
+
+/* Article, section, category and search results pages: a slim band holding the
+   breadcrumbs on the left and the search on the right, centred vertically.
+   Copenhagen only sizes the search box inside .sub-nav, so give it its size
+   here. The band stacks on a narrow screen. */
+.cp-page-head-bar {
+  padding: 18px 0;
+}
+.cp-page-head-row {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  gap: 16px 30px;
+  justify-content: space-between;
+}
+.cp-page-head-row .breadcrumbs {
+  margin: 0;
+}
+.cp-page-head-row .search-container {
+  max-width: 300px;
+  width: 100%;
+}
+@media (min-width: 768px) {
+  .cp-page-head-row {
+    flex-direction: row;
+  }
+  .cp-page-head-row .search-container {
+    flex: 0 1 300px;
+  }
+}
+/* The old sub-nav gave the content 55px of air under the breadcrumbs. */
+.cp-after-band {
+  padding-top: 40px;
+}

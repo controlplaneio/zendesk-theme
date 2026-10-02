@@ -1,0 +1,23 @@
+--- a/templates/search_results.hbs
++++ b/templates/search_results.hbs
+@@ -1,6 +1,7 @@
+-<div class="container-divider"></div>
+-<div class="container">
+-  <div class="sub-nav">
++{{!-- Same slim band as the home and request pages, carrying the breadcrumbs
++      and the search, so every page keeps the one character. --}}
++<section class="cp-page-head cp-page-head-bar{{#if settings.homepage_background_image}} cp-page-head-has-image{{/if}}">
++  <div class="container cp-page-head-row">
+     {{breadcrumbs}}
+     <div class="search-container">
+       <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
+@@ -10,7 +11,9 @@
+       {{search submit=false}}
+     </div>
+   </div>
++</section>
+ 
++<div class="container cp-after-band">
+   <div class="search-results">
+     <aside class="search-results-sidebar">
+       {{#if source_filters}}
