@@ -2,5 +2,7 @@
   "card_background_color_description": "Fill colour for form fields and panels. Keep this lighter than the page background so they stand out",
   "card_background_color_label": "Card background colour",
   "cp_hero_heading_description": "Short line shown above the search box on the home page. Leave empty to hide it",
-  "cp_hero_heading_label": "Search heading"
+  "cp_hero_heading_label": "Search heading",
+  "cp_hero_help_description": "Sentence shown before a Submit a request link under the home page search box. Leave empty to hide the whole line",
+  "cp_hero_help_label": "Search prompt"
 }

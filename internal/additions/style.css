@@ -322,3 +322,21 @@
     margin-bottom: 28px;
   }
 }
+
+/* Home page hero: a prompt under the search for when a search has not found
+   what someone needs. The header's Submit a request link stays as plain text. */
+.cp-hero-help {
+  color: color-mix(in srgb, #fff 88%, $text_color);
+  font-size: 15px;
+  margin: 16px 0 0;
+}
+.cp-hero-help a,
+.cp-hero-help a:visited {
+  color: #fff;
+  font-weight: 600;
+  text-decoration: underline;
+}
+.cp-hero-help a:hover,
+.cp-hero-help a:focus {
+  text-decoration: none;
+}

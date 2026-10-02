@@ -1,6 +1,6 @@
 --- a/templates/home_page.hbs
 +++ b/templates/home_page.hbs
-@@ -2,12 +2,17 @@
+@@ -2,12 +2,20 @@
  
  <section id="main-content" class="section hero">
    <div class="hero-inner">
@@ -20,6 +20,9 @@
 +      </svg>
 +      {{search submit=false instant=settings.instant_search class='search search-full'}}
 +    </div>
++    {{#if settings.cp_hero_help}}
++      <p class="cp-hero-help">{{settings.cp_hero_help}} {{#link 'new_request'}}{{t 'submit_a_request'}}{{/link}}</p>
++    {{/if}}
    </div>
  </section>
  
