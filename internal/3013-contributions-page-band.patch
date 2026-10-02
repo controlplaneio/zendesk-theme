@@ -1,0 +1,22 @@
+--- a/templates/contributions_page.hbs
++++ b/templates/contributions_page.hbs
+@@ -1,3 +1,10 @@
++{{!-- Same slim band as the other pages; the tab strip sits directly under it. --}}
++<section class="cp-page-head{{#if settings.homepage_background_image}} cp-page-head-has-image{{/if}}">
++  <div class="container">
++    <h1 class="cp-page-head-title">{{t 'contributions'}}</h1>
++  </div>
++</section>
++
+ <div class="my-activities-nav">
+   <div class="container">
+     <nav class="collapsible-nav">
+@@ -21,8 +28,6 @@
+ 
+ <div class="container">
+   <header class="my-activities-header">
+-    <h1>{{t 'contributions'}}</h1>
+-
+     <div class="my-activities-sub-nav">
+       <nav class="collapsible-nav collapsible-nav-border">
+         <button type="button" class="collapsible-nav-toggle" aria-label="{{t 'toggle_navigation'}}" aria-expanded="false">

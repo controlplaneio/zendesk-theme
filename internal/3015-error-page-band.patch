@@ -1,0 +1,17 @@
+--- a/templates/error_page.hbs
++++ b/templates/error_page.hbs
+@@ -1,7 +1,11 @@
+-<div class="container-divider"></div>
+-<div id="main-content" class="error-page">
+-  <h1>{{t 'oops'}}</h1>
++{{!-- Same slim band as the other pages, carrying the heading. --}}
++<section class="cp-page-head{{#if settings.homepage_background_image}} cp-page-head-has-image{{/if}}">
++  <div class="container">
++    <h1 class="cp-page-head-title">{{t 'oops'}}</h1>
++  </div>
++</section>
+ 
++<div id="main-content" class="error-page">
+   {{#is error 'unauthorized'}}
+     <h2>{{link 'sign_in'}}</h2>
+   {{/is}}

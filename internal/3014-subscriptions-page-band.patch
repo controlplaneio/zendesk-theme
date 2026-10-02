@@ -1,0 +1,24 @@
+--- a/templates/subscriptions_page.hbs
++++ b/templates/subscriptions_page.hbs
+@@ -1,3 +1,10 @@
++{{!-- Same slim band as the other pages; the tab strip sits directly under it. --}}
++<section class="cp-page-head{{#if settings.homepage_background_image}} cp-page-head-has-image{{/if}}">
++  <div class="container">
++    <h1 class="cp-page-head-title" id="subscriptions-h1">{{t 'following'}}</h1>
++  </div>
++</section>
++
+ <div class="my-activities-nav">
+   <div class="container">
+     <nav class="collapsible-nav">
+@@ -20,10 +27,6 @@
+ </div>
+ 
+ <div class="container">
+-  <header class="my-activities-header">
+-    <h1 id="subscriptions-h1">{{t 'following'}}</h1>
+-  </header>
+-
+   <div class="my-activities-following-header">
+     <span class="dropdown">
+       <button class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
