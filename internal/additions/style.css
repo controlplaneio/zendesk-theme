@@ -141,3 +141,17 @@
 .cp-after-band {
   padding-top: 40px;
 }
+
+/* Images in articles: a hairline edge, soft rounded corners and a small shadow
+   so a screenshot never melts into the page, whether it is dark (the shadow
+   lifts it) or white (the hairline defines it). Applies to images added through
+   the article editor, which wraps each one in figure.wysiwyg-image, so new
+   articles pick it up with nothing to do. Colours come from the theme's text
+   colour setting. */
+.article-body figure.wysiwyg-image img {
+  border: 1px solid color-mix(in srgb, $text_color 14%, transparent);
+  border-radius: 6px;
+  box-shadow:
+    0 1px 2px color-mix(in srgb, $text_color 16%, transparent),
+    0 4px 14px color-mix(in srgb, $text_color 14%, transparent);
+}
