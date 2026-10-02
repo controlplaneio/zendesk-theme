@@ -7,7 +7,7 @@
   {
     "op": "replace",
     "path": "/version",
-    "value": "5.7.1"
+    "value": "5.8.1"
   },
   {
     "op": "replace",
@@ -64,6 +64,27 @@
       "description": "card_background_color_description",
       "label": "card_background_color_label",
       "value": "#FFFFFF"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/settings/5/variables/-",
+    "value": {
+      "identifier": "cp_promoted_layout",
+      "type": "list",
+      "description": "cp_promoted_layout_description",
+      "label": "cp_promoted_layout_label",
+      "options": [
+        {
+          "label": "Chips above Recent activity",
+          "value": "chips"
+        },
+        {
+          "label": "List beside Recent activity",
+          "value": "list"
+        }
+      ],
+      "value": "chips"
     }
   }
 ]

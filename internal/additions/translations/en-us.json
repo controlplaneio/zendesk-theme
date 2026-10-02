@@ -2,5 +2,7 @@
   "card_background_color_description": "Fill colour for form fields and panels. Keep this lighter than the page background so they stand out",
   "card_background_color_label": "Card background colour",
   "cp_hero_heading_description": "Short line shown above the search box on the home page. Leave empty to hide it",
-  "cp_hero_heading_label": "Search heading"
+  "cp_hero_heading_label": "Search heading",
+  "cp_promoted_layout_description": "How promoted articles sit on the home page. Chips are a centred row above Recent activity and suit a few articles; the list sits in a column beside Recent activity and suits more",
+  "cp_promoted_layout_label": "Promoted articles layout"
 }

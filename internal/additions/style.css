@@ -250,3 +250,109 @@
 .recent-activity-item-comment {
   display: none;
 }
+
+/***** Home page: promoted articles and Recent activity *****
+   Both live in one row (.cp-lists). The cp_promoted_layout setting picks the
+   class cp-promoted-chips or cp-promoted-list, and only the CSS below changes
+   between them. Copenhagen draws each promoted link as a block of its own with
+   a bottom border, so those are reset first. Colours are set for visited links
+   too, for the same reason as Recent activity. */
+.cp-lists .promoted-articles {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+.cp-lists .promoted-articles-item {
+  align-self: auto;
+  flex: 0 1 auto;
+  margin: 0;
+  padding: 0;
+  width: auto;
+}
+.cp-lists .promoted-articles-item a {
+  border: 0;
+  color: $link_color;
+  font-weight: 600;
+  padding: 0;
+}
+.cp-lists .promoted-articles-item a:visited {
+  color: $link_color;
+}
+.cp-lists .articles {
+  margin: 0;
+}
+
+/* Chips: a centred row above Recent activity. Suits one article or many, since
+   they wrap. */
+.cp-promoted-chips .cp-list-promoted {
+  margin-bottom: 28px;
+}
+.cp-promoted-chips .articles h2 {
+  color: color-mix(in srgb, $text_color 62%, $background_color);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  margin: 0 0 12px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.cp-promoted-chips .promoted-articles {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+}
+.cp-promoted-chips .promoted-articles-item a {
+  background-color: $card_background_color;
+  border: 1px solid color-mix(in srgb, $text_color 14%, transparent);
+  border-radius: 999px;
+  box-shadow: 0 1px 2px color-mix(in srgb, $text_color 10%, transparent);
+  display: inline-block;
+  font-size: 14px;
+  padding: 8px 16px;
+}
+.cp-promoted-chips .promoted-articles-item a:hover,
+.cp-promoted-chips .promoted-articles-item a:focus {
+  border-color: $link_color;
+  text-decoration: none;
+}
+
+/* List: a column beside Recent activity, stacked on a phone. With only one of
+   the two present, that one takes the full row and keeps its centred look. */
+.cp-promoted-list .promoted-articles {
+  flex-direction: column;
+}
+.cp-promoted-list .promoted-articles-item {
+  border-bottom: 1px solid color-mix(in srgb, $text_color 14%, $background_color);
+  padding: 10px 0;
+  width: 100%;
+}
+.cp-promoted-list .promoted-articles-item a {
+  display: inline-block;
+  font-size: 15px;
+}
+@media (min-width: 768px) {
+  .cp-promoted-list {
+    align-items: start;
+    display: grid;
+    gap: 48px;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.8fr);
+  }
+  .cp-promoted-list .cp-list:only-child {
+    grid-column: 1 / -1;
+  }
+  .cp-promoted-list .cp-list-promoted + .cp-list-recent .recent-activity {
+    margin: 0;
+    max-width: none;
+  }
+  .cp-promoted-list .cp-list-promoted:not(:only-child) h2,
+  .cp-promoted-list .cp-list-promoted + .cp-list-recent .recent-activity-header {
+    margin-bottom: 6px;
+    text-align: left;
+  }
+}
+@media (max-width: 767px) {
+  .cp-promoted-list .cp-list-promoted {
+    margin-bottom: 28px;
+  }
+}
