@@ -223,7 +223,9 @@
    been here" colouring is noise, so both stay put and match the home cards. */
 .recent-activity-item-parent,
 .recent-activity-item-parent:visited {
-  color: color-mix(in srgb, $text_color 62%, $background_color);
+  /* 70% of the ink colour gives 5.5:1 against the page ground; 62% was 4.3:1,
+     just under the 4.5:1 expected for small text. */
+  color: color-mix(in srgb, $text_color 70%, $background_color);
   font-size: 13px;
   font-weight: 400;
   width: auto;
@@ -283,20 +285,20 @@
 }
 
 /* Promoted links as compact rows, matching Recent activity. */
-.cp-promoted-list .promoted-articles {
+.cp-lists-split .promoted-articles {
   flex-direction: column;
 }
-.cp-promoted-list .promoted-articles-item {
+.cp-lists-split .promoted-articles-item {
   border-bottom: 1px solid color-mix(in srgb, $text_color 14%, $background_color);
   padding: 10px 0;
   width: 100%;
 }
-.cp-promoted-list .promoted-articles-item a {
+.cp-lists-split .promoted-articles-item a {
   display: inline-block;
   font-size: 15px;
 }
 @media (min-width: 768px) {
-  .cp-promoted-list {
+  .cp-lists-split {
     align-items: start;
     display: grid;
     gap: 48px;
@@ -304,21 +306,21 @@
   }
   /* With only one of the two present, that one takes the full row and keeps
      its centred look. */
-  .cp-promoted-list .cp-list:only-child {
+  .cp-lists-split .cp-list:only-child {
     grid-column: 1 / -1;
   }
-  .cp-promoted-list .cp-list-promoted + .cp-list-recent .recent-activity {
+  .cp-lists-split .cp-list-pinned + .cp-list-recent .recent-activity {
     margin: 0;
     max-width: none;
   }
-  .cp-promoted-list .cp-list-promoted:not(:only-child) h2,
-  .cp-promoted-list .cp-list-promoted + .cp-list-recent .recent-activity-header {
+  .cp-lists-split .cp-list-pinned:not(:only-child) h2,
+  .cp-lists-split .cp-list-pinned + .cp-list-recent .recent-activity-header {
     margin-bottom: 6px;
     text-align: left;
   }
 }
 @media (max-width: 767px) {
-  .cp-promoted-list .cp-list-promoted {
+  .cp-lists-split .cp-list-pinned {
     margin-bottom: 28px;
   }
 }

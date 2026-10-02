@@ -39,9 +39,9 @@
 -    {{#if settings.show_recent_activity}}
 -      {{recent_activity}}
 -    {{/if}}
-+    <div class="cp-lists cp-promoted-list">
++    <div class="cp-lists cp-lists-split">
 +      {{#if promoted_articles}}
-+        <div class="cp-list cp-list-promoted">
++        <div class="cp-list cp-list-pinned">
 +          <section class="articles">
 +            <h2>{{t 'promoted_articles'}}</h2>
 +            <ul class="article-list promoted-articles">
