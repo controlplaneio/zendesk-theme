@@ -7,7 +7,7 @@
   {
     "op": "replace",
     "path": "/version",
-    "value": "5.3.3"
+    "value": "5.4.4"
   },
   {
     "op": "replace",
@@ -53,6 +53,17 @@
       "description": "cp_hero_heading_description",
       "label": "cp_hero_heading_label",
       "value": "How can we help?"
+    }
+  },
+  {
+    "op": "add",
+    "path": "/settings/0/variables/-",
+    "value": {
+      "identifier": "card_background_color",
+      "type": "color",
+      "description": "card_background_color_description",
+      "label": "card_background_color_label",
+      "value": "#FFFFFF"
     }
   }
 ]

@@ -1,0 +1,55 @@
+--- a/templates/new_request_page.hbs
++++ b/templates/new_request_page.hbs
+@@ -1,22 +1,22 @@
+-<div class="container-divider"></div>
+-<div class="container">
+-  <div class="sub-nav">
+-    {{breadcrumbs}}
+-    <div class="search-container">
+-      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
+-        <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
+-        <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
+-      </svg>
+-      {{search submit=false}}
++{{!-- A slim version of the home page hero, so the journey does not drop
++      character on the second click. Deliberately short: this is a task page
++      and the form has to stay visible without scrolling. --}}
++<section class="cp-page-head{{#if settings.homepage_background_image}} cp-page-head-has-image{{/if}}">
++  <div class="container">
++    <div class="cp-column">
++      {{breadcrumbs}}
++      <h1 class="cp-page-head-title">
++        {{t 'submit_a_request'}}
++      </h1>
+     </div>
+   </div>
++</section>
+ 
+-  <h1>
+-    {{t 'submit_a_request'}}
+-  </h1>
+-
+-  <div id="main-content" class="form">
+-    <div id="new-request-form"></div>
++<div class="container">
++  <div class="cp-column">
++    <div id="main-content" class="form">
++      <div id="new-request-form"></div>
++    </div>
+   </div>
+ </div>
+ 
+@@ -27,6 +27,13 @@
+ 
+   const settings = {{json settings}};
+ 
++  // Garden, Zendesk's own component library, builds this form's palette from
++  // background_color, which on this theme is the page ground. Left alone,
++  // every field renders the same colour as the page behind it. Correcting it
++  // here fixes the cause; overriding in CSS is unreliable because Garden
++  // injects its styles after ours at equal specificity.
++  settings.background_color = {{json settings.card_background_color}};
++
+   const showSuggestedArticles = settings.show_suggested_articles ?? true;
+   const props = {
+     requestForm: {{json new_request_form}},

@@ -53,3 +53,57 @@
   height: 37px;
   width: auto;
 }
+
+/* Request page: a slim version of the home page hero, carrying the page title.
+   Same tint as the hero so white text stays readable over any image. */
+.cp-page-head {
+  background-color: $text_color;
+  padding: 28px 0;
+}
+.cp-page-head-has-image {
+  background-image:
+    linear-gradient(
+      color-mix(in srgb, $text_color 78%, transparent),
+      color-mix(in srgb, $text_color 90%, transparent)
+    ),
+    url($homepage_background_image);
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+.cp-page-head-title {
+  color: #fff;
+  margin: 0;
+}
+
+/* One centred column shared by the band's title and the form below, so they
+   share a left edge at every width. On a narrow screen it simply fills the
+   container. Copenhagen caps the form at 650px and does not centre it, which
+   would leave it pinned left of the column. */
+.cp-column {
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.cp-column .form {
+  max-width: 100%;
+}
+
+/* Breadcrumbs sit at the top of the band, as on External. Copenhagen colours
+   them for a light page, so lift them to the band's white at the same strengths
+   External uses (88% for links, 80% for the current page and the separators),
+   which keep at least 4.5:1 against the darkest-to-lightest tint. */
+.cp-page-head .breadcrumbs {
+  margin: 0 0 8px;
+}
+.cp-page-head .breadcrumbs li {
+  color: color-mix(in srgb, #fff 80%, $text_color);
+}
+.cp-page-head .breadcrumbs li a,
+.cp-page-head .breadcrumbs li a:visited {
+  color: color-mix(in srgb, #fff 88%, $text_color);
+}
+.cp-page-head .breadcrumbs li a:hover,
+.cp-page-head .breadcrumbs li a:focus {
+  color: #fff;
+}
