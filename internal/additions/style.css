@@ -116,7 +116,7 @@
   padding: 18px 0;
 }
 .cp-page-head-row {
-  align-items: center;
+  align-items: stretch;
   display: flex;
   flex-direction: column;
   gap: 16px 30px;
@@ -131,6 +131,7 @@
 }
 @media (min-width: 768px) {
   .cp-page-head-row {
+    align-items: center;
     flex-direction: row;
   }
   .cp-page-head-row .search-container {
@@ -154,4 +155,37 @@
   box-shadow:
     0 1px 2px color-mix(in srgb, $text_color 16%, transparent),
     0 4px 14px color-mix(in srgb, $text_color 14%, transparent);
+}
+
+/* Breadcrumbs in the band: Copenhagen keeps each crumb on one line and the
+   trail on one row, so on a phone a long trail ran off both edges. Let the
+   trail wrap and each crumb break if it has to. */
+.cp-page-head .breadcrumbs {
+  flex-wrap: wrap;
+}
+.cp-page-head .breadcrumbs li {
+  max-width: 100%;
+  overflow: visible;
+  white-space: normal;
+}
+
+/* Category and section pages: Copenhagen pushes the content to the right and
+   gives it 80% of the width, leaving room for a sidebar these pages do not
+   have. That left the title and lists out of line with the breadcrumbs above.
+   Start at the container's left edge and use the full width, as the article
+   page does. */
+.category-container,
+.section-container {
+  justify-content: flex-start;
+}
+.category-content,
+.section-content {
+  flex: 1 1 100%;
+}
+
+/* Home category cards: the text was centred vertically, so a card with a
+   shorter description put its title lower than its neighbour's. Start both at
+   the top. */
+.blocks-item-link {
+  justify-content: flex-start;
 }
