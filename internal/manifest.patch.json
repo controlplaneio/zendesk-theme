@@ -7,7 +7,7 @@
   {
     "op": "replace",
     "path": "/version",
-    "value": "5.7.0"
+    "value": "5.7.1"
   },
   {
     "op": "replace",

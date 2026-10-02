@@ -216,11 +216,21 @@
   margin: 0;
   order: 2;
 }
-.recent-activity-item-parent {
+/* Colours are set for visited links too. Copenhagen's a:visited rule is more
+   specific than a plain class, so without these the colour depended on what
+   each reader had already clicked: unvisited sections showed grey, visited
+   ones showed the visited-link blue. In a list of places to go, "already
+   been here" colouring is noise, so both stay put and match the home cards. */
+.recent-activity-item-parent,
+.recent-activity-item-parent:visited {
   color: color-mix(in srgb, $text_color 62%, $background_color);
   font-size: 13px;
   font-weight: 400;
   width: auto;
+}
+.recent-activity-item-link,
+.recent-activity-item-link:visited {
+  color: $link_color;
 }
 .recent-activity-item-link {
   flex: 1 1 0;
