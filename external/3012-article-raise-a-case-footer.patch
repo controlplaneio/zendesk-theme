@@ -1,0 +1,19 @@
+--- a/templates/article_page.hbs
++++ b/templates/article_page.hbs
+@@ -162,9 +162,13 @@
+           </div>
+         {{/with}}
+ 
+-        <div class="article-more-questions">
+-          {{request_callout}}
+-        </div>
++        {{!-- Our own line rather than {{request_callout}}, which says "Have
++              more questions? Submit a request" and cannot be reworded. Uses
++              the same text and address as the home page button. --}}
++        <p class="article-more-questions cp-article-callout">
++          Still need help?
++          <a href="{{settings.cp_action_url}}">{{settings.cp_action_text}}</a>
++        </p>
+         <div class="article-return-to-top">
+           <a href="#article-container">
+             {{t 'return_to_top'}}
