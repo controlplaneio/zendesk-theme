@@ -127,11 +127,11 @@
   {{/if}}
 
   {{!-- Off by default while there are only a few articles. When on, this is
-        the only way to browse categories: the navigation has no topics link,
-        so otherwise customers reach articles through search, breadcrumbs or a
-        link in a Case. --}}
+        where customers browse categories. The same setting adds a Browse
+        topics link to the navigation that jumps here, so turning this off
+        removes both and the link never leads nowhere. --}}
   {{#if settings.cp_show_browse_topics}}
-    <section class="section cp-products">
+    <section class="section cp-products" id="browse-topics">
       <h2 class="cp-section-heading">Browse by topic</h2>
       <ul class="blocks-list cp-product-list">
         {{#each categories}}

@@ -342,6 +342,13 @@
             "description": "cp_own_cases_heading_description",
             "label": "cp_own_cases_heading_label",
             "value": "Your Cases"
+          },
+          {
+            "identifier": "cp_browse_topics_link_text",
+            "type": "text",
+            "description": "cp_browse_topics_link_text_description",
+            "label": "cp_browse_topics_link_text_label",
+            "value": "Browse topics"
           }
         ]
       },
