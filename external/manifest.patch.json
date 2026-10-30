@@ -478,6 +478,13 @@
             "value": false
           },
           {
+            "identifier": "cp_show_browse_topics_link",
+            "type": "checkbox",
+            "description": "cp_show_browse_topics_link_description",
+            "label": "cp_show_browse_topics_link_label",
+            "value": false
+          },
+          {
             "identifier": "show_recent_activity",
             "type": "checkbox",
             "description": "recent_activity_description",
