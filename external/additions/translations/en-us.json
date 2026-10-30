@@ -57,6 +57,8 @@
   "cp_ground_color_description": "Page background behind the cards",
   "cp_ground_color_label": "Page background colour",
   "cp_home_more_group_label": "Home page: more sections",
+  "cp_home_search_hint_description": "Small text shown under the home page search box. Leave empty to show nothing. Only appears when Show search on the home page is ticked",
+  "cp_home_search_hint_label": "Line under the home page search",
   "cp_ink_color_description": "Headings and body text. Greys and dividing lines are mixed from this and the page background",
   "cp_ink_color_label": "Main text colour",
   "cp_nav_group_label": "Navigation",

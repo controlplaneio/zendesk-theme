@@ -1010,3 +1010,11 @@ a.cp-org-strip:focus {
   max-width: 480px;
   margin: var(--cp-space-3) auto 0;
 }
+
+.cp-hero-search-hint {
+  margin: var(--cp-space-1) auto 0;
+  max-width: 480px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--cp-hero-soft);
+}

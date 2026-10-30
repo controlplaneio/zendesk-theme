@@ -80,6 +80,9 @@
         </svg>
         {{search submit=false instant=settings.instant_search class='search search-full'}}
       </div>
+      {{#if settings.cp_home_search_hint}}
+        <p class="cp-hero-search-hint">{{settings.cp_home_search_hint}}</p>
+      {{/if}}
     {{/if}}
   </div>
 </section>

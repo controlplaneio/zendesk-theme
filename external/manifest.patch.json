@@ -772,6 +772,13 @@
             "description": "cp_show_home_search_description",
             "label": "cp_show_home_search_label",
             "value": false
+          },
+          {
+            "identifier": "cp_home_search_hint",
+            "type": "text",
+            "description": "cp_home_search_hint_description",
+            "label": "cp_home_search_hint_label",
+            "value": ""
           }
         ]
       },
