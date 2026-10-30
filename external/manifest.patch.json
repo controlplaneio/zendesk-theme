@@ -84,11 +84,11 @@
             "value": "#eeefee"
           },
           {
-            "identifier": "cp_accent_color",
+            "identifier": "cp_pale_blue_color",
             "type": "color",
-            "description": "cp_accent_color_description",
-            "label": "cp_accent_color_label",
-            "value": "#26a7df"
+            "description": "cp_pale_blue_color_description",
+            "label": "cp_pale_blue_color_label",
+            "value": "#bee3f4"
           },
           {
             "identifier": "cp_deep_blue_color",
@@ -98,11 +98,11 @@
             "value": "#183789"
           },
           {
-            "identifier": "cp_pale_blue_color",
+            "identifier": "cp_accent_color",
             "type": "color",
-            "description": "cp_pale_blue_color_description",
-            "label": "cp_pale_blue_color_label",
-            "value": "#bee3f4"
+            "description": "cp_accent_color_description",
+            "label": "cp_accent_color_label",
+            "value": "#26a7df"
           }
         ]
       },
