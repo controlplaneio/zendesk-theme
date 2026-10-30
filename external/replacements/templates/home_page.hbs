@@ -126,8 +126,10 @@
     </div>
   {{/if}}
 
-  {{!-- Browse by topic is in the navigation on every page, so it is off here
-        by default. The setting turns it back on without a code change. --}}
+  {{!-- Off by default while there are only a few articles. When on, this is
+        the only way to browse categories: the navigation has no topics link,
+        so otherwise customers reach articles through search, breadcrumbs or a
+        link in a Case. --}}
   {{#if settings.cp_show_browse_topics}}
     <section class="section cp-products">
       <h2 class="cp-section-heading">Browse by topic</h2>
