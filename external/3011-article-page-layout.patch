@@ -1,0 +1,97 @@
+--- a/templates/article_page.hbs
++++ b/templates/article_page.hbs
+@@ -1,16 +1,34 @@
+-<div class="container-divider"></div>
+-<div class="container">
+-  <div class="sub-nav">
+-    {{breadcrumbs}}
+-    <div class="search-container">
+-      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
+-        <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
+-        <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
+-      </svg>
+-      {{search scoped=settings.scoped_kb_search submit=false}}
++{{!-- Same slim band as the other inner pages, so an article does not look
++      like a different site. Zendesk's {{breadcrumbs}} is kept rather than a
++      hand-built trail: it leaves the category out while the help centre has
++      only one, and puts it back by itself once there is a second. --}}
++<section class="cp-page-head{{#if settings.homepage_background_image}} cp-page-head-has-image{{/if}}">
++  <div class="container cp-page-head-inner">
++    <div class="cp-article-head-row">
++      <div class="cp-article-crumbs">{{breadcrumbs}}</div>
++      <div class="search-container cp-article-search">
++        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
++          <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
++          <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
++        </svg>
++        {{search scoped=settings.scoped_kb_search submit=false}}
++      </div>
+     </div>
++
++    <h1 title="{{article.title}}" class="cp-page-head-title">
++      {{article.title}}
++      {{#if article.internal}}
++        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 16 16" class="icon-lock" title="{{t 'internal'}}">
++          <rect width="12" height="9" x="2" y="7" fill="currentColor" rx="1" ry="1"/>
++          <path fill="none" stroke="currentColor" d="M4.5 7.5V4a3.5 3.5 0 017 0v3.5"/>
++        </svg>
++      {{/if}}
++    </h1>
++    <p class="cp-page-head-intro cp-article-updated">{{t 'updated'}} {{date article.edited_at timeago=true}}</p>
+   </div>
++</section>
+ 
++<div class="container cp-main">
+   <div class="article-container" id="article-container">
+     <aside class="article-sidebar" aria-labelledby="section-articles-title">
+       {{#if settings.show_articles_in_section}}
+@@ -48,18 +66,10 @@
+ 
+     <article id="main-content" class="article">
+       <header class="article-header">
+-        <h1 title="{{article.title}}" class="article-title">
+-          {{article.title}}
+-          {{#if article.internal}}
+-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" focusable="false" viewBox="0 0 16 16" class="icon-lock" title="{{t 'internal'}}">
+-              <rect width="12" height="9" x="2" y="7" fill="currentColor" rx="1" ry="1"/>
+-              <path fill="none" stroke="currentColor" d="M4.5 7.5V4a3.5 3.5 0 017 0v3.5"/>
+-            </svg>
+-          {{/if}}
+-        </h1>
+-
+-        <div class="article-author">
+-          {{#if settings.show_article_author}}
++        {{!-- Title and date are in the band above. What is left here is
++              behind settings, both off on the customer portal. --}}
++        {{#if settings.show_article_author}}
++          <div class="article-author">
+             <div class="avatar article-avatar">
+               {{#if article.author.agent}}
+                 <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" aria-hidden="true" viewBox="0 0 12 12" class="icon-agent" aria-label="{{t 'team_member' name=article.author.name}}">
+@@ -68,24 +78,13 @@
+               {{/if}}
+               <img src="{{article.author.avatar_url}}" alt="" class="user-avatar"/>
+             </div>
+-          {{/if}}
+-          <div class="article-meta">
+-            {{#if settings.show_article_author}}
++            <div class="article-meta">
+               {{#link 'user_profile' id=article.author.id}}
+                 {{article.author.name}}
+               {{/link}}
+-            {{/if}}
+-
+-            <div class="meta-group">
+-              {{#is article.created_at article.edited_at}}
+-                <span class="meta-data">{{date article.created_at timeago=true}}</span>
+-              {{else}}
+-                <span class="meta-data">{{date article.edited_at timeago=true}}</span>
+-                <span class="meta-data">{{t 'updated'}}</span>
+-              {{/is}}
+             </div>
+           </div>
+-        </div>
++        {{/if}}
+ 
+         {{#if settings.show_follow_article}}
+           <div class="article-subscribe">{{subscribe}}</div>

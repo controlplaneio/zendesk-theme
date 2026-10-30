@@ -895,3 +895,111 @@ a.cp-org-strip:focus {
   white-space: pre-wrap;
   word-break: break-word;
 }
+
+/***** A single article **************************************************
+   Same band as the Case page, then the article as a card beside the
+   "Articles in this section" list. The band carries Zendesk's own
+   breadcrumb and search, so they are restyled for a dark ground here
+   rather than replaced.
+ *************************************************************************/
+.cp-article-head-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--cp-space-2);
+  margin-bottom: var(--cp-space-2);
+}
+
+.cp-article-crumbs .breadcrumbs {
+  margin: 0;
+}
+
+.cp-article-crumbs .breadcrumbs li {
+  color: var(--cp-hero-faint);
+  font-size: 14px;
+}
+
+.cp-article-crumbs .breadcrumbs li + li::before {
+  content: "\203A";
+  margin: 0 8px;
+  color: var(--cp-hero-faint);
+}
+
+.cp-article-crumbs .breadcrumbs a,
+.cp-article-crumbs .breadcrumbs a:visited {
+  color: var(--cp-hero-soft);
+}
+
+.cp-article-crumbs .breadcrumbs a:hover,
+.cp-article-crumbs .breadcrumbs a:focus {
+  color: var(--cp-hero-text);
+}
+
+.cp-article-search {
+  flex: 0 1 320px;
+}
+
+.cp-article-updated {
+  font-size: 14px;
+  margin-top: var(--cp-space-1);
+}
+
+.cp-main .article {
+  background-color: var(--cp-card);
+  border: 1px solid var(--cp-rule);
+  border-radius: var(--cp-radius);
+  padding: var(--cp-space-3);
+}
+
+@media (min-width: 1024px) {
+  .cp-main .article {
+    padding: var(--cp-space-4);
+    max-width: none;
+  }
+}
+
+/* Author and Follow are both behind settings that are off here, which would
+   otherwise leave Copenhagen's 40px of header margin above the body. */
+.cp-main .article-header:not(:has(.article-author, .article-subscribe)) {
+  display: none;
+}
+
+.cp-main .article-body > :first-child {
+  margin-top: 0;
+}
+
+.cp-main .article-sidebar {
+  background-color: var(--cp-card);
+  border: 1px solid var(--cp-rule);
+  border-radius: var(--cp-radius);
+  padding: var(--cp-space-2);
+  align-self: flex-start;
+}
+
+@media (min-width: 1024px) {
+  .cp-main .article-sidebar {
+    flex: 0 0 22%;
+    max-width: 22%;
+    margin-right: var(--cp-space-3);
+  }
+}
+
+.cp-main .article-sidebar .sidenav-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cp-ink);
+}
+
+.cp-main .article-sidebar .sidenav-item {
+  font-size: 14px;
+  line-height: 1.4;
+  padding: 6px 8px;
+  border-radius: var(--cp-radius-sm);
+}
+
+.cp-main .article-sidebar .sidenav-item.current-article {
+  background-color: var(--cp-pale);
+  color: var(--cp-deep);
+  font-weight: 600;
+}
