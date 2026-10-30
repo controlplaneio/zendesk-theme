@@ -1,0 +1,24 @@
+--- a/templates/request_page.hbs
++++ b/templates/request_page.hbs
+@@ -329,5 +329,21 @@
+       swap(dd, VALUES, false);
+     });
+   }
++
++  // The status class carries Zendesk's status value, and "answered" covers
++  // every Pending status, Waiting for upstream fix included. Only a label in
++  // the setting keeps the "needs you" colour; the rest move to "with us".
++  var AWAITING = String({{json settings.cp_awaiting_labels}} || '')
++    .split(',')
++    .map(function (s) { return s.trim().toLowerCase(); })
++    .filter(Boolean);
++
++  document.querySelectorAll('.status-label-answered, .status-label-pending').forEach(function (label) {
++    var text = label.textContent.replace(/\s+/g, ' ').trim().toLowerCase();
++    if (AWAITING.indexOf(text) === -1) {
++      label.classList.remove('status-label-answered', 'status-label-pending');
++      label.classList.add('status-label-open');
++    }
++  });
+ })();
+ </script>
