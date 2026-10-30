@@ -5,656 +5,969 @@
     "value": "ControlPlane External Help Centre theme"
   },
   {
-    "op": "add",
-    "path": "/settings/0/variables/-",
-    "value": {
-      "identifier": "card_background_color",
-      "type": "color",
-      "description": "card_background_color_description",
-      "label": "card_background_color_label",
-      "value": "#FFFFFF"
-    }
-  },
-  {
-    "op": "add",
-    "path": "/settings/1/variables/0/options/0",
-    "value": {
-      "label": "Montserrat",
-      "value": "Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
-    }
-  },
-  {
     "op": "replace",
-    "path": "/settings/1/variables/0/value",
-    "value": "Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
-  },
-  {
-    "op": "add",
-    "path": "/settings/1/variables/1/options/0",
-    "value": {
-      "label": "Montserrat",
-      "value": "Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
-    }
-  },
-  {
-    "op": "replace",
-    "path": "/settings/1/variables/1/value",
-    "value": "Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
-  },
-  {
-    "op": "replace",
-    "path": "/settings/2/variables/1/value",
-    "value": false
-  },
-  {
-    "op": "remove",
-    "path": "/settings/3/variables/3"
-  },
-  {
-    "op": "remove",
-    "path": "/settings/3/variables/2"
-  },
-  {
-    "op": "remove",
-    "path": "/settings/3/variables/1"
-  },
-  {
-    "op": "add",
-    "path": "/settings/-",
-    "value": {
-      "label": "cp_palette_group_label",
-      "variables": [
-        {
-          "identifier": "cp_action_color",
-          "type": "color",
-          "description": "cp_action_color_description",
-          "label": "cp_action_color_label",
-          "value": "#2158e8"
-        },
-        {
-          "identifier": "cp_action_text_color",
-          "type": "color",
-          "description": "cp_action_text_color_description",
-          "label": "cp_action_text_color_label",
-          "value": "#ffffff"
-        },
-        {
-          "identifier": "cp_banner_color",
-          "type": "color",
-          "description": "cp_banner_color_description",
-          "label": "cp_banner_color_label",
-          "value": "#23243b"
-        },
-        {
-          "identifier": "cp_banner_text_color",
-          "type": "color",
-          "description": "cp_banner_text_color_description",
-          "label": "cp_banner_text_color_label",
-          "value": "#ffffff"
-        },
-        {
-          "identifier": "cp_ink_color",
-          "type": "color",
-          "description": "cp_ink_color_description",
-          "label": "cp_ink_color_label",
-          "value": "#23243b"
-        },
-        {
-          "identifier": "cp_ground_color",
-          "type": "color",
-          "description": "cp_ground_color_description",
-          "label": "cp_ground_color_label",
-          "value": "#eeefee"
-        },
-        {
-          "identifier": "cp_accent_color",
-          "type": "color",
-          "description": "cp_accent_color_description",
-          "label": "cp_accent_color_label",
-          "value": "#26a7df"
-        },
-        {
-          "identifier": "cp_deep_blue_color",
-          "type": "color",
-          "description": "cp_deep_blue_color_description",
-          "label": "cp_deep_blue_color_label",
-          "value": "#183789"
-        },
-        {
-          "identifier": "cp_pale_blue_color",
-          "type": "color",
-          "description": "cp_pale_blue_color_description",
-          "label": "cp_pale_blue_color_label",
-          "value": "#bee3f4"
-        }
-      ]
-    }
-  },
-  {
-    "op": "add",
-    "path": "/settings/-",
-    "value": {
-      "label": "cp_banner_group_label",
-      "variables": [
-        {
-          "identifier": "cp_banner_greeting",
-          "type": "text",
-          "description": "cp_banner_greeting_description",
-          "label": "cp_banner_greeting_label",
-          "value": "welcome to ControlPlane Enterprise Support"
-        },
-        {
-          "identifier": "cp_banner_greeting_generic",
-          "type": "text",
-          "description": "cp_banner_greeting_generic_description",
-          "label": "cp_banner_greeting_generic_label",
-          "value": "Welcome to ControlPlane Enterprise Support"
-        },
-        {
-          "identifier": "cp_banner_question",
-          "type": "text",
-          "description": "cp_banner_question_description",
-          "label": "cp_banner_question_label",
-          "value": ""
-        },
-        {
-          "identifier": "cp_banner_sub",
-          "type": "text",
-          "description": "cp_banner_sub_description",
-          "label": "cp_banner_sub_label",
-          "value": ""
-        },
-        {
-          "identifier": "cp_action_text",
-          "type": "text",
-          "description": "cp_action_text_description",
-          "label": "cp_action_text_label",
-          "value": "Raise a Case"
-        },
-        {
-          "identifier": "cp_action_url",
-          "type": "text",
-          "description": "cp_action_url_description",
-          "label": "cp_action_url_label",
-          "value": "/hc/requests/new"
-        },
-        {
-          "identifier": "cp_prepare_text",
-          "type": "text",
-          "description": "cp_prepare_text_description",
-          "label": "cp_prepare_text_label",
-          "value": "It helps if you have your environment, the versions you're running and any error outputs to hand."
-        },
-        {
-          "identifier": "cp_sev1_alt_text",
-          "type": "text",
-          "description": "cp_sev1_alt_text_description",
-          "label": "cp_sev1_alt_text_label",
-          "value": "If it's urgent, or you'd prefer to speak to someone, call us and we'll raise the Case for you:"
-        },
-        {
-          "identifier": "cp_support_phone",
-          "type": "text",
-          "description": "cp_support_phone_description",
-          "label": "cp_support_phone_label",
-          "value": "+44 2045 710 371"
-        }
-      ]
-    }
-  },
-  {
-    "op": "add",
-    "path": "/settings/-",
-    "value": {
-      "label": "cp_cases_group_label",
-      "variables": [
-        {
-          "identifier": "cp_own_cases_heading",
-          "type": "text",
-          "description": "cp_own_cases_heading_description",
-          "label": "cp_own_cases_heading_label",
-          "value": "Your Cases"
-        },
-        {
-          "identifier": "cp_show_own_cases",
-          "type": "checkbox",
-          "description": "cp_show_own_cases_description",
-          "label": "cp_show_own_cases_label",
-          "value": true
-        },
-        {
-          "identifier": "cp_own_cases_link_text",
-          "type": "text",
-          "description": "cp_own_cases_link_text_description",
-          "label": "cp_own_cases_link_text_label",
-          "value": "See all your Cases"
-        },
-        {
-          "identifier": "cp_own_cases_count",
-          "type": "text",
-          "description": "cp_own_cases_count_description",
-          "label": "cp_own_cases_count_label",
-          "value": "3"
-        },
-        {
-          "identifier": "cp_org_cases_label",
-          "type": "text",
-          "description": "cp_org_cases_label_description",
-          "label": "cp_org_cases_label_label",
-          "value": "Open Cases across your organisation"
-        },
-        {
-          "identifier": "cp_org_cases_sub",
-          "type": "text",
-          "description": "cp_org_cases_sub_description",
-          "label": "cp_org_cases_sub_label",
-          "value": "Raised by your Authorised Users"
-        },
-        {
-          "identifier": "cp_show_org_cases",
-          "type": "checkbox",
-          "description": "cp_show_org_cases_description",
-          "label": "cp_show_org_cases_label",
-          "value": false
-        },
-        {
-          "identifier": "cp_severity_field_id",
-          "type": "text",
-          "description": "cp_severity_field_id_description",
-          "label": "cp_severity_field_id_label",
-          "value": ""
-        },
-        {
-          "identifier": "cp_severity_short_labels",
-          "type": "text",
-          "description": "cp_severity_short_labels_description",
-          "label": "cp_severity_short_labels_label",
-          "value": "Production system completely unusable=>Severity 1;Restricted operation, no workaround=>Severity 2;Restricted operation, workaround=>Severity 3;Partial, non-critical loss=>Severity 3;No loss of service=>Severity 4"
-        },
-        {
-          "identifier": "cp_column_labels",
-          "type": "text",
-          "description": "cp_column_labels_description",
-          "label": "cp_column_labels_label",
-          "value": "What is the business impact?=>Business impact;What does this Case relate to?=>Product"
-        },
-        {
-          "identifier": "cp_cases_noun",
-          "type": "text",
-          "description": "cp_cases_noun_description",
-          "label": "cp_cases_noun_label",
-          "value": "Case,Cases"
-        },
-        {
-          "identifier": "show_submit_request",
-          "type": "checkbox",
-          "description": "show_submit_request_description",
-          "label": "show_submit_request_label",
-          "value": true
-        },
-        {
-          "identifier": "cp_show_browse_topics",
-          "type": "checkbox",
-          "description": "cp_show_browse_topics_description",
-          "label": "cp_show_browse_topics_label",
-          "value": false
-        },
-        {
-          "identifier": "cp_show_home_search",
-          "type": "checkbox",
-          "description": "cp_show_home_search_description",
-          "label": "cp_show_home_search_label",
-          "value": false
-        },
-        {
-          "identifier": "cp_cases_tab_ccd",
-          "type": "text",
-          "value": "Cases you're copied on",
-          "description": "cp_cases_tab_ccd_description",
-          "label": "cp_cases_tab_ccd_label"
-        },
-        {
-          "identifier": "cp_cases_tab_org",
-          "type": "text",
-          "value": "Your organisation's Cases",
-          "description": "cp_cases_tab_org_description",
-          "label": "cp_cases_tab_org_label"
-        },
-        {
-          "identifier": "cp_awaiting_labels",
-          "type": "text",
-          "value": "Waiting for customer",
-          "description": "cp_awaiting_labels_description",
-          "label": "cp_awaiting_labels_label"
-        },
-        {
-          "identifier": "cp_done_labels",
-          "type": "text",
-          "value": "Solved, Closed",
-          "description": "cp_done_labels_description",
-          "label": "cp_done_labels_label"
-        },
-        {
-          "identifier": "cp_case_number_label",
-          "type": "text",
-          "description": "cp_case_number_label_description",
-          "label": "cp_case_number_label_label",
-          "value": "Case number"
-        }
-      ]
-    }
-  },
-  {
-    "op": "add",
-    "path": "/settings/-",
-    "value": {
-      "label": "cp_request_page_group_label",
-      "variables": [
-        {
-          "identifier": "cp_request_heading",
-          "type": "text",
-          "description": "cp_request_heading_description",
-          "label": "cp_request_heading_label",
-          "value": "Raise a Case"
-        },
-        {
-          "identifier": "cp_request_intro",
-          "type": "text",
-          "description": "cp_request_intro_description",
-          "label": "cp_request_intro_label",
-          "value": "Tell us what is happening and a ControlPlane Engineer will pick it up within the Response Time set by your agreement. Your environment, the versions you are running and any error output all help."
-        },
-        {
-          "identifier": "cp_request_show_sev1_line",
-          "type": "checkbox",
-          "description": "cp_request_show_sev1_line_description",
-          "label": "cp_request_show_sev1_line_label",
-          "value": true
-        }
-      ]
-    }
-  },
-  {
-    "op": "add",
-    "path": "/settings/-",
-    "value": {
-      "label": "announcement_group_label",
-      "variables": [
-        {
-          "identifier": "show_announcement",
-          "type": "checkbox",
-          "description": "show_announcement_description",
-          "label": "show_announcement_label",
-          "value": false
-        },
-        {
-          "identifier": "announcement_heading",
-          "type": "text",
-          "description": "announcement_heading_description",
-          "label": "announcement_heading_label",
-          "value": ""
-        },
-        {
-          "identifier": "announcement_body",
-          "type": "text",
-          "description": "announcement_body_description",
-          "label": "announcement_body_label",
-          "value": ""
-        },
-        {
-          "identifier": "announcement_link_text",
-          "type": "text",
-          "description": "announcement_link_text_description",
-          "label": "announcement_link_text_label",
-          "value": ""
-        },
-        {
-          "identifier": "announcement_link_url",
-          "type": "text",
-          "description": "announcement_link_url_description",
-          "label": "announcement_link_url_label",
-          "value": ""
-        }
-      ]
-    }
-  },
-  {
-    "op": "add",
-    "path": "/settings/-",
-    "value": {
-      "label": "resources_group_label",
-      "variables": [
-        {
-          "identifier": "show_resources",
-          "type": "checkbox",
-          "description": "show_resources_description",
-          "label": "show_resources_label",
-          "value": true
-        },
-        {
-          "identifier": "resources_heading",
-          "type": "text",
-          "description": "resources_heading_description",
-          "label": "resources_heading_label",
-          "value": "Useful links"
-        }
-      ]
-    }
-  },
-  {
-    "op": "add",
-    "path": "/settings/-",
-    "value": {
-      "label": "resources_col1_group_label",
-      "variables": [
-        {
-          "identifier": "resources_col1_title",
-          "type": "text",
-          "description": "resources_column_title_description",
-          "label": "resources_column_title_label",
-          "value": "ControlPlane"
-        },
-        {
-          "identifier": "resources_col1_link1_text",
-          "type": "text",
-          "description": "resources_link1_text_description",
-          "label": "resources_link1_text_label",
-          "value": "Blogs and news"
-        },
-        {
-          "identifier": "resources_col1_link1_url",
-          "type": "text",
-          "description": "resources_link1_url_description",
-          "label": "resources_link1_url_label",
-          "value": "https://control-plane.io/posts/"
-        },
-        {
-          "identifier": "resources_col1_link2_text",
-          "type": "text",
-          "description": "resources_link2_text_description",
-          "label": "resources_link2_text_label",
-          "value": ""
-        },
-        {
-          "identifier": "resources_col1_link2_url",
-          "type": "text",
-          "description": "resources_link2_url_description",
-          "label": "resources_link2_url_label",
-          "value": ""
-        },
-        {
-          "identifier": "resources_col1_link3_text",
-          "type": "text",
-          "description": "resources_link3_text_description",
-          "label": "resources_link3_text_label",
-          "value": ""
-        },
-        {
-          "identifier": "resources_col1_link3_url",
-          "type": "text",
-          "description": "resources_link3_url_description",
-          "label": "resources_link3_url_label",
-          "value": ""
-        },
-        {
-          "identifier": "resources_col1_link4_text",
-          "type": "text",
-          "description": "resources_link4_text_description",
-          "label": "resources_link4_text_label",
-          "value": ""
-        },
-        {
-          "identifier": "resources_col1_link4_url",
-          "type": "text",
-          "description": "resources_link4_url_description",
-          "label": "resources_link4_url_label",
-          "value": ""
-        }
-      ]
-    }
-  },
-  {
-    "op": "add",
-    "path": "/settings/-",
-    "value": {
-      "label": "resources_col2_group_label",
-      "variables": [
-        {
-          "identifier": "resources_col2_title",
-          "type": "text",
-          "description": "resources_column_title_description",
-          "label": "resources_column_title_label",
-          "value": "Flux CD"
-        },
-        {
-          "identifier": "resources_col2_link1_text",
-          "type": "text",
-          "description": "resources_link1_text_description",
-          "label": "resources_link1_text_label",
-          "value": "Project homepage"
-        },
-        {
-          "identifier": "resources_col2_link1_url",
-          "type": "text",
-          "description": "resources_link1_url_description",
-          "label": "resources_link1_url_label",
-          "value": "https://fluxcd.io/"
-        },
-        {
-          "identifier": "resources_col2_link2_text",
-          "type": "text",
-          "description": "resources_link2_text_description",
-          "label": "resources_link2_text_label",
-          "value": "Documentation"
-        },
-        {
-          "identifier": "resources_col2_link2_url",
-          "type": "text",
-          "description": "resources_link2_url_description",
-          "label": "resources_link2_url_label",
-          "value": "https://fluxcd.io/flux/"
-        },
-        {
-          "identifier": "resources_col2_link3_text",
-          "type": "text",
-          "description": "resources_link3_text_description",
-          "label": "resources_link3_text_label",
-          "value": "ControlPlane Enterprise for Flux"
-        },
-        {
-          "identifier": "resources_col2_link3_url",
-          "type": "text",
-          "description": "resources_link3_url_description",
-          "label": "resources_link3_url_label",
-          "value": "https://fluxcd.control-plane.io/"
-        },
-        {
-          "identifier": "resources_col2_link4_text",
-          "type": "text",
-          "description": "resources_link4_text_description",
-          "label": "resources_link4_text_label",
-          "value": ""
-        },
-        {
-          "identifier": "resources_col2_link4_url",
-          "type": "text",
-          "description": "resources_link4_url_description",
-          "label": "resources_link4_url_label",
-          "value": ""
-        }
-      ]
-    }
-  },
-  {
-    "op": "add",
-    "path": "/settings/-",
-    "value": {
-      "label": "resources_col3_group_label",
-      "variables": [
-        {
-          "identifier": "resources_col3_title",
-          "type": "text",
-          "description": "resources_column_title_description",
-          "label": "resources_column_title_label",
-          "value": "OpenBao"
-        },
-        {
-          "identifier": "resources_col3_link1_text",
-          "type": "text",
-          "description": "resources_link1_text_description",
-          "label": "resources_link1_text_label",
-          "value": "Project homepage"
-        },
-        {
-          "identifier": "resources_col3_link1_url",
-          "type": "text",
-          "description": "resources_link1_url_description",
-          "label": "resources_link1_url_label",
-          "value": "https://openbao.org/"
-        },
-        {
-          "identifier": "resources_col3_link2_text",
-          "type": "text",
-          "description": "resources_link2_text_description",
-          "label": "resources_link2_text_label",
-          "value": "Blog"
-        },
-        {
-          "identifier": "resources_col3_link2_url",
-          "type": "text",
-          "description": "resources_link2_url_description",
-          "label": "resources_link2_url_label",
-          "value": "https://openbao.org/blog/"
-        },
-        {
-          "identifier": "resources_col3_link3_text",
-          "type": "text",
-          "description": "resources_link3_text_description",
-          "label": "resources_link3_text_label",
-          "value": ""
-        },
-        {
-          "identifier": "resources_col3_link3_url",
-          "type": "text",
-          "description": "resources_link3_url_description",
-          "label": "resources_link3_url_label",
-          "value": ""
-        },
-        {
-          "identifier": "resources_col3_link4_text",
-          "type": "text",
-          "description": "resources_link4_text_description",
-          "label": "resources_link4_text_label",
-          "value": ""
-        },
-        {
-          "identifier": "resources_col3_link4_url",
-          "type": "text",
-          "description": "resources_link4_url_description",
-          "label": "resources_link4_url_label",
-          "value": ""
-        }
-      ]
-    }
+    "path": "/settings",
+    "value": [
+      {
+        "label": "brand_group_label",
+        "variables": [
+          {
+            "identifier": "logo",
+            "type": "file",
+            "description": "logo_description",
+            "label": "logo_label"
+          },
+          {
+            "identifier": "favicon",
+            "type": "file",
+            "description": "favicon_description",
+            "label": "favicon_label"
+          },
+          {
+            "identifier": "show_brand_name",
+            "type": "checkbox",
+            "description": "show_brand_name_description",
+            "label": "show_brand_name_label",
+            "value": false
+          },
+          {
+            "identifier": "homepage_background_image",
+            "type": "file",
+            "description": "homepage_background_image_description",
+            "label": "homepage_background_image_label"
+          }
+        ]
+      },
+      {
+        "label": "cp_palette_group_label",
+        "variables": [
+          {
+            "identifier": "cp_action_color",
+            "type": "color",
+            "description": "cp_action_color_description",
+            "label": "cp_action_color_label",
+            "value": "#2158e8"
+          },
+          {
+            "identifier": "cp_action_text_color",
+            "type": "color",
+            "description": "cp_action_text_color_description",
+            "label": "cp_action_text_color_label",
+            "value": "#ffffff"
+          },
+          {
+            "identifier": "cp_banner_color",
+            "type": "color",
+            "description": "cp_banner_color_description",
+            "label": "cp_banner_color_label",
+            "value": "#23243b"
+          },
+          {
+            "identifier": "cp_banner_text_color",
+            "type": "color",
+            "description": "cp_banner_text_color_description",
+            "label": "cp_banner_text_color_label",
+            "value": "#ffffff"
+          },
+          {
+            "identifier": "cp_ink_color",
+            "type": "color",
+            "description": "cp_ink_color_description",
+            "label": "cp_ink_color_label",
+            "value": "#23243b"
+          },
+          {
+            "identifier": "cp_ground_color",
+            "type": "color",
+            "description": "cp_ground_color_description",
+            "label": "cp_ground_color_label",
+            "value": "#eeefee"
+          },
+          {
+            "identifier": "cp_accent_color",
+            "type": "color",
+            "description": "cp_accent_color_description",
+            "label": "cp_accent_color_label",
+            "value": "#26a7df"
+          },
+          {
+            "identifier": "cp_deep_blue_color",
+            "type": "color",
+            "description": "cp_deep_blue_color_description",
+            "label": "cp_deep_blue_color_label",
+            "value": "#183789"
+          },
+          {
+            "identifier": "cp_pale_blue_color",
+            "type": "color",
+            "description": "cp_pale_blue_color_description",
+            "label": "cp_pale_blue_color_label",
+            "value": "#bee3f4"
+          }
+        ]
+      },
+      {
+        "label": "cp_zendesk_colours_group_label",
+        "variables": [
+          {
+            "identifier": "brand_color",
+            "type": "color",
+            "description": "brand_color_description",
+            "label": "brand_color_label",
+            "value": "#17494D"
+          },
+          {
+            "identifier": "brand_text_color",
+            "type": "color",
+            "description": "brand_text_color_description",
+            "label": "brand_text_color_label",
+            "value": "#FFFFFF"
+          },
+          {
+            "identifier": "text_color",
+            "type": "color",
+            "description": "text_color_description",
+            "label": "text_color_label",
+            "value": "#2F3941"
+          },
+          {
+            "identifier": "link_color",
+            "type": "color",
+            "description": "link_color_description",
+            "label": "link_color_label",
+            "value": "#1F73B7"
+          },
+          {
+            "identifier": "hover_link_color",
+            "type": "color",
+            "description": "hover_link_color_description",
+            "label": "hover_link_color_label",
+            "value": "#0F3554"
+          },
+          {
+            "identifier": "visited_link_color",
+            "type": "color",
+            "description": "visited_link_color_description",
+            "label": "visited_link_color_label",
+            "value": "#9358B0"
+          },
+          {
+            "identifier": "background_color",
+            "type": "color",
+            "description": "background_color_description",
+            "label": "background_color_label",
+            "value": "#FFFFFF"
+          },
+          {
+            "identifier": "card_background_color",
+            "type": "color",
+            "description": "card_background_color_description",
+            "label": "card_background_color_label",
+            "value": "#FFFFFF"
+          }
+        ]
+      },
+      {
+        "label": "fonts_group_label",
+        "variables": [
+          {
+            "identifier": "heading_font",
+            "type": "list",
+            "description": "heading_font_description",
+            "label": "heading_font_label",
+            "options": [
+              {
+                "label": "Montserrat",
+                "value": "Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+              },
+              {
+                "label": "System",
+                "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+              },
+              {
+                "label": "Arial",
+                "value": "Arial, 'Helvetica Neue', Helvetica, sans-serif"
+              },
+              {
+                "label": "Arial Black",
+                "value": "'Arial Black', Arial, 'Helvetica Neue', Helvetica, sans-serif"
+              },
+              {
+                "label": "Baskerville",
+                "value": "Baskerville, 'Times New Roman', Times, serif"
+              },
+              {
+                "label": "Century Gothic",
+                "value": "'Century Gothic', sans-serif"
+              },
+              {
+                "label": "Copperplate Light",
+                "value": "'Copperplate Light', 'Copperplate Gothic Light', serif"
+              },
+              {
+                "label": "Courier New",
+                "value": "'Courier New', Courier, monospace"
+              },
+              {
+                "label": "Futura",
+                "value": "Futura, 'Century Gothic', sans-serif"
+              },
+              {
+                "label": "Garamond",
+                "value": "Garamond, 'Hoefler Text', 'Times New Roman', Times, serif"
+              },
+              {
+                "label": "Geneva",
+                "value": "Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif"
+              },
+              {
+                "label": "Georgia",
+                "value": "Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif"
+              },
+              {
+                "label": "Helvetica",
+                "value": "Helvetica, Arial, sans-serif"
+              },
+              {
+                "label": "Helvetica Neue",
+                "value": "'Helvetica Neue', Arial, Helvetica, sans-serif"
+              },
+              {
+                "label": "Impact",
+                "value": "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
+              },
+              {
+                "label": "Lucida Grande",
+                "value": "'Lucida Grande', 'Lucida Sans', 'Lucida Sans Unicode', sans-serif"
+              },
+              {
+                "label": "Trebuchet MS",
+                "value": "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif"
+              }
+            ],
+            "value": "Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+          },
+          {
+            "identifier": "text_font",
+            "type": "list",
+            "description": "text_font_description",
+            "label": "text_font_label",
+            "options": [
+              {
+                "label": "Montserrat",
+                "value": "Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+              },
+              {
+                "label": "System",
+                "value": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+              },
+              {
+                "label": "Arial",
+                "value": "Arial, 'Helvetica Neue', Helvetica, sans-serif"
+              },
+              {
+                "label": "Arial Black",
+                "value": "'Arial Black', Arial, 'Helvetica Neue', Helvetica, sans-serif"
+              },
+              {
+                "label": "Baskerville",
+                "value": "Baskerville, 'Times New Roman', Times, serif"
+              },
+              {
+                "label": "Century Gothic",
+                "value": "'Century Gothic', sans-serif"
+              },
+              {
+                "label": "Copperplate Light",
+                "value": "'Copperplate Light', 'Copperplate Gothic Light', serif"
+              },
+              {
+                "label": "Courier New",
+                "value": "'Courier New', Courier, monospace"
+              },
+              {
+                "label": "Futura",
+                "value": "Futura, 'Century Gothic', sans-serif"
+              },
+              {
+                "label": "Garamond",
+                "value": "Garamond, 'Hoefler Text', 'Times New Roman', Times, serif"
+              },
+              {
+                "label": "Geneva",
+                "value": "Geneva, 'Lucida Sans', 'Lucida Grande', 'Lucida Sans Unicode', Verdana, sans-serif"
+              },
+              {
+                "label": "Georgia",
+                "value": "Georgia, Palatino, 'Palatino Linotype', Times, 'Times New Roman', serif"
+              },
+              {
+                "label": "Helvetica",
+                "value": "Helvetica, Arial, sans-serif"
+              },
+              {
+                "label": "Helvetica Neue",
+                "value": "'Helvetica Neue', Arial, Helvetica, sans-serif"
+              },
+              {
+                "label": "Impact",
+                "value": "Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif"
+              },
+              {
+                "label": "Lucida Grande",
+                "value": "'Lucida Grande', 'Lucida Sans', 'Lucida Sans Unicode', sans-serif"
+              },
+              {
+                "label": "Trebuchet MS",
+                "value": "'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif"
+              }
+            ],
+            "value": "Montserrat, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif"
+          }
+        ]
+      },
+      {
+        "label": "cp_nav_group_label",
+        "variables": [
+          {
+            "identifier": "show_submit_request",
+            "type": "checkbox",
+            "description": "show_submit_request_description",
+            "label": "show_submit_request_label",
+            "value": true
+          },
+          {
+            "identifier": "cp_own_cases_heading",
+            "type": "text",
+            "description": "cp_own_cases_heading_description",
+            "label": "cp_own_cases_heading_label",
+            "value": "Your Cases"
+          }
+        ]
+      },
+      {
+        "label": "cp_banner_group_label",
+        "variables": [
+          {
+            "identifier": "cp_banner_greeting",
+            "type": "text",
+            "description": "cp_banner_greeting_description",
+            "label": "cp_banner_greeting_label",
+            "value": "welcome to ControlPlane Enterprise Support"
+          },
+          {
+            "identifier": "cp_banner_greeting_generic",
+            "type": "text",
+            "description": "cp_banner_greeting_generic_description",
+            "label": "cp_banner_greeting_generic_label",
+            "value": "Welcome to ControlPlane Enterprise Support"
+          },
+          {
+            "identifier": "cp_banner_question",
+            "type": "text",
+            "description": "cp_banner_question_description",
+            "label": "cp_banner_question_label",
+            "value": ""
+          },
+          {
+            "identifier": "cp_banner_sub",
+            "type": "text",
+            "description": "cp_banner_sub_description",
+            "label": "cp_banner_sub_label",
+            "value": ""
+          },
+          {
+            "identifier": "cp_action_text",
+            "type": "text",
+            "description": "cp_action_text_description",
+            "label": "cp_action_text_label",
+            "value": "Raise a Case"
+          },
+          {
+            "identifier": "cp_action_url",
+            "type": "text",
+            "description": "cp_action_url_description",
+            "label": "cp_action_url_label",
+            "value": "/hc/requests/new"
+          },
+          {
+            "identifier": "cp_prepare_text",
+            "type": "text",
+            "description": "cp_prepare_text_description",
+            "label": "cp_prepare_text_label",
+            "value": "It helps if you have your environment, the versions you're running and any error outputs to hand."
+          },
+          {
+            "identifier": "cp_sev1_alt_text",
+            "type": "text",
+            "description": "cp_sev1_alt_text_description",
+            "label": "cp_sev1_alt_text_label",
+            "value": "If it's urgent, or you'd prefer to speak to someone, call us and we'll raise the Case for you:"
+          },
+          {
+            "identifier": "cp_support_phone",
+            "type": "text",
+            "description": "cp_support_phone_description",
+            "label": "cp_support_phone_label",
+            "value": "+44 2045 710 371"
+          }
+        ]
+      },
+      {
+        "label": "cp_cases_group_label",
+        "variables": [
+          {
+            "identifier": "cp_show_own_cases",
+            "type": "checkbox",
+            "description": "cp_show_own_cases_description",
+            "label": "cp_show_own_cases_label",
+            "value": true
+          },
+          {
+            "identifier": "cp_own_cases_count",
+            "type": "text",
+            "description": "cp_own_cases_count_description",
+            "label": "cp_own_cases_count_label",
+            "value": "3"
+          },
+          {
+            "identifier": "cp_own_cases_link_text",
+            "type": "text",
+            "description": "cp_own_cases_link_text_description",
+            "label": "cp_own_cases_link_text_label",
+            "value": "See all your Cases"
+          },
+          {
+            "identifier": "cp_show_org_cases",
+            "type": "checkbox",
+            "description": "cp_show_org_cases_description",
+            "label": "cp_show_org_cases_label",
+            "value": false
+          },
+          {
+            "identifier": "cp_org_cases_label",
+            "type": "text",
+            "description": "cp_org_cases_label_description",
+            "label": "cp_org_cases_label_label",
+            "value": "Open Cases across your organisation"
+          },
+          {
+            "identifier": "cp_org_cases_sub",
+            "type": "text",
+            "description": "cp_org_cases_sub_description",
+            "label": "cp_org_cases_sub_label",
+            "value": "Raised by your Authorised Users"
+          }
+        ]
+      },
+      {
+        "label": "cp_home_more_group_label",
+        "variables": [
+          {
+            "identifier": "cp_show_browse_topics",
+            "type": "checkbox",
+            "description": "cp_show_browse_topics_description",
+            "label": "cp_show_browse_topics_label",
+            "value": false
+          },
+          {
+            "identifier": "show_recent_activity",
+            "type": "checkbox",
+            "description": "recent_activity_description",
+            "label": "recent_activity_label",
+            "value": true
+          }
+        ]
+      },
+      {
+        "label": "announcement_group_label",
+        "variables": [
+          {
+            "identifier": "show_announcement",
+            "type": "checkbox",
+            "description": "show_announcement_description",
+            "label": "show_announcement_label",
+            "value": false
+          },
+          {
+            "identifier": "announcement_heading",
+            "type": "text",
+            "description": "announcement_heading_description",
+            "label": "announcement_heading_label",
+            "value": ""
+          },
+          {
+            "identifier": "announcement_body",
+            "type": "text",
+            "description": "announcement_body_description",
+            "label": "announcement_body_label",
+            "value": ""
+          },
+          {
+            "identifier": "announcement_link_text",
+            "type": "text",
+            "description": "announcement_link_text_description",
+            "label": "announcement_link_text_label",
+            "value": ""
+          },
+          {
+            "identifier": "announcement_link_url",
+            "type": "text",
+            "description": "announcement_link_url_description",
+            "label": "announcement_link_url_label",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "label": "resources_group_label",
+        "variables": [
+          {
+            "identifier": "show_resources",
+            "type": "checkbox",
+            "description": "show_resources_description",
+            "label": "show_resources_label",
+            "value": true
+          },
+          {
+            "identifier": "resources_heading",
+            "type": "text",
+            "description": "resources_heading_description",
+            "label": "resources_heading_label",
+            "value": "Useful links"
+          }
+        ]
+      },
+      {
+        "label": "resources_col1_group_label",
+        "variables": [
+          {
+            "identifier": "resources_col1_title",
+            "type": "text",
+            "description": "resources_column_title_description",
+            "label": "resources_column_title_label",
+            "value": "ControlPlane"
+          },
+          {
+            "identifier": "resources_col1_link1_text",
+            "type": "text",
+            "description": "resources_link1_text_description",
+            "label": "resources_link1_text_label",
+            "value": "Blogs and news"
+          },
+          {
+            "identifier": "resources_col1_link1_url",
+            "type": "text",
+            "description": "resources_link1_url_description",
+            "label": "resources_link1_url_label",
+            "value": "https://control-plane.io/posts/"
+          },
+          {
+            "identifier": "resources_col1_link2_text",
+            "type": "text",
+            "description": "resources_link2_text_description",
+            "label": "resources_link2_text_label",
+            "value": ""
+          },
+          {
+            "identifier": "resources_col1_link2_url",
+            "type": "text",
+            "description": "resources_link2_url_description",
+            "label": "resources_link2_url_label",
+            "value": ""
+          },
+          {
+            "identifier": "resources_col1_link3_text",
+            "type": "text",
+            "description": "resources_link3_text_description",
+            "label": "resources_link3_text_label",
+            "value": ""
+          },
+          {
+            "identifier": "resources_col1_link3_url",
+            "type": "text",
+            "description": "resources_link3_url_description",
+            "label": "resources_link3_url_label",
+            "value": ""
+          },
+          {
+            "identifier": "resources_col1_link4_text",
+            "type": "text",
+            "description": "resources_link4_text_description",
+            "label": "resources_link4_text_label",
+            "value": ""
+          },
+          {
+            "identifier": "resources_col1_link4_url",
+            "type": "text",
+            "description": "resources_link4_url_description",
+            "label": "resources_link4_url_label",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "label": "resources_col2_group_label",
+        "variables": [
+          {
+            "identifier": "resources_col2_title",
+            "type": "text",
+            "description": "resources_column_title_description",
+            "label": "resources_column_title_label",
+            "value": "Flux CD"
+          },
+          {
+            "identifier": "resources_col2_link1_text",
+            "type": "text",
+            "description": "resources_link1_text_description",
+            "label": "resources_link1_text_label",
+            "value": "Project homepage"
+          },
+          {
+            "identifier": "resources_col2_link1_url",
+            "type": "text",
+            "description": "resources_link1_url_description",
+            "label": "resources_link1_url_label",
+            "value": "https://fluxcd.io/"
+          },
+          {
+            "identifier": "resources_col2_link2_text",
+            "type": "text",
+            "description": "resources_link2_text_description",
+            "label": "resources_link2_text_label",
+            "value": "Documentation"
+          },
+          {
+            "identifier": "resources_col2_link2_url",
+            "type": "text",
+            "description": "resources_link2_url_description",
+            "label": "resources_link2_url_label",
+            "value": "https://fluxcd.io/flux/"
+          },
+          {
+            "identifier": "resources_col2_link3_text",
+            "type": "text",
+            "description": "resources_link3_text_description",
+            "label": "resources_link3_text_label",
+            "value": "ControlPlane Enterprise for Flux"
+          },
+          {
+            "identifier": "resources_col2_link3_url",
+            "type": "text",
+            "description": "resources_link3_url_description",
+            "label": "resources_link3_url_label",
+            "value": "https://fluxcd.control-plane.io/"
+          },
+          {
+            "identifier": "resources_col2_link4_text",
+            "type": "text",
+            "description": "resources_link4_text_description",
+            "label": "resources_link4_text_label",
+            "value": ""
+          },
+          {
+            "identifier": "resources_col2_link4_url",
+            "type": "text",
+            "description": "resources_link4_url_description",
+            "label": "resources_link4_url_label",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "label": "resources_col3_group_label",
+        "variables": [
+          {
+            "identifier": "resources_col3_title",
+            "type": "text",
+            "description": "resources_column_title_description",
+            "label": "resources_column_title_label",
+            "value": "OpenBao"
+          },
+          {
+            "identifier": "resources_col3_link1_text",
+            "type": "text",
+            "description": "resources_link1_text_description",
+            "label": "resources_link1_text_label",
+            "value": "Project homepage"
+          },
+          {
+            "identifier": "resources_col3_link1_url",
+            "type": "text",
+            "description": "resources_link1_url_description",
+            "label": "resources_link1_url_label",
+            "value": "https://openbao.org/"
+          },
+          {
+            "identifier": "resources_col3_link2_text",
+            "type": "text",
+            "description": "resources_link2_text_description",
+            "label": "resources_link2_text_label",
+            "value": "Blog"
+          },
+          {
+            "identifier": "resources_col3_link2_url",
+            "type": "text",
+            "description": "resources_link2_url_description",
+            "label": "resources_link2_url_label",
+            "value": "https://openbao.org/blog/"
+          },
+          {
+            "identifier": "resources_col3_link3_text",
+            "type": "text",
+            "description": "resources_link3_text_description",
+            "label": "resources_link3_text_label",
+            "value": ""
+          },
+          {
+            "identifier": "resources_col3_link3_url",
+            "type": "text",
+            "description": "resources_link3_url_description",
+            "label": "resources_link3_url_label",
+            "value": ""
+          },
+          {
+            "identifier": "resources_col3_link4_text",
+            "type": "text",
+            "description": "resources_link4_text_description",
+            "label": "resources_link4_text_label",
+            "value": ""
+          },
+          {
+            "identifier": "resources_col3_link4_url",
+            "type": "text",
+            "description": "resources_link4_url_description",
+            "label": "resources_link4_url_label",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "label": "cp_search_group_label",
+        "variables": [
+          {
+            "identifier": "instant_search",
+            "type": "checkbox",
+            "description": "instant_search_description",
+            "label": "instant_search_label",
+            "value": true
+          },
+          {
+            "identifier": "scoped_kb_search",
+            "type": "checkbox",
+            "description": "scoped_knowledge_base_search_description",
+            "label": "scoped_knowledge_base_search_label_v2",
+            "value": true
+          },
+          {
+            "identifier": "cp_show_home_search",
+            "type": "checkbox",
+            "description": "cp_show_home_search_description",
+            "label": "cp_show_home_search_label",
+            "value": false
+          }
+        ]
+      },
+      {
+        "label": "cp_request_page_group_label",
+        "variables": [
+          {
+            "identifier": "cp_request_heading",
+            "type": "text",
+            "description": "cp_request_heading_description",
+            "label": "cp_request_heading_label",
+            "value": "Raise a Case"
+          },
+          {
+            "identifier": "cp_request_intro",
+            "type": "text",
+            "description": "cp_request_intro_description",
+            "label": "cp_request_intro_label",
+            "value": "Tell us what is happening and a ControlPlane Engineer will pick it up within the Response Time set by your agreement. Your environment, the versions you are running and any error output all help."
+          },
+          {
+            "identifier": "cp_request_show_sev1_line",
+            "type": "checkbox",
+            "description": "cp_request_show_sev1_line_description",
+            "label": "cp_request_show_sev1_line_label",
+            "value": true
+          },
+          {
+            "identifier": "show_suggested_articles",
+            "type": "checkbox",
+            "description": "show_suggested_articles_in_new_request_form_description",
+            "label": "show_suggested_articles_label",
+            "value": true
+          }
+        ]
+      },
+      {
+        "label": "cp_cases_pages_group_label",
+        "variables": [
+          {
+            "identifier": "cp_column_labels",
+            "type": "text",
+            "description": "cp_column_labels_description",
+            "label": "cp_column_labels_label",
+            "value": "What is the business impact?=>Business impact;What does this Case relate to?=>Product"
+          },
+          {
+            "identifier": "cp_severity_short_labels",
+            "type": "text",
+            "description": "cp_severity_short_labels_description",
+            "label": "cp_severity_short_labels_label",
+            "value": "Production system completely unusable=>Severity 1;Restricted operation, no workaround=>Severity 2;Restricted operation, workaround=>Severity 3;Partial, non-critical loss=>Severity 3;No loss of service=>Severity 4"
+          },
+          {
+            "identifier": "cp_cases_noun",
+            "type": "text",
+            "description": "cp_cases_noun_description",
+            "label": "cp_cases_noun_label",
+            "value": "Case,Cases"
+          },
+          {
+            "identifier": "cp_cases_tab_ccd",
+            "type": "text",
+            "value": "Cases you're copied on",
+            "description": "cp_cases_tab_ccd_description",
+            "label": "cp_cases_tab_ccd_label"
+          },
+          {
+            "identifier": "cp_cases_tab_org",
+            "type": "text",
+            "value": "Your organisation's Cases",
+            "description": "cp_cases_tab_org_description",
+            "label": "cp_cases_tab_org_label"
+          },
+          {
+            "identifier": "cp_awaiting_labels",
+            "type": "text",
+            "value": "Waiting for customer",
+            "description": "cp_awaiting_labels_description",
+            "label": "cp_awaiting_labels_label"
+          },
+          {
+            "identifier": "cp_done_labels",
+            "type": "text",
+            "value": "Solved, Closed",
+            "description": "cp_done_labels_description",
+            "label": "cp_done_labels_label"
+          },
+          {
+            "identifier": "cp_case_number_label",
+            "type": "text",
+            "description": "cp_case_number_label_description",
+            "label": "cp_case_number_label_label",
+            "value": "Case number"
+          },
+          {
+            "identifier": "cp_severity_field_id",
+            "type": "text",
+            "description": "cp_severity_field_id_description",
+            "label": "cp_severity_field_id_label",
+            "value": ""
+          }
+        ]
+      },
+      {
+        "label": "article_page_group_label",
+        "variables": [
+          {
+            "identifier": "show_articles_in_section",
+            "type": "checkbox",
+            "description": "articles_in_section_description",
+            "label": "articles_in_section_label",
+            "value": true
+          },
+          {
+            "identifier": "show_article_author",
+            "type": "checkbox",
+            "description": "article_author_description",
+            "label": "article_author_label",
+            "value": true
+          },
+          {
+            "identifier": "show_article_comments",
+            "type": "checkbox",
+            "description": "article_comments_description",
+            "label": "article_comments_label",
+            "value": true
+          },
+          {
+            "identifier": "show_follow_article",
+            "type": "checkbox",
+            "description": "follow_article_description",
+            "label": "follow_article_label",
+            "value": true
+          },
+          {
+            "identifier": "show_recently_viewed_articles",
+            "type": "checkbox",
+            "description": "recently_viewed_articles_description",
+            "label": "recently_viewed_articles_label",
+            "value": true
+          },
+          {
+            "identifier": "show_related_articles",
+            "type": "checkbox",
+            "description": "related_articles_description",
+            "label": "related_articles_label",
+            "value": true
+          },
+          {
+            "identifier": "show_article_sharing",
+            "type": "checkbox",
+            "description": "article_sharing_description",
+            "label": "article_sharing_label",
+            "value": true
+          }
+        ]
+      },
+      {
+        "label": "section_page_group_label",
+        "variables": [
+          {
+            "identifier": "show_follow_section",
+            "type": "checkbox",
+            "description": "follow_section_description",
+            "label": "follow_section_label",
+            "value": true
+          }
+        ]
+      },
+      {
+        "label": "cp_community_group_label",
+        "variables": [
+          {
+            "identifier": "scoped_community_search",
+            "type": "checkbox",
+            "description": "scoped_community_search_description",
+            "label": "scoped_community_search_label",
+            "value": true
+          },
+          {
+            "identifier": "show_follow_post",
+            "type": "checkbox",
+            "description": "follow_post_description",
+            "label": "follow_post_label",
+            "value": true
+          },
+          {
+            "identifier": "show_post_sharing",
+            "type": "checkbox",
+            "description": "post_sharing_description",
+            "label": "post_sharing_label",
+            "value": true
+          },
+          {
+            "identifier": "show_follow_topic",
+            "type": "checkbox",
+            "description": "follow_topic_description",
+            "label": "follow_topic_label",
+            "value": true
+          }
+        ]
+      }
+    ]
   }
 ]
