@@ -440,13 +440,95 @@ a.cp-org-strip:focus {
   margin-bottom: var(--cp-space-5);
 }
 
-/***** Homepage: browse by topic and promoted articles *****/
+/***** Homepage: browse by topic and promoted articles *****
+   Cards like Your Cases and Useful links, so the page reads as one set.
+   Copenhagen's blocks are outlined and filled in brand_color, which is
+   Zendesk's colour setting rather than ours, so they are restyled onto
+   the palette tokens here. */
 .cp-section-heading {
   margin-bottom: 20px;
 }
 
+.cp-products,
+.cp-pinned {
+  background-color: var(--cp-card);
+  border: 1px solid var(--cp-rule);
+  border-radius: var(--cp-radius);
+  padding: var(--cp-space-3);
+  margin-bottom: var(--cp-space-3);
+}
+
+.cp-products .cp-section-heading,
+.cp-pinned .cp-section-heading {
+  margin: 0 0 18px;
+  font-size: 17px;
+}
+
 .cp-product-list {
-  margin-bottom: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--cp-space-2);
+}
+
+@media (min-width: 768px) {
+  .cp-product-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.cp-product-list .blocks-item {
+  margin: 0;
+  max-width: none;
+  border: 1px solid var(--cp-rule);
+  border-radius: var(--cp-radius-sm);
+  background-color: var(--cp-card);
+  color: var(--cp-ink);
+}
+
+.cp-product-list .blocks-item-link {
+  padding: var(--cp-space-2);
+  text-align: left;
+  color: var(--cp-ink);
+}
+
+.cp-product-list .blocks-item-title {
+  font-weight: 600;
+  color: var(--cp-ink);
+}
+
+.cp-product-list .blocks-item-description {
+  margin-top: 4px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--cp-ink-soft);
+}
+
+/* Hover uses the highlight colours rather than a solid fill, so a list of
+   topics stays calm and the button colour keeps meaning "act here". */
+.cp-product-list .blocks-item:hover,
+.cp-product-list .blocks-item:focus-within {
+  background-color: var(--cp-pale);
+  border-color: var(--cp-action);
+}
+
+.cp-product-list .blocks-item:hover *,
+.cp-product-list .blocks-item:focus-within * {
+  color: var(--cp-deep);
+}
+
+.cp-product-list .blocks-item:hover .blocks-item-title,
+.cp-product-list .blocks-item:focus-within .blocks-item-title {
+  color: var(--cp-action);
+}
+
+.cp-product-list .blocks-item-link:focus {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--cp-action) 40%, transparent);
+}
+
+/* Copenhagen's pagination sits empty under the list and adds a gap. */
+.cp-products .pagination:empty {
+  display: none;
 }
 
 .cp-article-list {
