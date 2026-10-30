@@ -1,0 +1,20 @@
+--- a/templates/header.hbs
++++ b/templates/header.hbs
+@@ -56,8 +56,6 @@
+         <div class="dropdown-menu" role="menu">
+           {{#my_profile role="menuitem"}}{{t 'profile'}}{{/my_profile}}
+           {{#link "requests" role="menuitem"}}{{settings.cp_own_cases_heading}}{{/link}}
+-          {{#link "contributions" role="menuitem"}}{{t "activities"}}{{/link}}
+-          {{link "approval_requests" role="menuitem"}}
+           {{contact_details role="menuitem"}}
+           {{change_password role="menuitem"}}
+           <div class="separator" role="separator"></div>
+@@ -89,8 +87,6 @@
+             {{/my_profile}}
+           </li>
+           <li class="item">{{#link "requests"}}{{settings.cp_own_cases_heading}}{{/link}}</li>
+-          <li class="item">{{#link "contributions"}}{{t "activities"}}{{/link}}</li>
+-          <li class="item">{{link "approval_requests"}}</li>
+           <li class="item">{{contact_details}}</li>
+           <li class="item">{{change_password class='change-password'}}</li>
+           <li class="nav-divider"></li>
