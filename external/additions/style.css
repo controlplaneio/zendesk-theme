@@ -1003,3 +1003,10 @@ a.cp-org-strip:focus {
   color: var(--cp-deep);
   font-weight: 600;
 }
+
+/***** Home page search, behind cp_show_home_search *****/
+.cp-hero-search {
+  width: 100%;
+  max-width: 480px;
+  margin: var(--cp-space-3) auto 0;
+}

@@ -300,6 +300,13 @@
           "value": false
         },
         {
+          "identifier": "cp_show_home_search",
+          "type": "checkbox",
+          "description": "cp_show_home_search_description",
+          "label": "cp_show_home_search_label",
+          "value": false
+        },
+        {
           "identifier": "cp_cases_tab_ccd",
           "type": "text",
           "value": "Cases you're copied on",

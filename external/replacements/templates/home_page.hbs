@@ -69,6 +69,18 @@
     {{#if settings.cp_support_phone}}
       <a class="cp-hero-phone" href="tel:{{settings.cp_support_phone}}">{{settings.cp_support_phone}}</a>
     {{/if}}
+
+    {{!-- Last in the hero, so Raise a Case and the phone line stay the
+          obvious routes. Off by default until there is enough to search. --}}
+    {{#if settings.cp_show_home_search}}
+      <div class="search-container cp-hero-search">
+        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
+          <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
+          <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
+        </svg>
+        {{search submit=false instant=settings.instant_search class='search search-full'}}
+      </div>
+    {{/if}}
   </div>
 </section>
 

@@ -85,6 +85,8 @@
   "cp_severity_short_labels_label": "Short Severity names for the cases table",
   "cp_show_browse_topics_description": "Show the Browse by topic and promoted articles sections on the home page. Off by default, since Browse topics is in the navigation",
   "cp_show_browse_topics_label": "Show Browse by topic",
+  "cp_show_home_search_description": "Show a search box at the foot of the home page hero, below Raise a Case and the phone line. Off by default until there are enough articles to search",
+  "cp_show_home_search_label": "Show search on the home page",
   "cp_show_org_cases_description": "Show the count of open cases across the client's organisation on the home page. Off by default: the same list is a tab on the Your cases page",
   "cp_show_org_cases_label": "Show the organisation's cases",
   "cp_show_own_cases_description": "Show the list of the client's own cases on the home page. Their cases are always reachable from Your cases in the navigation",
