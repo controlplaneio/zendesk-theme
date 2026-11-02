@@ -531,6 +531,13 @@ a.cp-org-strip:focus {
   display: none;
 }
 
+/* A client who can see no articles gets no categories, which left the
+   heading on an empty card. Hidden until there is a product to show, so it
+   appears by itself when the first article they can see is published. */
+.cp-products:not(:has(.blocks-item)) {
+  display: none;
+}
+
 .cp-article-list {
   list-style: none;
   margin: 0;
