@@ -342,6 +342,13 @@
             "description": "cp_own_cases_heading_description",
             "label": "cp_own_cases_heading_label",
             "value": "Your Cases"
+          },
+          {
+            "identifier": "cp_sticky_header",
+            "type": "checkbox",
+            "description": "cp_sticky_header_description",
+            "label": "cp_sticky_header_label",
+            "value": true
           }
         ]
       },

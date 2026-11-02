@@ -104,6 +104,8 @@
   "cp_show_org_cases_label": "Show the organisation's cases",
   "cp_show_own_cases_description": "Show the list of the client's own cases on the home page. Their cases are always reachable from Your cases in the navigation",
   "cp_show_own_cases_label": "Show the client's own cases",
+  "cp_sticky_header_description": "On desktop screens, the header with Raise a Case and Your Cases stays at the top of the window as the page scrolls. Phones and tablets are not affected",
+  "cp_sticky_header_label": "Keep the navigation at the top when scrolling",
   "cp_support_phone_description": "Phone number shown beside the Severity 1 line",
   "cp_support_phone_label": "Support phone number",
   "cp_zendesk_colours_group_label": "Colours for Zendesk's forms and lists",
