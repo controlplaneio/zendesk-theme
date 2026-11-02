@@ -984,7 +984,7 @@ a.cp-org-strip:focus {
    breadcrumb and search, so they are restyled for a dark ground here
    rather than replaced.
  *************************************************************************/
-.cp-article-head-row {
+.cp-band-row {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -993,32 +993,32 @@ a.cp-org-strip:focus {
   margin-bottom: var(--cp-space-2);
 }
 
-.cp-article-crumbs .breadcrumbs {
+.cp-band-crumbs .breadcrumbs {
   margin: 0;
 }
 
-.cp-article-crumbs .breadcrumbs li {
+.cp-band-crumbs .breadcrumbs li {
   color: var(--cp-hero-faint);
   font-size: 14px;
 }
 
-.cp-article-crumbs .breadcrumbs li + li::before {
+.cp-band-crumbs .breadcrumbs li + li::before {
   content: "\203A";
   margin: 0 8px;
   color: var(--cp-hero-faint);
 }
 
-.cp-article-crumbs .breadcrumbs a,
-.cp-article-crumbs .breadcrumbs a:visited {
+.cp-band-crumbs .breadcrumbs a,
+.cp-band-crumbs .breadcrumbs a:visited {
   color: var(--cp-hero-soft);
 }
 
-.cp-article-crumbs .breadcrumbs a:hover,
-.cp-article-crumbs .breadcrumbs a:focus {
+.cp-band-crumbs .breadcrumbs a:hover,
+.cp-band-crumbs .breadcrumbs a:focus {
   color: var(--cp-hero-text);
 }
 
-.cp-article-search {
+.cp-band-search {
   flex: 0 1 320px;
 }
 
@@ -1091,4 +1091,81 @@ a.cp-org-strip:focus {
   width: 100%;
   max-width: 480px;
   margin: var(--cp-space-3) auto 0;
+}
+
+/***** Category and section pages *****************************************
+   The same band as the article page (cp-band-*), then each section as a
+   full-width card of article links. Copenhagen sets sections in two columns
+   at 45%, which leaves half the page empty while there is one section, so
+   they stack in one column instead.
+ *************************************************************************/
+.cp-main .category-container,
+.cp-main .section-container {
+  display: block;
+}
+
+.cp-main .category-content,
+.cp-main .section-content {
+  max-width: none;
+}
+
+.cp-main .section-tree {
+  display: flex;
+  flex-direction: column;
+  gap: var(--cp-space-3);
+}
+
+.cp-main .section-tree .section,
+.cp-main .section-content {
+  background-color: var(--cp-card);
+  border: 1px solid var(--cp-rule);
+  border-radius: var(--cp-radius);
+  padding: var(--cp-space-3);
+  margin: 0;
+  max-width: none;
+}
+
+.cp-main .section-tree-title {
+  font-size: 17px;
+  margin: 0 0 8px;
+}
+
+.cp-main .section-tree-title a,
+.cp-main .section-tree-title a:visited {
+  color: var(--cp-ink);
+}
+
+.cp-main .article-list {
+  margin: 0;
+}
+
+.cp-main .article-list-item {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--cp-rule);
+}
+
+.cp-main .article-list-item:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.cp-main .article-list-item a,
+.cp-main .article-list-item a:visited {
+  color: var(--cp-ink);
+}
+
+.cp-main .section-tree-title a:hover,
+.cp-main .article-list-item a:hover,
+.cp-main .article-list-item a:focus {
+  color: var(--cp-action);
+}
+
+.cp-main .section-tree .see-all-articles {
+  padding: 12px 0 0;
+}
+
+.cp-section-follow {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--cp-space-1);
 }

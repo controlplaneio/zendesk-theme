@@ -1,0 +1,49 @@
+--- a/templates/category_page.hbs
++++ b/templates/category_page.hbs
+@@ -1,25 +1,29 @@
+-<div class="container-divider"></div>
+-<div class="container">
+-  <div class="sub-nav">
+-    {{breadcrumbs}}
+-    <div class="search-container">
+-      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
+-        <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
+-        <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
+-      </svg>
+-      {{search scoped=settings.scoped_kb_search submit=false}}
++{{!-- Same band as the article and Case pages: breadcrumb, search, title
++      and description on the dark ground, content in cards below. --}}
++<section class="cp-page-head{{#if settings.homepage_background_image}} cp-page-head-has-image{{/if}}">
++  <div class="container cp-page-head-inner">
++    <div class="cp-band-row">
++      <div class="cp-band-crumbs">{{breadcrumbs}}</div>
++      <div class="search-container cp-band-search">
++        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
++          <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
++          <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
++        </svg>
++        {{search scoped=settings.scoped_kb_search submit=false}}
++      </div>
+     </div>
++
++    <h1 class="cp-page-head-title">{{category.name}}</h1>
++    {{#if category.description}}
++      <p class="cp-page-head-intro">{{category.description}}</p>
++    {{/if}}
+   </div>
++</section>
+ 
++<div class="container cp-main">
++
+   <div class="category-container">
+     <div class="category-content">
+-      <header class="page-header">
+-        <h1>{{category.name}}</h1>
+-        {{#if category.description}}
+-          <p class="page-header-description">{{category.description}}</p>
+-        {{/if}}
+-      </header>
+-
+       <div id="main-content" class="section-tree">
+         {{#each sections}}
+           <section class="section">

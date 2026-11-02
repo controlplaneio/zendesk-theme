@@ -17,9 +17,9 @@
 +      only one, and puts it back by itself once there is a second. --}}
 +<section class="cp-page-head{{#if settings.homepage_background_image}} cp-page-head-has-image{{/if}}">
 +  <div class="container cp-page-head-inner">
-+    <div class="cp-article-head-row">
-+      <div class="cp-article-crumbs">{{breadcrumbs}}</div>
-+      <div class="search-container cp-article-search">
++    <div class="cp-band-row">
++      <div class="cp-band-crumbs">{{breadcrumbs}}</div>
++      <div class="search-container cp-band-search">
 +        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
 +          <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
 +          <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>

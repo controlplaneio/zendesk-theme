@@ -1,0 +1,56 @@
+--- a/templates/section_page.hbs
++++ b/templates/section_page.hbs
+@@ -1,27 +1,34 @@
+-<div class="container-divider"></div>
+-<div class="container">
+-  <div class="sub-nav">
+-    {{breadcrumbs}}
+-    <div class="search-container">
+-      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
+-        <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
+-        <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
+-      </svg>
+-      {{search scoped=settings.scoped_kb_search submit=false}}
++{{!-- Same band as the article and Case pages: breadcrumb, search, title
++      and description on the dark ground, content in cards below. --}}
++<section class="cp-page-head{{#if settings.homepage_background_image}} cp-page-head-has-image{{/if}}">
++  <div class="container cp-page-head-inner">
++    <div class="cp-band-row">
++      <div class="cp-band-crumbs">{{breadcrumbs}}</div>
++      <div class="search-container cp-band-search">
++        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
++          <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
++          <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
++        </svg>
++        {{search scoped=settings.scoped_kb_search submit=false}}
++      </div>
+     </div>
++
++    <h1 class="cp-page-head-title">{{section.name}}</h1>
++    {{#if section.description}}
++      <p class="cp-page-head-intro">{{section.description}}</p>
++    {{/if}}
+   </div>
++</section>
+ 
++<div class="container cp-main">
++
+   <div class="section-container">
+     <section id="main-content" class="section-content">
+-      <header class="page-header">
+-        <h1>{{section.name}}</h1>
+-        {{#if settings.show_follow_section}}
+-          <div class="section-subscribe">{{subscribe}}</div>
+-        {{/if}}
+-        {{#if section.description}}
+-          <p class="page-header-description">{{section.description}}</p>
+-        {{/if}}
+-      </header>
++      {{!-- Title and description are in the band. Follow stays here, at the
++            top of the card, so it sits with the articles it is about. --}}
++      {{#if settings.show_follow_section}}
++        <div class="section-subscribe cp-section-follow">{{subscribe}}</div>
++      {{/if}}
+ 
+       {{#if section.sections}}
+         <ul class="section-list">
