@@ -1,0 +1,96 @@
+--- a/templates/search_results.hbs
++++ b/templates/search_results.hbs
+@@ -1,16 +1,51 @@
+-<div class="container-divider"></div>
+-<div class="container">
+-  <div class="sub-nav">
+-    {{breadcrumbs}}
+-    <div class="search-container">
+-      <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
+-        <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
+-        <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
+-      </svg>
+-      {{search submit=false}}
++{{!-- Same band as the other knowledge pages. The results count moves up
++      to be the page title; with no results the title is just Search, and
++      the empty state below says what to do. --}}
++<section class="cp-page-head{{#if settings.homepage_background_image}} cp-page-head-has-image{{/if}}">
++  <div class="container cp-page-head-inner">
++    <div class="cp-band-row">
++      <div class="cp-band-crumbs">{{breadcrumbs}}</div>
++      <div class="search-container cp-band-search">
++        <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" viewBox="0 0 12 12" class="search-icon" aria-hidden="true">
++          <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
++          <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
++        </svg>
++        {{search submit=false}}
++      </div>
+     </div>
++
++    <h1 class="cp-page-head-title">
++      {{#if results}}
++          {{#is current_filter.identifier 'unified'}}
++            {{#if content_tag_filters }}
++              {{#each (filter content_tag_filters on="selected" equals=true)}}
++                {{t 'results_content_tag' content_tag=name count=../results_count}}
++              {{/each}}
++            {{else}}
++              {{t 'results' query=query count=results_count}}
++            {{/if}}
++          {{else}}
++            {{#if content_tag_filters }}
++              {{#each (filter content_tag_filters on="selected" equals=true)}}
++                {{t 'results_content_tag' content_tag=name count=../results_count}}
++              {{/each}}
++            {{else}}
++              {{#unless current_subfilter.identifier}}
++                {{t 'results' query=query count=results_count}}
++              {{else}}
++                {{t 'results_with_scope' query=query count=results_count scope_name=current_subfilter.name}}
++              {{/unless}}
++            {{/if}}
++          {{/is}}
++        {{else}}
++          Search
++        {{/if}}
++    </h1>
+   </div>
++</section>
+ 
++<div class="container cp-main">
++
+   <div class="search-results">
+     <aside class="search-results-sidebar">
+       {{#if source_filters}}
+@@ -147,31 +182,6 @@
+ 
+     <section id="main-content" class="search-results-column">
+       {{generative_answers}}
+-      <h1 class="search-results-subheading">
+-        {{#if results}}
+-          {{#is current_filter.identifier 'unified'}}
+-            {{#if content_tag_filters }}
+-              {{#each (filter content_tag_filters on="selected" equals=true)}}
+-                {{t 'results_content_tag' content_tag=name count=../results_count}}
+-              {{/each}}
+-            {{else}}
+-              {{t 'results' query=query count=results_count}}
+-            {{/if}}
+-          {{else}}
+-            {{#if content_tag_filters }}
+-              {{#each (filter content_tag_filters on="selected" equals=true)}}
+-                {{t 'results_content_tag' content_tag=name count=../results_count}}
+-              {{/each}}
+-            {{else}}
+-              {{#unless current_subfilter.identifier}}
+-                {{t 'results' query=query count=results_count}}
+-              {{else}}
+-                {{t 'results_with_scope' query=query count=results_count scope_name=current_subfilter.name}}
+-              {{/unless}}
+-            {{/if}}
+-          {{/is}}
+-        {{/if}}
+-      </h1>
+       {{#if results}}
+         <ul class="search-results-list">
+           {{#each results}}

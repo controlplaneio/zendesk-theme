@@ -1169,3 +1169,82 @@ a.cp-org-strip:focus {
   justify-content: flex-end;
   margin-bottom: var(--cp-space-1);
 }
+
+/***** Search results *****************************************************
+   Same band and cards. The results count is the band title, so the list
+   card starts straight with the results. Filters, when Zendesk shows them,
+   sit in a card on the left like Articles in this section.
+ *************************************************************************/
+.cp-main .search-results {
+  gap: var(--cp-space-3);
+}
+
+@media (min-width: 1024px) {
+  .cp-main .search-results {
+    flex-wrap: nowrap;
+  }
+}
+
+.cp-main .search-results-column {
+  background-color: var(--cp-card);
+  border: 1px solid var(--cp-rule);
+  border-radius: var(--cp-radius);
+  padding: var(--cp-space-3);
+  align-self: flex-start;
+}
+
+.cp-main .search-results-sidebar {
+  background-color: var(--cp-card);
+  border: 1px solid var(--cp-rule);
+  border-radius: var(--cp-radius);
+  padding: var(--cp-space-2);
+  align-self: flex-start;
+}
+
+.cp-main .search-results-sidebar:not(:has(*)) {
+  display: none;
+}
+
+.cp-main .search-results-sidebar .sidenav-item:hover,
+.cp-main .search-results-sidebar .sidenav-item.current {
+  background-color: var(--cp-pale);
+  color: var(--cp-deep);
+}
+
+.cp-main .search-results-list > li {
+  padding: var(--cp-space-2) 0;
+  border-bottom: 1px solid var(--cp-rule);
+}
+
+.cp-main .search-results-list > li:first-child {
+  padding-top: 0;
+}
+
+.cp-main .search-results-list > li:last-child {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.cp-main .search-result-title {
+  font-size: 17px;
+}
+
+.cp-main .search-result-title a,
+.cp-main .search-result-title a:visited {
+  color: var(--cp-ink);
+}
+
+.cp-main .search-result-title a:hover,
+.cp-main .search-result-title a:focus {
+  color: var(--cp-action);
+}
+
+.cp-main .search-result-description {
+  color: var(--cp-ink-soft);
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.cp-main .no-results {
+  margin: var(--cp-space-2) 0;
+}
