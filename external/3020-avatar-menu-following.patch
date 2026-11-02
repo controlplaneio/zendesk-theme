@@ -1,0 +1,32 @@
+--- a/templates/header.hbs
++++ b/templates/header.hbs
+@@ -59,7 +59,10 @@
+           </span>
+         </button>
+         <div class="dropdown-menu" role="menu">
+-          {{#my_profile role="menuitem"}}{{t 'profile'}}{{/my_profile}}
++          {{!-- With community off, Zendesk turns Profile into the same edit box
++                as Contact details, so Following takes its place: the one page
++                where a client sees and stops everything they follow. --}}
++          {{#link "subscriptions" role="menuitem"}}{{t 'following'}}{{/link}}
+           {{#link "requests" role="menuitem"}}{{settings.cp_own_cases_heading}}{{/link}}
+           {{contact_details role="menuitem"}}
+           {{change_password role="menuitem"}}
+@@ -83,14 +86,14 @@
+       <ul class="menu-list-mobile-items">
+         {{#if signed_in}}
+           <li class="user-avatar-item item">
+-            {{#my_profile class="my-profile"}}
++            <div class="my-profile">
+               {{user_avatar class="menu-profile-avatar"}}
+               <div class="menu-profile-name">
+                 <div>{{user_name}}</div>
+-                <div class="my-profile-tooltip">{{t 'profile'}}</div>
+               </div>
+-            {{/my_profile}}
++            </div>
+           </li>
++          <li class="item">{{#link "subscriptions"}}{{t 'following'}}{{/link}}</li>
+           <li class="item">{{#link "requests"}}{{settings.cp_own_cases_heading}}{{/link}}</li>
+           <li class="item">{{contact_details}}</li>
+           <li class="item">{{change_password class='change-password'}}</li>
