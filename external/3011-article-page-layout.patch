@@ -1,6 +1,6 @@
 --- a/templates/article_page.hbs
 +++ b/templates/article_page.hbs
-@@ -1,16 +1,34 @@
+@@ -1,16 +1,46 @@
 -<div class="container-divider"></div>
 -<div class="container">
 -  <div class="sub-nav">
@@ -37,7 +37,19 @@
 +        </svg>
 +      {{/if}}
 +    </h1>
-+    <p class="cp-page-head-intro cp-article-updated">{{t 'updated'}} {{date article.edited_at timeago=true}}</p>
++    {{!-- Author shows either here beside the date or as a byline at the
++          top of the card below, picked in settings. The name is plain text
++          in both: profile pages 404 while community is off. --}}
++    <p class="cp-page-head-intro cp-article-byline">
++      {{#if settings.show_article_author}}
++        {{#is settings.cp_article_author_position 'band'}}
++          <img src="{{article.author.avatar_url}}" alt="" class="cp-article-byline-avatar"/>
++          <span class="cp-article-byline-name">{{article.author.name}}</span>
++          <span aria-hidden="true">&middot;</span>
++        {{/is}}
++      {{/if}}
++      <span>{{t 'updated'}} {{date article.edited_at timeago=true}}</span>
++    </p>
    </div>
 +</section>
  
@@ -45,7 +57,7 @@
    <div class="article-container" id="article-container">
      <aside class="article-sidebar" aria-labelledby="section-articles-title">
        {{#if settings.show_articles_in_section}}
-@@ -48,18 +66,10 @@
+@@ -48,18 +78,12 @@
  
      <article id="main-content" class="article">
        <header class="article-header">
@@ -62,23 +74,24 @@
 -        <div class="article-author">
 -          {{#if settings.show_article_author}}
 +        {{!-- Title and date are in the band above. What is left here is
-+              behind settings, both off on the customer portal. --}}
++              behind settings: Follow is off on the customer portal, and
++              the author only shows here when not placed in the band. --}}
 +        {{#if settings.show_article_author}}
-+          <div class="article-author">
++          {{#is settings.cp_article_author_position 'card'}}
++          <div class="article-author cp-article-author">
              <div class="avatar article-avatar">
                {{#if article.author.agent}}
                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" focusable="false" aria-hidden="true" viewBox="0 0 12 12" class="icon-agent" aria-label="{{t 'team_member' name=article.author.name}}">
-@@ -68,24 +78,13 @@
+@@ -68,24 +92,13 @@
                {{/if}}
                <img src="{{article.author.avatar_url}}" alt="" class="user-avatar"/>
              </div>
 -          {{/if}}
 -          <div class="article-meta">
 -            {{#if settings.show_article_author}}
-+            <div class="article-meta">
-               {{#link 'user_profile' id=article.author.id}}
-                 {{article.author.name}}
-               {{/link}}
+-              {{#link 'user_profile' id=article.author.id}}
+-                {{article.author.name}}
+-              {{/link}}
 -            {{/if}}
 -
 -            <div class="meta-group">
@@ -88,9 +101,13 @@
 -                <span class="meta-data">{{date article.edited_at timeago=true}}</span>
 -                <span class="meta-data">{{t 'updated'}}</span>
 -              {{/is}}
++            <div class="article-meta">
++              <span class="cp-article-author-label">Written by</span>
++              <span class="cp-article-author-name">{{article.author.name}}</span>
              </div>
            </div>
 -        </div>
++          {{/is}}
 +        {{/if}}
  
          {{#if settings.show_follow_article}}

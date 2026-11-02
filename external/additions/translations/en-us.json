@@ -22,6 +22,8 @@
   "cp_action_url_label": "Main button link",
   "cp_awaiting_labels_description": "Comma separated. Cases with these statuses get the strong colour on the home page, Your Cases and the Case page, because the client has to do something. Every other open status gets the calm colour. Must match the end user label in Admin Center (capitals are ignored), so change both together",
   "cp_awaiting_labels_label": "Statuses that need the client",
+  "cp_article_author_position_description": "Where the author shows when Author is ticked: as a Written by line at the top of the article, or beside the date in the header band",
+  "cp_article_author_position_label": "Author position",
   "cp_banner_color_description": "Background of the hero at the top of the home page and the band at the top of every other page. Shown under the hero image as a tint",
   "cp_banner_color_label": "Hero background colour",
   "cp_banner_greeting_description": "Follows the client's first name, e.g. Hi Pete, welcome to ControlPlane support",

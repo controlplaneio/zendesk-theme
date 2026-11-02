@@ -922,6 +922,23 @@
             "value": true
           },
           {
+            "identifier": "cp_article_author_position",
+            "type": "list",
+            "description": "cp_article_author_position_description",
+            "label": "cp_article_author_position_label",
+            "options": [
+              {
+                "label": "Above the article",
+                "value": "card"
+              },
+              {
+                "label": "In the header band",
+                "value": "band"
+              }
+            ],
+            "value": "card"
+          },
+          {
             "identifier": "show_article_comments",
             "type": "checkbox",
             "description": "article_comments_description",

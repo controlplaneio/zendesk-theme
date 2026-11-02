@@ -1149,9 +1149,60 @@ td[data-test-id="table-cell-status"] [data-garden-id="tags.tag_view"] > div {
   flex: 0 1 320px;
 }
 
-.cp-article-updated {
+.cp-article-byline {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--cp-space-1);
   font-size: 14px;
   margin-top: var(--cp-space-1);
+}
+
+/* Author position "In the header band". Kept small so the line only grows
+   a few pixels; the ring stops a dark or default grey avatar vanishing
+   into the band. */
+.cp-article-byline-avatar {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  object-fit: cover;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--cp-hero-text) 35%, transparent);
+}
+
+.cp-article-byline-name {
+  color: var(--cp-hero-text);
+}
+
+/* Author position "Above the article": a two-line byline, so the 40px
+   avatar has something its own height beside it, closed off from the
+   body by a rule. */
+.cp-main .article-header:has(.cp-article-author) {
+  margin: 0 0 var(--cp-space-3);
+}
+
+.cp-article-author {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin: 0;
+  padding-bottom: var(--cp-space-2);
+  border-bottom: 1px solid var(--cp-rule);
+}
+
+.cp-article-author .article-meta {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.cp-article-author-label {
+  font-size: 13px;
+  color: var(--cp-ink-soft);
+}
+
+.cp-article-author-name {
+  font-size: 15px;
+  color: var(--cp-ink);
 }
 
 .cp-main .article {
