@@ -137,7 +137,7 @@
         navigation can point here (its default address). --}}
   {{#if settings.cp_show_browse_topics}}
     <section class="section cp-products" id="browse-topics">
-      <h2 class="cp-section-heading">Browse by topic</h2>
+      <h2 class="cp-section-heading">{{#if settings.cp_browse_topics_heading}}{{settings.cp_browse_topics_heading}}{{else}}Browse by product{{/if}}</h2>
       <ul class="blocks-list cp-product-list">
         {{#each categories}}
           <li class="blocks-item">

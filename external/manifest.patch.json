@@ -478,6 +478,13 @@
             "value": false
           },
           {
+            "identifier": "cp_browse_topics_heading",
+            "type": "text",
+            "description": "cp_browse_topics_heading_description",
+            "label": "cp_browse_topics_heading_label",
+            "value": "Browse by product"
+          },
+          {
             "identifier": "cp_show_browse_topics_link",
             "type": "checkbox",
             "description": "cp_show_browse_topics_link_description",
