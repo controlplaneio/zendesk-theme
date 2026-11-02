@@ -485,6 +485,13 @@
             "value": "Browse topics"
           },
           {
+            "identifier": "cp_browse_topics_link_url",
+            "type": "text",
+            "description": "cp_browse_topics_link_url_description",
+            "label": "cp_browse_topics_link_url_label",
+            "value": "/hc#browse-topics"
+          },
+          {
             "identifier": "show_recent_activity",
             "type": "checkbox",
             "description": "recent_activity_description",

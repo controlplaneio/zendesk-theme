@@ -1,24 +1,23 @@
 --- a/templates/header.hbs
 +++ b/templates/header.hbs
-@@ -27,6 +27,12 @@
+@@ -27,6 +27,11 @@
          {{#if signed_in}}
            <li>{{#link 'requests'}}{{settings.cp_own_cases_heading}}{{/link}}</li>
          {{/if}}
-+        {{!-- Goes to the Browse by topic section on the home page. Has its own
-+              setting; with the section off it lands at the top of the home
-+              page. --}}
++        {{!-- Address is a setting: the home page Browse by topic section by
++              default, or a category page while that section is off. --}}
 +        {{#if settings.cp_show_browse_topics_link}}
-+          <li><a href="/hc#browse-topics">{{settings.cp_browse_topics_link_text}}</a></li>
++          <li><a href="{{settings.cp_browse_topics_link_url}}">{{settings.cp_browse_topics_link_text}}</a></li>
 +        {{/if}}
          {{#unless signed_in}}
            <li>
              {{#link "sign_in" class="sign-in" role="link"}}
-@@ -104,6 +110,9 @@
+@@ -104,6 +109,9 @@
          {{#if settings.show_submit_request}}
            <li class="item">{{#link 'new_request' class='submit-a-request'}}{{#if settings.cp_request_heading}}{{settings.cp_request_heading}}{{else}}{{t 'submit_a_request'}}{{/if}}{{/link}}</li>
          {{/if}}
 +        {{#if settings.cp_show_browse_topics_link}}
-+          <li class="item"><a href="/hc#browse-topics">{{settings.cp_browse_topics_link_text}}</a></li>
++          <li class="item"><a href="{{settings.cp_browse_topics_link_url}}">{{settings.cp_browse_topics_link_text}}</a></li>
 +        {{/if}}
          <li class="nav-divider"></li>
          {{#if signed_in}}
