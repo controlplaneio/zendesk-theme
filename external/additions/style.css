@@ -1189,9 +1189,8 @@ a.cp-org-strip:focus {
 
 /***** Category and section pages *****************************************
    The same band as the article page (cp-band-*), then each section as a
-   full-width card of article links. Copenhagen sets sections in two columns
-   at 45%, which leaves half the page empty while there is one section, so
-   they stack in one column instead.
+   card of article links, two to a row on wider screens like Copenhagen's
+   own layout. Cards in a row share a height so the grid stays even.
  *************************************************************************/
 .cp-main .category-container,
 .cp-main .section-container {
@@ -1204,9 +1203,15 @@ a.cp-org-strip:focus {
 }
 
 .cp-main .section-tree {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--cp-space-3);
+}
+
+@media (min-width: 768px) {
+  .cp-main .section-tree {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .cp-main .section-tree .section,
