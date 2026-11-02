@@ -1348,38 +1348,6 @@ a.cp-org-strip:focus {
   margin: var(--cp-space-2) 0;
 }
 
-/***** Pinned header, behind cp_sticky_header *****************************
-   Desktop only: on a phone a pinned header eats too much of the screen.
-   The header is a centred 1160px box with no background of its own, so the
-   page colour and the rule under it are stretched to the window edges with
-   a wide box-shadow and a pseudo-element, clipped to the header's height.
- *************************************************************************/
-@media (min-width: 1024px) {
-  .cp-header-sticky {
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    background-color: var(--cp-ground);
-    box-shadow: 0 0 0 100vmax var(--cp-ground);
-    clip-path: inset(0 -100vmax);
-  }
-
-  .cp-header-sticky::after {
-    content: "";
-    position: absolute;
-    left: -100vmax;
-    right: -100vmax;
-    bottom: 0;
-    height: 1px;
-    background-color: var(--cp-rule);
-  }
-
-  /* Jump links land below the pinned header rather than under it. */
-  body:has(.cp-header-sticky) [id] {
-    scroll-margin-top: 88px;
-  }
-}
-
 /***** Error page *********************************************************
    The band carries the message; the card below offers the way out. Stock
    Copenhagen centres a large grey "Oops" on an empty page instead.
