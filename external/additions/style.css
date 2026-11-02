@@ -881,6 +881,24 @@ a.cp-org-strip:focus {
   font-weight: 600;
 }
 
+/* Long labels such as "Waiting for upstream fix" wrap instead of cutting
+   off. The table shares its spare width evenly between columns and the
+   client can reorder or hide them, so there is no reliable way to widen
+   just Status. 12px is still a full pill on one line and goes squarer on
+   two. The full label and description stay in the hover tooltip. */
+td[data-test-id="table-cell-status"] [data-garden-id="tags.tag_view"] {
+  border-radius: 12px;
+  height: auto;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  white-space: normal;
+}
+
+td[data-test-id="table-cell-status"] [data-garden-id="tags.tag_view"] > div {
+  overflow: visible;
+  white-space: normal;
+}
+
 /***** A single case ******************************************************
    Unlike the other two inner pages this template is entirely ours, with no
    Zendesk module in it, so everything here is ordinary CSS against markup we
@@ -902,6 +920,14 @@ a.cp-org-strip:focus {
   font-weight: 600;
   font-size: 12px;
   padding: 3px 10px;
+}
+
+/* Copenhagen cuts the sidebar badge off with an ellipsis. Wrap it instead,
+   as on the cases list, for the same reason and with the same radius. */
+.status-label-request {
+  border-radius: 12px;
+  white-space: normal;
+  text-overflow: clip;
 }
 
 /* Waiting on the client. The help centre uses its own status vocabulary
