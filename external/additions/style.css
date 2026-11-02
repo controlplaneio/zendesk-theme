@@ -1462,6 +1462,12 @@ a.cp-org-strip:focus {
   color: var(--cp-hero-soft);
 }
 
+/* Copenhagen draws this badge in the text colour, which vanishes on the band. */
+.profile-header .profile-private-badge {
+  color: var(--cp-hero-soft);
+  border-color: color-mix(in srgb, var(--cp-hero-text) 40%, var(--cp-hero));
+}
+
 .profile-header .profile-stats-activity,
 .profile-header .profile-stats-counters {
   border-color: color-mix(in srgb, var(--cp-hero-text) 25%, var(--cp-hero));
@@ -1492,7 +1498,10 @@ a.cp-org-strip:focus {
   }
 }
 
+/* Copenhagen leaves 330px beside this on desktop for a sidebar this page
+   does not have, which left the card half the width of the page. */
 .profile-section {
+  width: auto;
   background-color: var(--cp-card);
   border: 1px solid var(--cp-rule);
   border-radius: var(--cp-radius);
