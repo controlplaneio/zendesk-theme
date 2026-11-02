@@ -1468,3 +1468,66 @@ a.cp-org-strip:focus {
   margin: 0;
   color: var(--cp-ink-soft);
 }
+
+/***** Profile page ********************************************************
+   Restyled rather than rewritten: Zendesk's own profile header takes the
+   band's colours, and anything that only means something with the
+   community on (badges, following people, votes) is hidden. Followed
+   sections still count under Subscriptions, so that stat stays.
+ *************************************************************************/
+.profile-header {
+  background-color: var(--cp-hero);
+  color: var(--cp-hero-text);
+  padding: var(--cp-space-4) 0;
+  margin-bottom: var(--cp-space-4);
+}
+
+.profile-header .name,
+.profile-header .name a,
+.profile-header .name a:visited,
+.profile-header .stat-value {
+  color: var(--cp-hero-text);
+}
+
+.profile-header .description,
+.profile-header .stat-label {
+  color: var(--cp-hero-soft);
+}
+
+.profile-header .profile-stats-activity,
+.profile-header .profile-stats-counters {
+  border-color: color-mix(in srgb, var(--cp-hero-text) 25%, var(--cp-hero));
+}
+
+.profile-header .community-badge-titles,
+.profile-header .community-badge-achievements,
+.profile-header .community-follow,
+.profile-stats-counters .stat:not(:has(#subscription-count)) {
+  display: none;
+}
+
+.profile-header + .profile-nav {
+  margin-top: calc(-1 * var(--cp-space-4));
+  margin-bottom: var(--cp-space-4);
+  background-color: var(--cp-card);
+  border-bottom: 1px solid var(--cp-rule);
+}
+
+.profile-nav .collapsible-nav-list li,
+.profile-nav .collapsible-nav-list li a {
+  color: var(--cp-ink);
+}
+
+@media (min-width: 768px) {
+  .profile-nav .collapsible-nav-list li.current {
+    border-bottom-color: var(--cp-action);
+  }
+}
+
+.profile-section {
+  background-color: var(--cp-card);
+  border: 1px solid var(--cp-rule);
+  border-radius: var(--cp-radius);
+  padding: var(--cp-space-3);
+  margin-bottom: var(--cp-space-4);
+}
