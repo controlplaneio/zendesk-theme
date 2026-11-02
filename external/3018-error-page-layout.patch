@@ -1,0 +1,50 @@
+--- a/templates/error_page.hbs
++++ b/templates/error_page.hbs
+@@ -1,21 +1,30 @@
+-<div class="container-divider"></div>
+-<div id="main-content" class="error-page">
+-  <h1>{{t 'oops'}}</h1>
++{{!-- Same band as the other inner pages, with what went wrong as the title,
++      then a card with the way out: home, or raise a Case. --}}
++<section class="cp-page-head{{#if settings.homepage_background_image}} cp-page-head-has-image{{/if}}">
++  <div class="container cp-page-head-inner">
++    <h1 class="cp-page-head-title">{{t 'oops'}}</h1>
++    {{#is error 'forbidden'}}
++      <p class="cp-page-head-intro">{{t 'not_authorized'}}</p>
++    {{/is}}
++    {{#is error 'not_found'}}
++      <p class="cp-page-head-intro">{{t 'nonexistent_page'}}</p>
++    {{/is}}
++  </div>
++</section>
+ 
+-  {{#is error 'unauthorized'}}
+-    <h2>{{link 'sign_in'}}</h2>
+-  {{/is}}
++<div class="container cp-main">
++  <div id="main-content" class="error-page cp-error">
++    {{#is error 'unauthorized'}}
++      <p>{{link 'sign_in'}}</p>
++    {{/is}}
+ 
+-  {{#is error 'forbidden'}}
+-    <h2>{{t 'not_authorized'}}</h2>
+-  {{/is}}
++    {{#is error 'not_found'}}
++      <p>{{t 'mistyped_address_or_moved_page'}}</p>
++    {{/is}}
+ 
+-  {{#is error 'not_found'}}
+-    <h2>{{t 'nonexistent_page'}}</h2>
+-    <p>{{t 'mistyped_address_or_moved_page'}}</p>
+-  {{/is}}
+-
+-  {{#link 'help_center'}}
+-    {{t 'back_to_homepage'}}
+-  {{/link}}
++    <ul class="cp-error-links">
++      <li>{{#link 'help_center'}}{{t 'back_to_homepage'}}{{/link}}</li>
++      <li>Still need help? <a href="{{settings.cp_action_url}}">{{settings.cp_action_text}}</a></li>
++    </ul>
++  </div>
+ </div>

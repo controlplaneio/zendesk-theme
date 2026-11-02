@@ -1374,3 +1374,34 @@ a.cp-org-strip:focus {
     scroll-margin-top: 88px;
   }
 }
+
+/***** Error page *********************************************************
+   The band carries the message; the card below offers the way out. Stock
+   Copenhagen centres a large grey "Oops" on an empty page instead.
+ *************************************************************************/
+.cp-main .cp-error {
+  background-color: var(--cp-card);
+  border: 1px solid var(--cp-rule);
+  border-radius: var(--cp-radius);
+  padding: var(--cp-space-3);
+  margin: 0 0 var(--cp-space-4);
+  text-align: left;
+}
+
+.cp-main .cp-error p {
+  margin: 0 0 var(--cp-space-2);
+}
+
+.cp-error-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cp-error-links a,
+.cp-error-links a:visited {
+  color: var(--cp-action);
+}
