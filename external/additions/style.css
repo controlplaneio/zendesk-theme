@@ -546,6 +546,100 @@ a.cp-org-strip:focus {
   }
 }
 
+/***** Homepage: recent activity *****
+   Zendesk fills this list in after the page loads. Restyled as a card like
+   the blocks around it, with section, title and time stacked so long
+   article titles never squeeze the time. Hidden until it has an item. */
+.cp-activity {
+  background-color: var(--cp-card);
+  border: 1px solid var(--cp-rule);
+  border-radius: var(--cp-radius);
+  padding: var(--cp-space-3);
+  margin-bottom: var(--cp-space-3);
+}
+
+.cp-activity:not(:has(.recent-activity-item)) {
+  display: none;
+}
+
+.cp-activity .recent-activity-header {
+  margin: 0 0 18px;
+  font-size: 17px;
+  text-align: left;
+}
+
+.cp-activity .recent-activity-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cp-activity .recent-activity-item {
+  padding: var(--cp-space-2) 0;
+  border-bottom: 1px solid var(--cp-rule);
+  overflow: visible;
+}
+
+.cp-activity .recent-activity-item:first-child {
+  padding-top: 0;
+}
+
+.cp-activity .recent-activity-item:last-child {
+  border-bottom: 0;
+}
+
+.cp-activity .recent-activity-item-parent,
+.cp-activity .recent-activity-item-link {
+  display: block;
+  width: auto;
+  margin: 0;
+}
+
+.cp-activity .recent-activity-item-parent {
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.cp-activity .recent-activity-item-parent,
+.cp-activity .recent-activity-item-parent:visited {
+  color: var(--cp-ink-soft);
+}
+
+.cp-activity .recent-activity-item-link,
+.cp-activity .recent-activity-item-link:visited {
+  margin-top: 2px;
+  font-size: 17px;
+  color: var(--cp-ink);
+}
+
+.cp-activity .recent-activity-item-link:hover,
+.cp-activity .recent-activity-item-link:focus,
+.cp-activity .recent-activity-item-parent:hover,
+.cp-activity .recent-activity-item-parent:focus {
+  color: var(--cp-action);
+}
+
+.cp-activity .recent-activity-item-meta {
+  float: none;
+  margin: 4px 0 0;
+  color: var(--cp-ink-soft);
+}
+
+/* Article comments are switched off, so every count would read 0. */
+.cp-activity .recent-activity-item-comment {
+  display: none;
+}
+
+.cp-activity .recent-activity-controls {
+  padding-top: var(--cp-space-2);
+  border-top: 1px solid var(--cp-rule);
+}
+
+.cp-activity .recent-activity-controls a,
+.cp-activity .recent-activity-controls a:visited {
+  color: var(--cp-action);
+}
+
 /***** Homepage: useful links *****/
 .cp-resources {
   background-color: var(--cp-card);

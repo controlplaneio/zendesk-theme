@@ -173,6 +173,15 @@
     {{/if}}
   {{/if}}
 
+  {{!-- Recently added or updated articles, filled in by Zendesk. Only lists
+        what the viewer is allowed to see. Styled as a card to match the
+        blocks around it. --}}
+  {{#if settings.show_recent_activity}}
+    <section class="cp-activity">
+      {{recent_activity}}
+    </section>
+  {{/if}}
+
   {{!-- Outbound links to the ControlPlane, Flux CD and OpenBao sites. Each
         link renders only when its URL setting is filled in, so nothing shows
         as a dead link. --}}
