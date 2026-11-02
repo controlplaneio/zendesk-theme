@@ -792,7 +792,7 @@
             "type": "text",
             "description": "cp_home_search_hint_description",
             "label": "cp_home_search_hint_label",
-            "value": ""
+            "value": "Search known issues and guides"
           }
         ]
       },

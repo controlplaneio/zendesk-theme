@@ -78,11 +78,14 @@
           <circle cx="4.5" cy="4.5" r="4" fill="none" stroke="currentColor"/>
           <path stroke="currentColor" stroke-linecap="round" d="M11 11L7.5 7.5"/>
         </svg>
-        {{search submit=false instant=settings.instant_search class='search search-full'}}
+        {{!-- The message goes in the box rather than a line under it, which
+              read as disconnected from the search. --}}
+        {{#if settings.cp_home_search_hint}}
+          {{search submit=false instant=settings.instant_search class='search search-full' placeholder=settings.cp_home_search_hint}}
+        {{else}}
+          {{search submit=false instant=settings.instant_search class='search search-full'}}
+        {{/if}}
       </div>
-      {{#if settings.cp_home_search_hint}}
-        <p class="cp-hero-search-hint">{{settings.cp_home_search_hint}}</p>
-      {{/if}}
     {{/if}}
   </div>
 </section>
