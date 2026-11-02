@@ -1410,3 +1410,61 @@ a.cp-org-strip:focus {
 .cp-error-links a:visited {
   color: var(--cp-action);
 }
+
+/***** My activities pages: Following and Contributions ********************
+   The band, then Zendesk's tabs as a white strip tucked under it, then the
+   list as a card. Following is where a client manages the sections they
+   follow, such as a product's known issues.
+ *************************************************************************/
+.cp-page-head + .my-activities-nav {
+  margin-top: calc(-1 * var(--cp-space-4));
+  margin-bottom: var(--cp-space-4);
+  background-color: var(--cp-card);
+  border-bottom: 1px solid var(--cp-rule);
+}
+
+.my-activities-nav .collapsible-nav-list li,
+.my-activities-nav .collapsible-nav-list li a,
+.my-activities-sub-nav .collapsible-nav-list li,
+.my-activities-sub-nav .collapsible-nav-list li a {
+  color: var(--cp-ink);
+}
+
+@media (min-width: 768px) {
+  .my-activities-nav .collapsible-nav-list li.current,
+  .my-activities-sub-nav .collapsible-nav-list li.current {
+    border-bottom-color: var(--cp-action);
+  }
+}
+
+/* Following's header only held the heading, which is now in the band. */
+.cp-main .my-activities-header:not(:has(*)) {
+  display: none;
+}
+
+.cp-main > #main-content.requests {
+  background-color: var(--cp-card);
+  border: 1px solid var(--cp-rule);
+  border-radius: var(--cp-radius);
+  padding: var(--cp-space-3);
+  margin-bottom: var(--cp-space-4);
+}
+
+.cp-main .my-activities-table {
+  margin: 0;
+}
+
+.cp-main .my-activities-table .striped-list-title,
+.cp-main .my-activities-table .striped-list-title:visited {
+  color: var(--cp-ink);
+}
+
+.cp-main .my-activities-table .striped-list-title:hover,
+.cp-main .my-activities-table .striped-list-title:focus {
+  color: var(--cp-action);
+}
+
+.cp-main .no-activities {
+  margin: 0;
+  color: var(--cp-ink-soft);
+}
